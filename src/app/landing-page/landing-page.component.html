@@ -52,18 +52,16 @@
                         <div class="home-registration-form text-left animate__animated animate__fadeInLeft">
                             <ul class="nav nav-pills rounded justify-content-start pricing-tab-border"
                                 id="pills-tab" role="tablist">
-                                <li class="nav-item " style="float: left;">
-                                    <a id="Monthly" class="nav-link rounded active monthly" aria-selected="true"
-                                        href="javascript:__doPostBack(&#39;Monthly&#39;,&#39;&#39;)">SignUp
-                                        Now</a>
+                                <li class="nav-item " style="float: left;" *ngFor="let data of authSteps">
+                                    <a  class="nav-link rounded monthly" (click)="authNav(data.id)" [ngClass]="{'active':data.selected}">{{data.title}}</a>
                                 </li>
-                                <li class="nav-item d-inline-block" style="float: right;">
+                                <!-- <li class="nav-item d-inline-block" style="float: right;">
                                     <a id="Yearly" class="nav-link rounded yearly" role="tab"
                                         aria-selected="false"
                                         href="javascript:__doPostBack(&#39;Yearly&#39;,&#39;&#39;)">Track your
                                         existing application
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
 
                             <div>
@@ -75,67 +73,16 @@
                                                 class="form-control mb-4 alphaonly" required=""
                                                 style="text-transform: uppercase" placeholder="Name as per PAN">
                                         </div>
-                                        <div id="MobileEmail" style="display: block">
 
-                                            <div>
 
-                                                <input name="MobileNumber" type="text" id="MobileNumber"
-                                                    maxlength="10" class="form-control mb-4 number" required=""
-                                                    placeholder="Mobile no ">
-                                            </div>
-                                            <div>
-
-                                                <input name="Emailtext" type="text" id="Emailtext"
-                                                    class="form-control mb-3" required="" placeholder="E-mail">
-                                            </div>
-                                            <div class="form-group termsCondns">
-                                                <input name="iAgreeChk" type="checkbox" id="iAgreeChk"
-                                                    checked="checked">
-                                                I agree
-                                                <a href="https://office.innodigital.in/bahubali/#"
-                                                    data-toggle="modal" data-target="#myModal2">Terms &amp;
-                                                    Conditions </a>
-                                            </div>
-
-                                            <input type="submit" name="submitBtn" value="Get otp" id="submitBtn"
-                                                class="btn btn-sm btn-primary btn-block">
-
+                                        <div *ngIf="step === 'signup'">
+                                            <app-sign-up></app-sign-up>
                                         </div>
-
-
-
-
-
-
                                     </div>
-                                    <div id="Year" class="tab-pane fade" role="tabpanel"
-                                        aria-labelledby="Yearly">
+                                    
+                                    <div *ngIf="step === 'signin'">
 
-                                        <p style="color: #9b9b9b; font-size: 12px; font-weight:400">
-                                            If you have already started your application, please fill out the
-                                            below details and log in.
-                                        </p>
-                                        <div>
-
-                                            <input name="existinguserpan" type="text" id="existinguserpan"
-                                                required="" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)"
-                                                class="form-control mb-4 " style="text-transform: uppercase"
-                                                placeholder="PAN number">
-                                        </div>
-                                        <div>
-
-                                            <input name="exstingusermobile" type="text" id="exstingusermobile"
-                                                required="" class="form-control mb-4  number"
-                                                placeholder="Mobile no as per Aadhar">
-                                        </div>
-
-
-                                        <div class="formBox">
-                                            <input type="submit" name="existuser_btn" value="LOGIN"
-                                                id="existuser_btn" class="btn btn-primary mt-1">
-                                        </div>
-
-
+                                        <app-sign-in ></app-sign-in>
 
                                     </div>
 
