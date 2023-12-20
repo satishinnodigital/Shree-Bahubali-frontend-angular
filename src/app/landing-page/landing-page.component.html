@@ -68,15 +68,11 @@
                                 <div class="tab-content pt-3" id="pills-tabContent">
                                     <div id="Month" class="tab-pane fade active show" role="tabpanel"
                                         aria-labelledby="Monthly">
-                                        <div style="display: none;">
-                                            <input name="NameTxt" type="text" id="NameTxt"
-                                                class="form-control mb-4 alphaonly" required=""
-                                                style="text-transform: uppercase" placeholder="Name as per PAN">
-                                        </div>
+                                       
 
 
                                         <div *ngIf="step === 'signup'">
-                                            <app-sign-up></app-sign-up>
+                                            <app-sign-up (eventSignUp)="signUp($event)"></app-sign-up>
                                         </div>
                                     </div>
                                     
@@ -84,6 +80,10 @@
 
                                         <app-sign-in ></app-sign-in>
 
+                                    </div>
+
+                                    <div *ngIf="step === 'pan'">
+                                        <app-pan-details></app-pan-details>
                                     </div>
 
                                 </div>

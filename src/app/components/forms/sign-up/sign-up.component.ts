@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,7 @@ export class SignUpComponent {
 
   form: FormGroup; 
   submitted = false;
+  @Output() eventSignUp =new EventEmitter<string>
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
@@ -31,7 +32,8 @@ export class SignUpComponent {
     this.submitted = true;
 
     if (this.form.valid) {
-     
+     alert("dsfsfdsdfsdfsd")
+     this.eventSignUp.emit("signup")
     }
 
     
