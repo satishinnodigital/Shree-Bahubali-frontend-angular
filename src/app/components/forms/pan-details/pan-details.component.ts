@@ -21,9 +21,9 @@ export class PanDetailsComponent {
   constructor(private formBuilder: FormBuilder,private toastr: ToastrService) {
     this.form = this.formBuilder.group({
       Pannumber: new FormControl('',[Validators.required,Validators.pattern("[A-Z]{3}P[A-Z][0-9]{4}[A-Z]{1}")]),
-      DateofBrithDay: new FormControl('',[Validators.required,Validators.maxLength(2)]),
-      DateofBrithMonth: new FormControl('',[Validators.required,Validators.maxLength(2)]),
-      DateofBrithYear: new FormControl('',[Validators.required,Validators.maxLength(4)]),
+      DateofBrithDay: new FormControl('',[Validators.required,Validators.maxLength(2),Validators.pattern('^(0?[1-9]|[1@2][0-9]|3[01])$')]),
+      DateofBrithMonth: new FormControl('',[Validators.required,Validators.maxLength(2),Validators.pattern('(0?[1-9]|1[012])')]),
+      DateofBrithYear: new FormControl('',[Validators.required,Validators.maxLength(4)])
      
     });
   }
