@@ -12,6 +12,11 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './components/home/home.component';
+import { KycMainComponent } from './kyc/kyc-main/kyc-main.component';
+import { KRAComponent } from './kyc/k-r-a/k-r-a.component';
+import { DigiLockerComponent } from './kyc/digi-locker/digi-locker.component';
+import { MannualEntryComponent } from './kyc/mannual-entry/mannual-entry.component';
+import { AddressComponent } from './kyc/address/address.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { HomeComponent } from './components/home/home.component';
     SignUpComponent,
     SignInComponent,
     PanDetailsComponent,
-    HomeComponent
+    HomeComponent,
+    KycMainComponent,
+    KRAComponent,
+    DigiLockerComponent,
+    MannualEntryComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,

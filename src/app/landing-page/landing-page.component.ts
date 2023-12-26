@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import * as  AOS from 'aos'
+
 
 @Component({
   selector: 'app-landing-page',
@@ -63,5 +65,16 @@ export class LandingPageComponent {
       this.authSteps[0].selected=false;
         this.authSteps[1].selected=true;
     }
+  }
+
+  ngOnInit(){
+    AOS.refresh();
+    AOS.init({
+      offset: 100,
+      duration: 600,
+      easing: 'ease-in-sine',
+      delay: 100,
+    });
+
   }
 }

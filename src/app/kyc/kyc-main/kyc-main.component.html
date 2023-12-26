@@ -1,0 +1,386 @@
+
+
+
+
+
+    <input name="ctl00$chatbot" type="hidden" id="chatbot" />
+
+    <div class="ajaxloading"><span>Loading...</span></div>
+
+    
+     <section>
+            <header>
+                <div class="container">
+                       <div id="headerDiv" class="row">
+                        <div class="col-sm-12">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="flex-fill">
+                                    <a href=""><img src="../../../assets/images/logo.png" width="80" style="margin-top:0px;" /></a>
+                                </div>
+                                <div class="chartdiv">
+                            <img src="../../../assets/images/profile-default.png" id="ProfileIconImg" />
+                            <div class="author-details">
+                                <h2 class="author-name text-lg">Hi SYED</h2>
+                                
+                            </div>
+                                    
+                        </div>
+                                <div class="logout-box">
+                                    <a href="logout.aspx" id="logoutBTN"><img src="../../../assets/images/logout-icon.png" width="22" /></a>
+                                </div>
+                            </div>
+                         
+                        </div>
+                          
+                     </div>
+                </div>
+            </header>
+        </section>
+
+    <section id="MainSection">
+        <div class="banner-bg1">
+            <div class="container">
+                <div id="HeadingDiv" class="row">
+                    <div class="col-md-7 col-lg-8 kyc-left d-none">
+                        <h1>Open Online Demat &
+                            <br />
+                            <span>Trading account</span>
+                        </h1>
+                    </div>
+
+                    
+                    <div class="col-md-5 col-lg-4 kyc-right">
+                       
+                    </div>
+                </div>
+
+                <form method="post" action="./kra-aadhaar-upload.aspx" id="form1">
+
+                    <div>
+                        
+
+
+
+
+   
+
+
+    <div class="col-lg-12" id="StepsnavigationDiv">
+
+        <div id="quickNavigationDiv">
+
+
+            <a href="#" id="quickMenu" class="btn btn-info">
+                <span id="QucikLinkText">Address</span>
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
+            <div class="clearfix"></div>
+
+
+        </div>
+        <ul class="StepNavigation">
+            <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
+                <button class="btn btn-primary" type="button" id="NavAddressStep"><i class="fa fa-address-card" aria-hidden="true"></i> Address</button></li>
+            <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
+                <button class="btn btn-primary" type="button" id="NavBankStep"><i class="fa fa-bank" aria-hidden="true"></i> Bank</button></li>
+            <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
+                <button class="btn btn-primary" type="button" id="NavProfileStep"><i class="fa fa-user" aria-hidden="true"></i> Profile</button></li>
+            <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
+            <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
+                <button class="btn btn-primary" type="button" id="NavExchangeStep"><i class="fa fa-random" aria-hidden="true"></i> Exchange</button></li>
+            <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
+                <button class="btn btn-primary" type="button" id="NavIPVStep"><i class="fa fa-video-camera" aria-hidden="true"></i> IPV</button></li>
+        </ul>
+
+    </div>
+
+
+
+    <div class="col-lg-12" id="rejectedReasonsDiv" style="display: none;">
+        <div class="rejectedReasonsHead">Rejected Reasons</div>
+        <div class="rejectedReasonsBody">
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+   
+    <div>
+        <app-address></app-address>
+    </div>
+   
+    <script src="js/kra-aadhaar.js?v=914"></script>
+
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="footerSection">
+        <div class="footer-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="footer-list">
+                            
+                            <li><a href="https://bahubali.in/" target="_blank">www.bahubali.in</a></li>
+                            <li><i class="fa fa-phone-volume"></i>080692 09500</li>
+                            <li><i class="fa fa-envelope"></i>supportbahubali.in</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bg1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-10 col-12 mx-auto">
+                        <p>
+                            Copyright BAHUBALI |  Open Trading and Demat Account Online 2020 All Rights Reserved
+              
+                        </p>
+
+                        <p>
+                            Please note that by submiting the above mentioned details, you are authorizing us to call/SMS
+              you even though you may be registered under DNC. We may call/SMS you in next 12 months.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- The Modal -->
+    <div class="modal" id="CropMwModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">View Image</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                </div>
+                <!-- Modal footer -->
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="MessageModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Message</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- The NomineeAddressPoup -->
+    <div class="modal fade" id="NomineeAddressPoup" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <form id="NomineeAddressForm" name="NomineeAddressForm" class="modal-content">
+                <!-- Modal Header -->
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Nominee <span id="NomineeNo"></span>Address Modification</h4>
+                </div>
+                <!-- Modal body -->
+
+
+                
+                <div class="modal-body nominee-box personal-details">
+                    <div class="row mt-2">
+                        <div class="col-lg-6 col-md-12">
+                            <label class="text-black mb-1">Address 1</label>
+                            <textarea class="textarea form-control mb-0" id="NomineeAddress1" required name="NomineeAddress1" placeholder="Enter Address" rows="2"></textarea>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <label class="text-black mb-1">Address 2</label>
+                            <textarea class="textarea form-control mb-0" id="NomineeAddress2" required name="NomineeAddress2" placeholder="Enter Address" rows="2"></textarea>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <label class="text-black mb-1">Address 3</label>
+                            <textarea class="textarea form-control mb-0" id="NomineeAddress3" required name="NomineeAddress3" placeholder="Enter Address" rows="2"></textarea>
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <label class="text-black">State</label>
+                            <select class="form-control" id="NomineeState" required name="NomineeState">
+                                <option value="">Select State</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <label class="text-black">City</label>
+                            <select id="NomineeCity" name="NomineeCity" required class="form-control">
+                                <option value="">Select City</option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mt-2">
+                            <label class="text-black">Country</label>
+                            
+                            <select id="NomineeCountry" name="NomineeCountry" required class="form-control">
+                                <option value="101">India</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <label class="text-black">Pin code</label>
+                            <input type="text" class="form-control " id="NomineePincode" required name="NomineePincode" placeholder="">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer text-center d-block" style="border-top: 0px;">
+                    <div class="Mybtn-group ">
+                        <button type="button" id="NomineeAddressSubmit" class="btn btn-primary radius">Submit</button>
+                        <button type="button" class="btn btn-danger radius" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <!-- The Modal -->
+    <div class="modal fade" id="GaurdianModalPopup" data-backdrop="static">
+        <div class="modal-dialog modal-xl">
+            <form id="GuardianForm" name="GuardianForm" class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Nominee <span id="GuardianNomineeNo"></span>Guardian Details</h4>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body nominee-box personal-details">
+                    <div class="row mt-2">
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                            <label class="text-black">Guardian PAN</label>
+                            <input type="text" class="form-control" id="GuardianPan" required name="GuardianPan" placeholder="Enter Guardian PAN">
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12" style="display: none">
+                            <label for="GuardianNomineeProofFile" id="GuardianNomineeUploadLabel" class="btn btn-primary fileLABLE">
+                                <i class="fa fa-camera-retro"></i>Upload Proof
+                            </label>
+                            <input id="GuardianNomineeProofFile" class="GuardianNomineeProofFile" type="file" />
+                            <div id="isGuardianNomineeImgDiv" style="display: none;">
+                                <img src="" id="GuardianNomineeProofImg" class="img-fluid" />
+                                <button type="button" class="btn btn-danger btn-sm" id="GuardianNomineeProofReuploadBtn">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                            <label class="text-black">Name of the guardian</label>
+                            <input type="text" class="form-control" id="GuardianName" required name="GuardianName" placeholder="Enter Name of the guardian">
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                            <label class="text-black">Date of birth (Gaurdian)</label>
+                            <div class="form-row">
+                                <div class="col-4">
+                                    <input type="text" class="form-control number cDatezero cDateCls" required min="1" max="31" data-id="D" placeholder="dd" id="GaurdianDobDay" name="GaurdianDobDay" maxlength="2" value="">
+                                </div>
+                                <div class="col-4">
+                                    <input type="text" class="form-control number cDatezero cDateCls" required min="1" max="12" data-id="M" placeholder="mm" id="GaurdianDobMonth" name="GaurdianDobMonth" maxlength="2" value="">
+                                </div>
+                                <div class="col-4 mt-2 mt-sm-0">
+                                    <input type="text" class="form-control number cDateCls" data-id="Y" required placeholder="yyyy" id="GaurdianDobYear" name="GaurdianDobYear" maxlength="4" value="">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-lg-4 col-12">
+                            <label class="text-black mb-1">Guardian Address Line 1</label>
+                            <textarea class="textarea form-control mb-0" required id="GuardianAddress1" name="GuardianAddress1" style="padding: 15px !important; font-size: 14px;" placeholder="Enter Address" rows="2"></textarea>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-lg-4 col-12">
+                            <label class="text-black mb-1">Guardian Address Line 2</label>
+                            <textarea class="textarea form-control mb-0" required id="GuardianAddress2" name="GuardianAddress2" style="padding: 15px !important; font-size: 14px;" placeholder="Enter Address" rows="2"></textarea>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-lg-4 col-12">
+                            <label class="text-black mb-1">Guardian Address Line 3</label>
+                            <textarea class="textarea form-control mb-0" id="GuardianAddress3" name="GuardianAddress3" style="padding: 15px !important; font-size: 14px;" placeholder="Enter Address" rows="2"></textarea>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 mt-2 col-12">
+                            <label class="text-black">State</label>
+                            <select class="form-control" id="GuardianState" name="GuardianState" required>
+                                <option value="">Select State</option>
+
+                            </select>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 mt-2 col-12">
+                            <label class="text-black">City</label>
+                            <select id="GuardianCity" name="GuardianCity" required class="form-control">
+                                <option value="">Select City</option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 col-md-12 col-sm-12 mt-2 col-12">
+                            <label class="text-black">Country</label>
+                            <select id="GuardianCountry" name="GuardianCountry" required class="form-control">
+                                <option value="101">India</option>
+                            </select>
+
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 mt-2 col-12">
+                            <label class="text-black">Pin code</label>
+                            <input type="text" class="form-control " name="GuardianPinCode" id="GuardianPinCode" required placeholder="Pin code">
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 mt-2 col-12">
+                            <label class="text-black">Relationship with guardian</label>
+
+                            <select id="GuardianRelationShip" required name="GuardianRelationShip" class="form-control">
+                                <option value="">Select</option>
+                            </select>
+
+
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 mt-2 col-12">
+                            <label class="text-black">Guardian email id</label>
+                            <input type="email" class="form-control " name="GuardianEmail" id="GuardianEmail" required placeholder="Enter Guardian email id">
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 mt-2 col-12">
+                            <label class="text-black">Guardian mobile</label>
+                            <input type="text" class="form-control number" name="GuardianMobile" minlength="10" maxlength="10" id="GuardianMobile" required placeholder="Enter Guardian mobile">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer text-center d-block" style="border-top: 0px;">
+                    <div class="Mybtn-group ">
+                        <button type="button" id="GuardianSubmit" class="btn btn-primary radius">Submit</button>
+                        <button type="button" class="btn btn-danger radius" id="GuardianPopupClose">Close</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+

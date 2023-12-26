@@ -49,7 +49,7 @@ export class PanDetailsComponent {
 
     if (this.form.valid) {
       this.toastr.success('Registered successfully');
-    alert(JSON.stringify(this.form.value))
+    alert(JSON.stringify(modifiedFormData))
     this.sendresponce.emit('completed')
     }
 

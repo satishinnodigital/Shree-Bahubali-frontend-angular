@@ -35,7 +35,7 @@ export class SignInComponent {
 
     if (this.form.valid) {
       this.toastr.success('Login Successfully');
-      this.route.navigate(['/home'])
+      this.route.navigate(['/kyc-steps'])
 
     }
 

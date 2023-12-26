@@ -9,7 +9,7 @@
             class="form-control mb-4 " style="text-transform: uppercase"
             placeholder="PAN number"  formControlName="PanNumber"  [ngClass]="{'is-invalid':submitted && f['PanNumber'].errors}">
             <div *ngIf="submitted && f['PanNumber'].errors" class="invalid-feedback">
-                <div *ngIf="f['PanNumber'].errors['required']">PanNumber Number is required
+                <div *ngIf="f['PanNumber'].errors['required']">Pan number is required
                 </div>
                 <div *ngIf="f['PanNumber'].errors['pattern']">Invalid Pan Number</div>
             </div>
@@ -19,7 +19,7 @@
         <input type="number" class="form-control mb-4"
             placeholder="Mobile no as per Aadhar" formControlName="mobile"  [ngClass]="{'is-invalid':submitted && f['mobile'].errors}">
             <div *ngIf="submitted && f['mobile'].errors" class="invalid-feedback">
-                <div *ngIf="f['mobile'].errors['required']">Mobile Number is required
+                <div *ngIf="f['mobile'].errors['required']">Mobile number is required
                 </div>
                 <div *ngIf="f['mobile'].errors['pattern']">Please, Enter 10 digit Mobile Number</div>
             </div>

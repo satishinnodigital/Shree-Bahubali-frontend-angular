@@ -1,0 +1,123 @@
+input[type="text"] {
+    background-color: #fff !important;
+    border: 1px solid #cccccc !important;
+    border-radius: 20px !important;
+    padding: 15px !important;
+    width: 100% !important;
+    height: 45px !important;
+}
+
+input[type="button"] {
+    color: #fff;
+    background-color: #0b3f56 ;
+    border-color: #0b3f56 ;
+    padding: 10px 0px;
+    border-radius: 20px;
+}
+
+.kyc-div select.form-control {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+input.error, select.error, textarea.error {
+    border: 1px solid #f00 !important;
+}
+
+
+.custom-radio input[type=radio] {
+    top: 0px !important;
+}
+
+.aadhaarSteps {
+    padding: 0px;
+    margin: 0px;
+}
+
+    .aadhaarSteps li {
+        padding: 0px;
+        margin: 0px;
+        list-style: none;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        border-bottom: 1px dashed #9e9e9e;
+        margin-top: 20px;
+    }
+
+
+    .aadhaarSteps .stepno {
+        font-size: 20px;
+        font-weight: 500;
+        color: #0976c3;
+        text-transform: uppercase;
+    }
+
+    .aadhaarSteps .stepcon {
+        font-size: 16px;
+    }
+
+.aadhaar-pdf p {
+    color: #c12525;
+    font-size: 14px;
+}
+
+
+.kyc-div .form-control {
+    width: 100% !important;
+}
+
+.mytabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #0e73a5;
+    border: none;
+}
+
+.mytabs .nav-tabs .nav-link {
+    margin-right: 1px;
+    font-size: 15px;
+}
+
+.mytabs .nav-link {
+    background: #ececec;
+    color: #717171;
+}
+
+
+@media screen and (max-width: 767px) {
+
+    .mytabs .nav-tabs .nav-item {
+        display: block;
+        width: 100% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .mytabs .nav {
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+}
+
+.popup-addrs-heading {
+    padding: 5px;
+    background-color: #3667b1;
+    color: #fff;
+}
+
+input[type="number"] {
+    background-color: #fff !important;
+    border: 1px solid #cccccc;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    width: 100% !important;
+    height: 45px !important;
+}
+
+.chartdiv h3 {
+
+    word-break: break-word;
+width: 52%;
+
+}

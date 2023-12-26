@@ -5,7 +5,7 @@
     <div class="mb-4">
         <input type="text" class="form-control mb-4 nospecialchar pan-input"  style="text-transform: uppercase" placeholder="PAN number"   formControlName="Pannumber"  [ngClass]="{'is-invalid':submitted && f['Pannumber'].errors}">
         <div *ngIf="submitted && f['Pannumber'].errors" class="invalid-feedback">
-            <div *ngIf="f['Pannumber'].errors['required']">PanNumber Number is required
+            <div *ngIf="f['Pannumber'].errors['required']">Pan Number is required
             </div>
             <div *ngIf="f['Pannumber'].errors['pattern']">Invalid Pan Number</div>
         </div>
