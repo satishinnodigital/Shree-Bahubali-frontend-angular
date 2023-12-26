@@ -21,9 +21,9 @@ export class PanDetailsComponent {
   constructor(private formBuilder: FormBuilder,private toastr: ToastrService) {
     this.form = this.formBuilder.group({
       Pannumber: new FormControl('',[Validators.required,Validators.pattern("[A-Z]{3}P[A-Z][0-9]{4}[A-Z]{1}")]),
-      DateofBrithDay: new FormControl('',[Validators.required,Validators.maxLength(2)]),
-      DateofBrithMonth: new FormControl('',[Validators.required,Validators.maxLength(2)]),
-      DateofBrithYear: new FormControl('',[Validators.required,Validators.maxLength(4)]),
+      day: new FormControl('',[Validators.required,Validators.maxLength(2)]),
+      month: new FormControl('',[Validators.required,Validators.maxLength(2),Validators.pattern("[12][0-9]")]),
+      year: new FormControl('',[Validators.required,Validators.maxLength(4)]),
      
     });
   }
@@ -37,7 +37,15 @@ export class PanDetailsComponent {
   }
 
   onSubmit(): void {
+    const pan = this.form.get("Pannumber")?.value.toUpperCase();
+    console.log(pan);
+
+    const dob = this.form.get("day")?.value +'-'+this.form.get("month")?.value + '-'+ this.form.get('year')?.value;
+    console.log(dob)
     this.submitted = true;
+
+    const modifiedFormData = {pan:pan,dob:dob}
+    console.log(modifiedFormData)
 
     if (this.form.valid) {
       this.toastr.success('Registered successfully');
