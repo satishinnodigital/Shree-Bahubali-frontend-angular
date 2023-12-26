@@ -27,6 +27,8 @@ export class LandingPageComponent {
   constructor(){
     this.authSteps[0].selected=true;
     this.step = 'signup';
+
+    
   }
   authNav(id:any){
     if(id === 1){
@@ -51,6 +53,15 @@ export class LandingPageComponent {
     if($event === 'signup'){
       this.step = 'pan';
       this.authSteps[0].status=true;
+    }
+  }
+
+  pan($event:any){
+    if($event === 'completed'){
+      this.step = 'signin';
+      this.authSteps[0].status=false;
+      this.authSteps[0].selected=false;
+        this.authSteps[1].selected=true;
     }
   }
 }

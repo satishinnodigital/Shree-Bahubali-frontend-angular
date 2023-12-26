@@ -1,8 +1,14 @@
-
+<form [formGroup]="form">
+    
 <div id="PanDOB">
 
-    <div>
-        <input name="PanNumber" type="text" id="PanNumber" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" required="" class="form-control mb-4 nospecialchar" maxlength="10" style="text-transform: uppercase" placeholder="PAN number">
+    <div class="mb-4">
+        <input type="text" class="form-control mb-4 nospecialchar pan-input"  style="text-transform: uppercase" placeholder="PAN number"   formControlName="Pannumber"  [ngClass]="{'is-invalid':submitted && f['Pannumber'].errors}">
+        <div *ngIf="submitted && f['Pannumber'].errors" class="invalid-feedback">
+            <div *ngIf="f['Pannumber'].errors['required']">PanNumber Number is required
+            </div>
+            <div *ngIf="f['Pannumber'].errors['pattern']">Invalid Pan Number</div>
+        </div>
     </div>
     <div class="">
     <div class="col-12 ">
@@ -13,19 +19,32 @@
     <div class="col-12 ">
         <div class="form-row pan-date">
             <div class="form-group col-sm-4 col-4">
-                <input name="DateofBrithDay" type="text" id="DateofBrithDay" class="form-control number cDatezero cDateCls" min="1" max="31" data-id="D" placeholder="dd" maxlength="2">
+                <input  type="number" class="form-control number cDatezero cDateCls" formControlName="DateofBrithDay" placeholder="DAY" [ngClass]="{'is-invalid':submitted && f['DateofBrithDay'].errors}" maxlength="2" (input)="OnInput($event,dateofmonthInput)">
+                <div *ngIf="submitted && f['DateofBrithDay'].errors" class="invalid-feedback">
+                    <!-- <div *ngIf="f['DateofBrithDay'].errors['required']">Day is required
+                    </div> -->
+                </div>
             </div>
             <div class="form-group col-sm-4 col-4">
-                <input name="DateofBrithMonth" type="text" id="DateofBrithMonth" class="form-control number cDatezero cDateCls" min="1" max="12" data-id="M" placeholder="mm" maxlength="2">
+                <input  type="number"  class="form-control number cDatezero cDateCls"  placeholder="MM"  formControlName="DateofBrithMonth"  [ngClass]="{'is-invalid':submitted && f['DateofBrithMonth'].errors}" maxlength="2" (input)="OnInput($event,dateofYearInput)" #dateofmonthInput>
+                <div *ngIf="submitted && f['DateofBrithMonth'].errors" class="invalid-feedback">
+                    <!-- <div *ngIf="f['DateofBrithMonth'].errors['required']">Month is required
+                    </div> -->
+                </div>
             </div>
             <div class="form-group col-sm-4 col-4">
-                <input name="DateofBrithYear" type="text" id="DateofBrithYear" class="form-control number cDateCls " data-id="Y" placeholder="yyyy" maxlength="4" max="2005" min="1923">
+                <input  type="number" class="form-control number cDateCls "  placeholder="YYYY"  formControlName="DateofBrithYear"  [ngClass]="{'is-invalid':submitted && f['DateofBrithYear'].errors}" maxlength="4" #dateofYearInput>
+                <div *ngIf="submitted && f['DateofBrithYear'].errors" class="invalid-feedback">
+                    <!-- <div *ngIf="f['DateofBrithYear'].errors['required']">Year is required
+                    </div> -->
+                </div>
             </div>
         </div>
     </div>
 
 </div>
-    <input type="submit" name="PanDobSubmit" value="Submit" id="PanDobSubmit" class="btn btn-sm btn-primary btn-block">
+    <input type="submit" name="PanDobSubmit"  class="btn btn-sm btn-primary btn-block" (click)="onSubmit()">
 
 
 </div>
+</form>

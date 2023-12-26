@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @use "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-
+@import 'ngx-toastr/toastr';
 
 @import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap');
 
@@ -68,6 +68,8 @@ label.error {
         -webkit-animation: animate-preloader 1s linear infinite;
         animation: animate-preloader 1s linear infinite;
     }
+
+    
 
 @-webkit-keyframes animate-preloader {
     0% {

@@ -9,6 +9,9 @@ import { SignInComponent } from './components/forms/sign-in/sign-in.component';
 import { PanDetailsComponent } from './components/forms/pan-details/pan-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +19,18 @@ import { RouterModule } from '@angular/router';
     LandingPageComponent,
     SignUpComponent,
     SignInComponent,
-    PanDetailsComponent
+    PanDetailsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

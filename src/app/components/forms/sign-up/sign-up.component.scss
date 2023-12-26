@@ -5,3 +5,50 @@
     border: 1px #9f9f9f solid;
     border-radius: 20px;
 }
+
+.modal-title{
+   
+    color: #fff;
+    font-size: 15px;
+    padding: 1rem 1rem;
+    
+    
+}
+.resend{
+    font-size: 14px;
+    color: red;
+}
+.default-but{
+    background-color: #000 !important;
+    border-color: #000 !important;
+    border-radius: 20px;
+    padding: 5px 25px !important;
+    color: white;
+}
+.one{
+    margin-bottom: 1rem;
+    font-size: 15px;
+}
+.modal-header{
+    padding: 0px 20px;
+    background: #0e73a5;
+}
+.verify-input{
+    width: 250px !important;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0px;
+    border-radius: initial;
+}
+.submit-buttt{
+    background: #0e73a5 !important;
+}
+
+.formBox input{
+    margin-bottom: 0px !important;
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+  }

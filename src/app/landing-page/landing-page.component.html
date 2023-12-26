@@ -83,7 +83,7 @@
                                     </div>
 
                                     <div *ngIf="step === 'pan'">
-                                        <app-pan-details></app-pan-details>
+                                        <app-pan-details (sendresponce)="pan($event)"></app-pan-details>
                                     </div>
 
                                 </div>

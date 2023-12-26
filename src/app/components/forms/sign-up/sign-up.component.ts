@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+declare var $: any;
+import { ToastrService } from 'ngx-toastr';
+
+
 
 @Component({
   selector: 'app-sign-up',
@@ -9,14 +13,27 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 export class SignUpComponent {
 
   form: FormGroup; 
+  mobileverifyform:FormGroup;
+  emailverifyform:FormGroup;
   submitted = false;
+  submitted1 = false;
+  submitted2 = false;
+  verifyemailform:boolean=false;
+  verifymobileForm:boolean=true;
   @Output() eventSignUp =new EventEmitter<string>
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,private toastr: ToastrService) {
     this.form = this.formBuilder.group({
       mobile: new FormControl('',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
-      email: new FormControl('',[Validators.required, Validators.email]),
+      email: new FormControl('',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       acceptTerms: new FormControl('',Validators.required),
+    });
+
+    this.mobileverifyform = this.formBuilder.group({
+      mobileotp: new FormControl('',Validators.required),
+    });
+    this.emailverifyform = this.formBuilder.group({
+      emailotp: new FormControl('',Validators.required),
     });
   }
 
@@ -27,16 +44,50 @@ export class SignUpComponent {
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
+  get f1(): { [key: string]: AbstractControl } {
+    return this.mobileverifyform.controls;
+  }
+  get f2(): { [key: string]: AbstractControl } {
+    return this.emailverifyform.controls;
+  }
 
   onSubmit(): void {
     this.submitted = true;
 
     if (this.form.valid) {
-     alert("dsfsfdsdfsdfsd")
-     this.eventSignUp.emit("signup")
+      this.toastr.success('OTP sent successfully');
+      alert(JSON.stringify(this.form.value))
+     $('#exampleModal').modal('show');
+    
     }
 
     
+  }
+
+  verifyMobile(){
+    this.submitted1=true;
+    if(this.mobileverifyform.valid){
+      this.toastr.success('Mobile OTP Verified successfully');
+      alert(JSON.stringify(this.mobileverifyform.value))
+      this.mobileverifyform.reset();
+      this.submitted1=false;
+      this.verifymobileForm=false;
+      this.verifyemailform=true
+    }
+  }
+
+  verifyEmail(){
+    this.submitted2=true;
+    if(this.emailverifyform.valid){
+      this.toastr.success('Email OTP Verified successfully');
+      alert(JSON.stringify(this.emailverifyform.value))
+      $('#exampleModal').modal('hide');
+       this.eventSignUp.emit("signup")
+      this.emailverifyform.reset();
+      this.submitted2=false;
+      this.verifymobileForm=true;
+     
+    }
   }
 
 }

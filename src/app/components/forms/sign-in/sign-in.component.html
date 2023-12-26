@@ -2,23 +2,33 @@
     If you have already started your application, please fill out the
     below details and log in.
 </p>
-<div>
+<form [formGroup]="form" class="form">
+    <div class="mb-4">
 
-    <input name="existinguserpan" type="text" id="existinguserpan"
-        required="" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)"
-        class="form-control mb-4 " style="text-transform: uppercase"
-        placeholder="PAN number">
-</div>
-<div>
-
-    <input name="exstingusermobile" type="text" id="exstingusermobile"
-        required="" class="form-control mb-4  number"
-        placeholder="Mobile no as per Aadhar">
-</div>
-
-
-<div class="formBox">
-    <input type="submit" name="existuser_btn" value="LOGIN"
-        id="existuser_btn" class="btn btn-primary mt-1">
-</div>
+        <input  type="text" 
+            class="form-control mb-4 " style="text-transform: uppercase"
+            placeholder="PAN number"  formControlName="PanNumber"  [ngClass]="{'is-invalid':submitted && f['PanNumber'].errors}">
+            <div *ngIf="submitted && f['PanNumber'].errors" class="invalid-feedback">
+                <div *ngIf="f['PanNumber'].errors['required']">PanNumber Number is required
+                </div>
+                <div *ngIf="f['PanNumber'].errors['pattern']">Invalid Pan Number</div>
+            </div>
+    </div>
+    <div class="mb-4">
+    
+        <input type="number" class="form-control mb-4"
+            placeholder="Mobile no as per Aadhar" formControlName="mobile"  [ngClass]="{'is-invalid':submitted && f['mobile'].errors}">
+            <div *ngIf="submitted && f['mobile'].errors" class="invalid-feedback">
+                <div *ngIf="f['mobile'].errors['required']">Mobile Number is required
+                </div>
+                <div *ngIf="f['mobile'].errors['pattern']">Please, Enter 10 digit Mobile Number</div>
+            </div>
+    </div>
+    
+    
+    <div class="formBox">
+        <input type="submit"  class="btn btn-primary mt-1" (click)="onSubmit()">
+    </div>
+    
+</form>
 
