@@ -17,6 +17,10 @@ import { KRAComponent } from './kyc/k-r-a/k-r-a.component';
 import { DigiLockerComponent } from './kyc/digi-locker/digi-locker.component';
 import { MannualEntryComponent } from './kyc/mannual-entry/mannual-entry.component';
 import { AddressComponent } from './kyc/address/address.component';
+import { BankComponent } from './kyc/bank/bank.component';
+import { ProfileComponent } from './kyc/profile/profile.component';
+import { ExchangeComponent } from './kyc/exchange/exchange.component';
+import { IPVComponent } from './kyc/i-p-v/i-p-v.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { AddressComponent } from './kyc/address/address.component';
     KRAComponent,
     DigiLockerComponent,
     MannualEntryComponent,
-    AddressComponent
+    AddressComponent,
+    BankComponent,
+    ProfileComponent,
+    ExchangeComponent,
+    IPVComponent
   ],
   imports: [
     BrowserModule,
