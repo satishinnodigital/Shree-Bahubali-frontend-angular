@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@use "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// @use "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-@use"../node_modules/aos/dist/aos.css";
+// @use"../node_modules/aos/dist/aos.css";
 
 @import 'ngx-toastr/toastr';
 
@@ -1395,7 +1395,7 @@ body {
 
 
 .banner-bg {
-    background-image: url(../images/banner-bg.png);
+    // background-image: url(../images/banner-bg.png);
     padding: 0px 0px;
     background-position: center;
     margin-bottom: 0px;
@@ -1415,7 +1415,7 @@ body {
 }
 
 .banner-bg1 {
-    background-image: url(../images/bg2.png);
+    // background-image: url(../images/bg2.png);
     padding: 0px 0px;
     background-position: center;
     background-repeat: no-repeat;

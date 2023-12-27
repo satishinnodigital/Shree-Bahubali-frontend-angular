@@ -23,7 +23,7 @@ export class PanDetailsComponent {
       Pannumber: new FormControl('',[Validators.required,Validators.pattern("[A-Z]{3}P[A-Z][0-9]{4}[A-Z]{1}")]),
       day: new FormControl('',[Validators.required,Validators.maxLength(2),Validators.pattern('^(0?[1-9]|[1@2][0-9]|3[01])$')]),
       month: new FormControl('',[Validators.required,Validators.maxLength(2),Validators.pattern('(0?[1-9]|1[012])')]),
-      year: new FormControl('',[Validators.required,Validators.maxLength(4)]),
+      year: new FormControl('',[Validators.required,Validators.maxLength(4),this.checkyear,Validators.pattern(/^\d{4}$/)]),
      
     });
   }
@@ -60,6 +60,17 @@ export class PanDetailsComponent {
     if(event.target.value.length === event.target.maxLength && input){
     input.focus()
     }
+  }
+
+  checkyear(control:AbstractControl){
+    const year=control.value;
+    const currentYear=new Date().getFullYear()
+
+    if(year && (year < 1920 || year > currentYear)){
+      return {mismatch:true}
+    }
+    
+    return null;
   }
 
 

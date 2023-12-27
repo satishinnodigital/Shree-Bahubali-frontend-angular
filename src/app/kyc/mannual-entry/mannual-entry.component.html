@@ -1,304 +1,363 @@
   <!-- Tab panes -->
-  <div class="row tab-content ">
+ <form [formGroup]="form">
+    <div class="row tab-content ">
             
             
 
-    <div id="ManualEntry" class="" >
-        <div class='box kyc-div' style="">
-            <div class="panel panel-blue">
-                <div class="panel-heading">
-                    <h3 class="m0 p0">Correspondence Address</h3>
+        <div id="ManualEntry" class="" >
+            <div class='box kyc-div' style="">
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="m0 p0">Correspondence Address</h3>
+                    </div>
                 </div>
-            </div>
-            <div class="panel-body">
-                <div class="form-horizontal">
-
-
-                    <div class="row">
-
-
-
-                        <div class="col-sm-4">
-                            <div class="form-group">
-
-
-                                <label class="control-label">Prefix </label>
-
-                                <div class="">
-                                    <select id="applicantprefix" required class="form-control">
-                                        <option value="">Select Prefix</option>
-                                        <option value="MR">Mr</option>
-                                        <option value="MRS">Mrs</option>
-                                         <option value="MISS">Miss</option>
-
-
+                <div class="panel-body">
+                    <div class="form-horizontal">
+    
+    
+                        <div class="row">
+    
+    
+    
+                            <div class="col-sm-4">
+                                <div class="form-group">
+    
+    
+                                    <label class="control-label">Prefix </label>
+    
+                                    <div class="">
+                                        <select id="applicantprefix" required class="form-control"   formControlName="select_prefix"  [ngClass]="{ 'is-invalid': submitted && f['select_prefix'].errors }">
+                                            <option value="">Select Prefix</option>
+                                            <option value="MR">Mr</option>
+                                            <option value="MRS">Mrs</option>
+                                             <option value="MISS">Miss</option>
+    
+    
+                                        </select>
+                                        <div *ngIf="submitted && f['select_prefix'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['select_prefix'].errors['required']">Prefix is required</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+                            <div class="col-sm-4">
+                                <div class="form-group">
+    
+    
+                                    <label class="control-label">Name as per PAN </label>
+    
+                                    <div class="">
+                                        <input type="text" class="form-control" id="pan-name"  formControlName="pan_name"  [ngClass]="{ 'is-invalid': submitted && f['pan_name'].errors } "/>
+                                        <div *ngIf="submitted && f['pan_name'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['pan_name'].errors['required']"> Name as per pan is required</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+    
+                            <div class="col-sm-4">
+                                <div class="form-group">
+    
+    
+                                    <label class=" control-label">Gender </label>
+    
+                                    <div class="">
+                                        <select id="gender" name="gender" required class="form-control"  formControlName="gender"  [ngClass]="{ 'is-invalid': submitted && f['gender'].errors } ">
+                                            <option value="">Select Gender</option>
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
+                                        </select>
+                                        <div *ngIf="submitted && f['gender'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['gender'].errors['required']">Gender is required</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <div class="row">
+    
+    
+                          
+    
+    
+    
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label">Address 1</label>
+                                    <div class="">
+                                        <input type="text" maxlength="50" name="caddress1" id="caddress1" class="form-control addressChar"   formControlName="address_one"  [ngClass]="{ 'is-invalid': submitted && f['address_one'].errors } "/>
+                                        <div *ngIf="submitted && f['address_one'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['address_one'].errors['required']">Address 1 is required</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label">Address 2</label>
+                                    <div class="">
+                                        <input type="text" maxlength="50" name="caddress2" id="caddress2" class="form-control addressChar"   formControlName="address_two"  [ngClass]="{ 'is-invalid': submitted && f['address_two'].errors } "/>
+                                        <div *ngIf="submitted && f['address_two'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['address_two'].errors['required']">Address 2 is required</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label">Address 3</label>
+                                    <div class="">
+                                        <input type="text" maxlength="50" name="caddress3" id="caddress3" class="form-control addressChar"   formControlName="address_three"  [ngClass]="{ 'is-invalid': submitted && f['address_three'].errors } "/>
+                                        <div *ngIf="submitted && f['address_three'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['address_three'].errors['required']">Address 3 is required</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Tel.(Res.) </label>
+                                    <div class="">
+                                        <input type="number" maxlength="10" name="ctelResidentNo" id="ctelResidentNo" class="form-control number"   formControlName="resident_no"  [ngClass]="{ 'is-invalid': submitted && f['resident_no'].errors } "/>
+                                        <div *ngIf="submitted && f['resident_no'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['resident_no'].errors['required']">Resident Number is required</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Pincode</label>
+                                    <div class="">
+                                        <input type="number" name="cpincode" id="cpincode" class="form-control number"  formControlName="pincode"  [ngClass]="{ 'is-invalid': submitted && f['pincode'].errors } " />
+                                        <div *ngIf="submitted && f['pincode'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['pincode'].errors['required']">Pincode is required</div>
+                                            <div *ngIf="f['pincode'].errors['pattern']">Pincode Should be 6 digits</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Country</label>
+                                    <div class="">
+                                        <select name="ccountry" id="ccountry" class="form-control"  formControlName="country"  [ngClass]="{ 'is-invalid': submitted && f['country'].errors } " >
+                                            <option  value="">Country</option>
+                                            <option  value="india">India</option>
+                                        </select>
+                                        <div *ngIf="submitted && f['country'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['country'].errors['required']">Country is required</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">State</label>
+                                    <div class="">
+                                        <select name="cstate" id="cstate" class="form-control"  formControlName="state"  [ngClass]="{ 'is-invalid': submitted && f['state'].errors } ">
+                                            <option value="">State</option>
+                                            <option value="state">State</option>
+                                        </select>
+                                        <div *ngIf="submitted && f['state'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['state'].errors['required']">State is required</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">City</label>
+                                    <div class="">
+                                        <select name="cstate" id="ccity" class="form-control" formControlName="city"  [ngClass]="{ 'is-invalid': submitted && f['city'].errors } ">
+                                            <option value="">City</option>
+                                            <option value="hyderabad">City</option>
+                                        </select>
+                                        <div *ngIf="submitted && f['city'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['city'].errors['required']">City is required</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Mobile </label>
+                                    <div class="">
+                                        <input type="number" name="cmobile" id="cmobile" class="form-control number"  formControlName="mobile"  [ngClass]="{ 'is-invalid': submitted && f['mobile'].errors } "/>
+                                        <div *ngIf="submitted && f['mobile'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['mobile'].errors['required']">Mobile Number is required</div>
+                                            <div *ngIf="f['mobile'].errors['pattern']">Please, Enter 10 digit Mobile Number</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Tel.(Off.) </label>
+                                    <div class="">
+                                        <input type="text" maxlength="10" name="ctelOfficeNo" id="ctelOfficeNo" class="form-control number" formControlName="tel_office"   />
+                                     
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Fax no </label>
+                                    <div class="">
+                                        <input type="number" maxlength="10" name="cfaxNo" id="cfaxNo" class="form-control number" formControlName="fax_no" />
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Email </label>
+                                    <div class="">
+                                        <input type="email" name="cemailId" id="cemailId"  class="form-control"  formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f['email'].errors } "/>
+                                        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['email'].errors['required']">Email is required</div>
+                                            <div *ngIf="f['email'].errors['pattern']">Email is invalid</div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Proof Of address </label>
+    
+                                    <select class="form-control" id="McproofAddress" name="McproofAddress" formControlName="address_proof"  [ngClass]="{ 'is-invalid': submitted && f['address_proof'].errors } ">
+                                        <option value="">SELECT Address Proof</option>
+                                        <option value="hyderabad">Hyderabad</option>
                                     </select>
+                                    <div *ngIf="submitted && f['address_proof'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['address_proof'].errors['required']">Address Proof is required</div>
+                                      </div>
+    
                                 </div>
                             </div>
-                        </div>
-
-
-                        <div class="col-sm-4">
-                            <div class="form-group">
-
-
-                                <label class="control-label">Name as per PAN </label>
-
-                                <div class="">
-                                    <input type="text" class="form-control" id="pan-name" disabled />
+    
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Address proof no. </label>
+    
+                                    <input type="text" name="MProofofaddressNumber" id="MProofofaddressNumber" class="form-control nospecialchar1" maxlength="25"  formControlName="address_proof_number"  [ngClass]="{ 'is-invalid': submitted && f['address_proof_number'].errors } "/>
+                                    <div *ngIf="submitted && f['address_proof_number'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['address_proof_number'].errors['required']">Address Proof Number is required</div>
+                                      </div>
+    
                                 </div>
                             </div>
-                        </div>
-
-
-
-                        <div class="col-sm-4">
-                            <div class="form-group">
-
-
-                                <label class=" control-label">Gender </label>
-
-                                <div class="">
-                                    <select id="gender" name="gender" required class="form-control">
-                                        <option value="">Select Gender</option>
-                                        <option value="M">Male</option>
-                                        <option value="F">Female</option>
-
-
-                                    </select>
+                              <div class="col-12">
+    
+                                  </div>
+    
+                          
+    
+                           
+    
+                            <div class="col-md-4 md-form">
+    
+                                <p>Please upload your address proof </p>
+                                <div class="file-field">
+                                    <div class="btn btn-primary1 btn-sm float-left">
+    
+                                        <input type="file" name="POAcopyfile" id="POAcopyfile" formControlName="file"  [ngClass]="{ 'is-invalid': submitted && f['file'].errors } " (change)="showPreview($event)"  accept="image/jpeg,image/jpg"/>
+                                        <div *ngIf="submitted && f['file'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['file'].errors['required']"> Upload File is required</div>
+                                          </div>
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" id="POAfiletext" name="POAfiletext" style="border: none; padding-top: 10px; padding-left: 13px; width: 100%" type="button" value="Upload" placeholder=""  />
+                                      
+                                    </div>
                                 </div>
+                                <div style="clear: both"></div>
+                                <p style="font-size: 14px;">
+                                    Note: Only JPG/JPEG images are  accepted.
+                                    size of the file shoud not be more than 3MB
+                                </p>
                             </div>
+                            <div class="col-md-4">
+                                <img src="../../../assets/images/fake-card.jpg" id="UploadPOAImg" width="100%"  *ngIf="!imageURL" />
+                                <img src="{{imageURL}}" id="UploadPOAImg" width="100%" *ngIf="imageURL"/>
+
+                                <div id="hiddenPOAFile" style="display: none"></div>
+                            </div>
+    
+    
+                            <div class="col-md-4">
+                            </div>
+    
+                            <div class="col-md-4 md-form mt-2" id="POABackUpload" style="display: none">
+    
+                                <p>Please upload your address proof back copy </p>
+                                <div class="file-field">
+                                    <div class="btn btn-primary1 btn-sm float-left">
+    
+                                        <input type="file" name="POAbackcopyfile" id="POAbackcopyfile" />
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" id="POAbackfiletext" name="POAbackfiletext" style="border: none; padding-top: 10px; padding-left: 13px; width: 100%" type="button" value="Upload" placeholder="" />
+                                    </div>
+                                </div>
+                                <div style="clear: both"></div>
+                                <p style="font-size: 14px;">
+                                    Note: Only JPG/JPEG images are  accepted.
+                                    size of the file shoud not be more than 3MB
+                                </p>
+                            </div>
+                            <div class="col-md-4 mt-2" id="POABackUploadHiddenImagediv" style="display: none">
+                                <img src="../../../assets/images/fake-card-back.jpg" id="UploadPOAbackImg" width="100%" />
+
+                                <div id="hiddenPOAbackFile" style="display: none"></div>
+                            </div>
+    
+    
                         </div>
-
-                    </div>
-                    <div class="row">
-
-
-                      
-
-
-
+    
                         
+                        <div class="text-left mt-4" style="color: red">
+                            Note: Please select Aadhaar as Proof of Address (POA) in case of you are selecting MCX or NCDEX
+                        </div>
+    
+                        <div class="text-center mt-4">
+                            <button class="btn btn-primary NextBtn" type="button" id="ManualDatasubmit" name="ManualDatasubmit" (click)="onsubmit()">Save and proceed to next</button>
+                        </div>
+    
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="control-label">Address 1</label>
-                                <div class="">
-                                    <input type="text" maxlength="50" name="caddress1" id="caddress1" class="form-control addressChar" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="control-label">Address 2</label>
-                                <div class="">
-                                    <input type="text" maxlength="50" name="caddress2" id="caddress2" class="form-control addressChar" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="control-label">Address 3</label>
-                                <div class="">
-                                    <input type="text" maxlength="50" name="caddress3" id="caddress3" class="form-control addressChar" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="control-label">Tel.(Res.) </label>
-                                <div class="">
-                                    <input type="text" maxlength="10" name="ctelResidentNo" id="ctelResidentNo" class="form-control number" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="control-label">Pincode</label>
-                                <div class="">
-                                    <input type="text" name="cpincode" id="cpincode" pattern="[1-9][0-9]{5}" maxlength='6' class="form-control number" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="control-label">Country</label>
-                                <div class="">
-                                    <select name="ccountry" id="ccountry" class="form-control" disabled="disabled">
-                                        <option data-desc="India" data-code="101" value="101">India</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="control-label">State</label>
-                                <div class="">
-                                    <select name="cstate" id="cstate" class="form-control">
-                                        <option value="">State</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="control-label">City</label>
-                                <div class="">
-                                    <select name="cstate" id="ccity" class="form-control">
-                                        <option value="">City</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="control-label">Mobile </label>
-                                <div class="">
-                                    <input type="text" name="cmobile" disabled="disabled" id="cmobile" class="form-control number" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="control-label">Tel.(Off.) </label>
-                                <div class="">
-                                    <input type="text" maxlength="10" name="ctelOfficeNo" id="ctelOfficeNo" class="form-control number" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Fax no </label>
-                                <div class="">
-                                    <input type="text" maxlength="10" name="cfaxNo" id="cfaxNo" class="form-control number" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="control-label">Email </label>
-                                <div class="">
-                                    <input type="text" name="cemailId" id="cemailId" disabled="disabled" class="form-control" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="control-label">Proof Of address </label>
-
-                                <select class="form-control" id="McproofAddress" name="McproofAddress">
-                                    <option value="">SELECT Address Proof</option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="control-label">Address proof no. </label>
-
-                                <input type="text" name="MProofofaddressNumber" id="MProofofaddressNumber" class="form-control nospecialchar1" maxlength="25" />
-
-                            </div>
-                        </div>
-                          <div class="col-12">
-
-                              </div>
-
-                      
-
-                       
-
-                        <div class="col-md-4 md-form">
-
-                            <p>Please upload your address proof </p>
-                            <div class="file-field">
-                                <div class="btn btn-primary1 btn-sm float-left">
-
-                                    <input type="file" name="POAcopyfile" id="POAcopyfile" />
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" id="POAfiletext" name="POAfiletext" style="border: none; padding-top: 10px; padding-left: 13px; width: 100%" type="button" value="Upload" placeholder="" />
-                                </div>
-                            </div>
-                            <div style="clear: both"></div>
-                            <p style="font-size: 14px;">
-                                Note: Only JPG/JPEG images are  accepted.
-                                size of the file shoud not be more than 3MB
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <img src="../../../assets/images/fake-card.jpg" id="UploadPOAImg" width="100%" />
-
-                            <div id="hiddenPOAFile" style="display: none"></div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                        </div>
-
-                        <div class="col-md-4 md-form mt-2" id="POABackUpload" style="display: none">
-
-                            <p>Please upload your address proof back copy </p>
-                            <div class="file-field">
-                                <div class="btn btn-primary1 btn-sm float-left">
-
-                                    <input type="file" name="POAbackcopyfile" id="POAbackcopyfile" />
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" id="POAbackfiletext" name="POAbackfiletext" style="border: none; padding-top: 10px; padding-left: 13px; width: 100%" type="button" value="Upload" placeholder="" />
-                                </div>
-                            </div>
-                            <div style="clear: both"></div>
-                            <p style="font-size: 14px;">
-                                Note: Only JPG/JPEG images are  accepted.
-                                size of the file shoud not be more than 3MB
-                            </p>
-                        </div>
-                        <div class="col-md-4 mt-2" id="POABackUploadHiddenImagediv" style="display: none">
-                            <img src="../../../assets/images/fake-card-back.jpg" id="UploadPOAbackImg" width="100%" />
-
-                            <div id="hiddenPOAbackFile" style="display: none"></div>
-                        </div>
-
-
-                    </div>
-
-                    
-                    <div class="text-left mt-4" style="color: red">
-                        Note: Please select Aadhaar as Proof of Address (POA) in case of you are selecting MCX or NCDEX
-                    </div>
-
-                    <div class="text-center mt-4">
-                        <button class="btn btn-primary NextBtn" type="button" id="ManualDatasubmit" name="ManualDatasubmit">Save and proceed to next</button>
-                    </div>
-
                 </div>
             </div>
         </div>
-    </div>
+        
     
-
+        
     
-
-
-    <div id="menu2" class="container tab-pane fade">
-        <br>
-        <h3>Menu 2</h3>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    
+        <div id="menu2" class="container tab-pane fade">
+            <br>
+            <h3>Menu 2</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+        </div>
     </div>
-</div>
+ </form>
 
 
 

@@ -35,8 +35,7 @@
             <div class="form-group col-sm-4 col-4">
                 <input  type="number" class="form-control number cDateCls "  placeholder="YYYY"  formControlName="year"  [ngClass]="{'is-invalid':submitted && f['year'].errors}" maxlength="4" #dateofYearInput>
                 <div *ngIf="submitted && f['year'].errors" class="invalid-feedback">
-                    <!-- <div *ngIf="f[''].errors['required']">Year is required
-                    </div> -->
+                  
                 </div>
             </div>
         </div>

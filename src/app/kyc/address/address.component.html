@@ -5,16 +5,6 @@
              <li class="nav-item" id="kraTypeLink" *ngFor="let nav of addressSteps" (click)="stepMove(nav.step)" >
                 <a class="nav-link " [ngClass]="{'active': step === nav.step}" data-toggle="tab" >{{nav.title}}</a>
             </li>
-            <!-- <li class="nav-item" id="DigiLockerTab">
-                <a class="nav-link  active" data-toggle="tab" >Digi Locker</a>
-            </li>
-
-           
-            <li class="nav-item" id="ManualAddressTab" >
-                <a class="nav-link" data-toggle="tab" >Manual Entry</a>
-            </li> -->
-
-
         </ul>
 
         <!-- Tab panes -->
