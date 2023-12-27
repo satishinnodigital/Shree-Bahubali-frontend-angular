@@ -59,7 +59,7 @@
                     <p class="text-center one">A One-Time Password has been sent to <b><span
                                 id="mobilenumberentered">******3797</span></b></p>
                     <div>
-                        <input type="text" class="form-control verify-input" formControlName="mobileotp"
+                        <input type="number" class="form-control verify-input" formControlName="mobileotp"
                             [ngClass]="{'is-invalid':submitted1 && f1['mobileotp'].errors}">
                         <div *ngIf="submitted1 && f1['mobileotp'].errors" class="invalid-feedback">
                             <div *ngIf="f1['mobileotp'].errors['required']" class="text-center">Mobile OTP is required
