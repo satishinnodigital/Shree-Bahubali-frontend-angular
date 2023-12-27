@@ -48,10 +48,10 @@ export class MannualEntryComponent {
     this.submitted = true;
 
     if (this.form.valid) {
-    
+    alert(JSON.stringify(this.form.value))
     }
 
-    console.log(JSON.stringify(this.form.value, null, 2));
+  
   }
  
   
