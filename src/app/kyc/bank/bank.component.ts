@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./bank.component.scss']
 })
 export class BankComponent {
+  serach:any
 
   banknames=[
     {
@@ -33,29 +34,37 @@ export class BankComponent {
       bankname:"Axis Bank"
     }
   ]
-  currentValue: string = '';
+  newdata:any
+
+  
+constructor(){
+  this.newdata=this.banknames
+  console.log(this.newdata)
+}
+
+  currentValue:any;
   show = true;
   selectValue(value:any){
    
   }
 
-  ngDoCheck() {
-    if (this.currentValue) {
-      this.show = true;
-    }
-    else{
-      this.show = false;
-    }
-  }
-  optionselected(option: string) {
-    console.log(option);
-    this.currentValue = option;
-    this.show = false;
-  }
+  // ngDoCheck() {
+  //   if (this.currentValue) {
+  //     this.show = true;
+  //   }
+  //   else{
+  //     this.show = false;
+  //   }
+  // }
+  // optionselected(option: string) {
+  //   console.log(option);
+  //   this.currentValue = option;
+  //   this.show = false;
+  // }
 
-  handleFocusIn() {
-    this.show = true;
-    console.log('status show' + this.show);
-  }
+  // handleFocusIn() {
+  //   this.show = true;
+  //   console.log('status show' + this.show);
+  // }
  
 }

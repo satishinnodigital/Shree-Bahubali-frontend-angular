@@ -1,22 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'search'
+  name: 'searchFilter'
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(items: any[], searchText: string): any[] {
-    //return empty array if empty array is passed
-     if(!items) return [];
-     //if no search text return empty items
-     if(!searchText) return items;
-     //convert all searchtext into lowercase
- searchText = searchText.toLowerCase();
- //filter items and check for search text with includes
- return items.filter( it => {
-       return it.toLowerCase().includes(searchText);
-     });
-   }
+ transform(value: any, args?:any):any {
+  if(!value) return null;
+  if(!args) return value;
+
+  args=args.toLowerCase();
+  
+  return value.filter(function(item:any){
+    return  JSON.stringify(item).toLocaleLowerCase().includes(args)
+  })
+   
+ }
     
   }
 

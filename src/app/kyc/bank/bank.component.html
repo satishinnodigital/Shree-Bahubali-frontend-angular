@@ -111,12 +111,11 @@
                  <div class="w-100">
                    <form>
                     <input type="text" class="form-control p-0 m-0" placeholder="Search Bank" autocomplete="off" name="search"  id="BankSearchTxtbox" [(ngModel)]="currentValue" 
-                    (keyup)="show"  />
+                     />
                    </form>
                    
                    <div *ngIf="show">
-                            <div *ngFor="let data of banknames | search:currentValue" 
-                            (click)="optionselected(data.bankname)">
+                            <div *ngFor="let data of newdata | searchFilter:currentValue">
                                 {{data.bankname}}
                             </div>
                    </div>
