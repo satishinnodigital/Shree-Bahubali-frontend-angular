@@ -79,9 +79,9 @@
 
         </div>
         <ul class="StepNavigation">
-            <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
-                <button class="btn btn-primary" type="button" id="NavAddressStep"><i class="fa fa-address-card" aria-hidden="true"></i> Address</button></li>
-            <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
+            <li *ngFor="let nav of kycSteps"><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
+                <button (click)="nextStep(nav.step)"  class="btn btn-primary mx-1" [ngClass]="{'active': step === nav.step}" [ngStyle]="{'background': nav.completed == true? '#198754':''}" type="button" id="NavAddressStep"><i class={{nav.icon}} aria-hidden="true"></i> {{nav.title}}</button></li>
+            <!-- <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
                 <button class="btn btn-primary" type="button" id="NavBankStep"><i class="fa fa-bank" aria-hidden="true"></i> Bank</button></li>
             <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
                 <button class="btn btn-primary" type="button" id="NavProfileStep"><i class="fa fa-user" aria-hidden="true"></i> Profile</button></li>
@@ -89,7 +89,7 @@
             <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
                 <button class="btn btn-primary" type="button" id="NavExchangeStep"><i class="fa fa-random" aria-hidden="true"></i> Exchange</button></li>
             <li><i class="fa fa-check-circle" aria-hidden="true" style="display: none;"></i>
-                <button class="btn btn-primary" type="button" id="NavIPVStep"><i class="fa fa-video-camera" aria-hidden="true"></i> IPV</button></li>
+                <button class="btn btn-primary" type="button" id="NavIPVStep"><i class="fa fa-video-camera" aria-hidden="true"></i> IPV</button></li> -->
         </ul>
 
     </div>
@@ -108,9 +108,25 @@
 
 
    
-    <div>
+    <div *ngIf="step === 1">
         <app-address></app-address>
     </div>
+    <div *ngIf="step === 2">
+        <app-bank></app-bank>
+    </div>
+    <div *ngIf="step === 3">
+        <app-profile></app-profile>
+    </div>
+    <div *ngIf="step === 4">
+        <app-exchange></app-exchange>
+    </div>
+    <div *ngIf="step === 5">
+        <app-i-p-v></app-i-p-v>
+    </div>
+
+
+
+
    
     <script src="js/kra-aadhaar.js?v=914"></script>
 
