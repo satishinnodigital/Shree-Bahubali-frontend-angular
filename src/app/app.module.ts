@@ -21,6 +21,8 @@ import { BankComponent } from './kyc/bank/bank.component';
 import { ProfileComponent } from './kyc/profile/profile.component';
 import { ExchangeComponent } from './kyc/exchange/exchange.component';
 import { IPVComponent } from './kyc/i-p-v/i-p-v.component';
+import { DigiLockerService } from './service/digi-locker.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { IPVComponent } from './kyc/i-p-v/i-p-v.component';
     BankComponent,
     ProfileComponent,
     ExchangeComponent,
-    IPVComponent
+    IPVComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,8 @@ import { IPVComponent } from './kyc/i-p-v/i-p-v.component';
     RouterModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
+    HttpClientModule
+    
 
   ],
   providers: [],

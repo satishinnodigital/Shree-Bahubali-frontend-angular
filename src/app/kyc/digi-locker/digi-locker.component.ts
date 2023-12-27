@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DigiLockerService } from 'src/app/service/digi-locker.service';
 
 @Component({
   selector: 'app-digi-locker',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class DigiLockerComponent {
 
+  constructor(private digiLockerService:DigiLockerService ){
+
+  }
+
+  digilocker(){
+    this.digiLockerService.digiLocker().subscribe((res:any)=>{
+      console.log(res,"Digi data")
+    })
+  }
 }

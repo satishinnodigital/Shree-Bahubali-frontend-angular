@@ -1,0 +1,178 @@
+input[type="text"], input[type="password"] {
+    background-color: #fff !important;
+    border: 1px solid #e7e7e7 !important;
+    border-radius: 15px !important;
+    padding: 20px !important;
+    width: 100% !important;
+}
+
+select {
+    border: 1px solid #e7e7e7 !important;
+    border-radius: 15px !important;
+    padding: 10px !important;
+    height: 43px !important;
+    width: 100% !important;
+}
+
+input[type="button"] {
+    color: #fff;
+    background-color: #324881;
+    border-color: #324881;
+    padding: 10px 0px;
+    border-radius: 20px;
+}
+
+input.error, select.error, textarea.error {
+    border: 1px solid #f00 !important;
+}
+
+.otpBox {
+    float: right;
+    font-size: 22px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 3px solid #d8d8d8;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.ui-widget.ui-widget-content {
+    z-index: 999999 !important;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.dropdown-menu {
+    overflow: scroll;
+    height: 220px;
+    width: 100%;
+    padding: 5px 10px;
+    line-height: 30px;
+}
+
+    .dropdown-menu li img {
+        width: 30px;
+        margin-right: 5px;
+    }
+
+.BsearchBox input {
+    border: 0px !important;
+}
+
+.BsearchBox {
+    border: 1px solid #e7e7e7;
+    border-radius: 15px;
+}
+
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+input:focus {
+    outline: none !important;
+}
+
+.box-details {
+    border: 1px #f1f1f1 solid;
+    border-radius: 20px;
+    padding: 15px 20px;
+}
+
+.bank-box .branch-address {
+    margin-top: 15px;
+}
+
+    .bank-box .branch-address li {
+        float: left;
+        list-style-type: none;
+        padding: 5px 0px;
+    }
+
+        .bank-box .branch-address li:nth-child(odd) {
+            width: 30%;
+            color: #8c8c8c;
+        }
+
+        .bank-box .branch-address li:nth-child(even) {
+            width: 70%;
+        }
+
+
+.bank-form-div {
+    margin: auto;
+    width: 55%;
+}
+.bank-form-div .alert-primary {
+color: #004085;
+background-color: #f5f6f7;
+border-color: #f5f6f7;
+}
+
+.dropdown-menu {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    height: 200px;
+    overflow: scroll;
+}
+
+    .dropdown-menu li {
+        padding: 4px 24px;
+    }
+
+        .dropdown-menu li a {
+            color: #44475b;
+            font-size: 15px;
+            display:block;
+        }
+
+
+.ui-widget.ui-widget-content {
+
+        overflow: auto;
+        height: 200px;
+}
+
+.ui-menu-item-wrapper {
+    font-size:12PX;
+}
+
+@media screen and (max-width: 767px) {
+    .bank-form-div {
+        width: 90%;
+    }
+}
