@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class KRAComponent {
 
+dob:any;
+  continueKRA(){
+    if(this.dob === undefined){
+      alert("Plase enter Date Of Birth");
+    }else{
+      alert("not implemented yet")
+    }
+  }
 }

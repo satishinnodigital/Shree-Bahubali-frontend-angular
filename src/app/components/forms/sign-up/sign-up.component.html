@@ -81,7 +81,7 @@
 
                 <form [formGroup]="emailverifyform" *ngIf="verifyemailform">
                     <p class="text-center one">A One-Time Password has been sent to <b><span
-                                id="mobilenumberentered">ram@gmail.com</span></b></p>
+                                id="mobilenumberentered">ram&#64;gmail.com</span></b></p>
                     <div>
                         <input type="number" class="form-control verify-input" formControlName="emailotp"
                             [ngClass]="{'is-invalid':submitted2 && f2['emailotp'].errors}">

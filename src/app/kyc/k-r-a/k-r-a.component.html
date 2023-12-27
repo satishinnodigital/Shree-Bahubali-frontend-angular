@@ -26,7 +26,7 @@
             <div class="col-md-3 col-xs-12">
                 <div class="form-group">
 
-                    <input type="date" style="width: 100%; padding-left: 20px; padding-right: 20px;" class="form-control dobCheck" name="DateofBrith" id="DateofBrith" placeholder="Date of Brith" />
+                    <input type="date" style="width: 100%; padding-left: 20px; padding-right: 20px;" class="form-control dobCheck" [(ngModel)]="dob" name="DateofBrith" id="DateofBrith" placeholder="Date of Brith" />
                 </div>
 
             </div>
@@ -34,7 +34,7 @@
 
             <div class="col-md-2 col-xs-12  aadhaar-pdf">
                 <div class="text-center ">
-                    <button class="btn btn-sm btn-primary" type="button" id="KraSubmitbtn" name="KraSubmitbtn">Continue</button>
+                    <button class="btn btn-sm btn-primary" type="button" id="KraSubmitbtn" (click)="continueKRA()" name="KraSubmitbtn">Continue</button>
                 </div>
             </div>
 
