@@ -23,6 +23,7 @@ import { ExchangeComponent } from './kyc/exchange/exchange.component';
 import { IPVComponent } from './kyc/i-p-v/i-p-v.component';
 import { DigiLockerService } from './service/digi-locker.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchPipe } from './service/pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileComponent,
     ExchangeComponent,
     IPVComponent,
+    SearchPipe,
     
   ],
   imports: [

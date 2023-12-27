@@ -10,7 +10,7 @@ export class BankComponent {
   banknames=[
     {
       id:1,
-      bankname:"State bank of india Bank"
+      bankname:"State bank of india Bank",
     },
     {
       id:2,
@@ -33,10 +33,29 @@ export class BankComponent {
       bankname:"Axis Bank"
     }
   ]
-  selectedvalue: any;
-
+  currentValue: string = '';
+  show = true;
   selectValue(value:any){
-    this.selectedvalue=value;
-
+   
   }
+
+  ngDoCheck() {
+    if (this.currentValue) {
+      this.show = true;
+    }
+    else{
+      this.show = false;
+    }
+  }
+  optionselected(option: string) {
+    console.log(option);
+    this.currentValue = option;
+    this.show = false;
+  }
+
+  handleFocusIn() {
+    this.show = true;
+    console.log('status show' + this.show);
+  }
+ 
 }
