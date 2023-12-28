@@ -30,17 +30,17 @@ export class BankComponent {
       id:3,
       bankname:"Icici Bank",
       icon:"../../../assets/images/bank-icons/418.jpg",
-      city:"usufguda,HYD",
+      city:"Usufguda,HYD",
       ifsc:"ICIC000234",
-      address:"Hyderabad,Prakashnagar Pin:500094"
+      address:"Usufguda,Hyderabad,Pin:500094"
     },
     {
       id:4,
       bankname:"Indian Bank",
       icon:"../../../assets/images/bank-icons/430.jpg",
-      city:"jublihills,HYD",
+      city:"Jublihills,HYD",
       ifsc:"INDB000834",
-      address:"Hyderabad,Prakashnagar Pin:500094"
+      address:"Hyderabad,Jublihills Pin:500094"
     },
     {
       id:5,
@@ -48,7 +48,7 @@ export class BankComponent {
       icon:"../../../assets/images/bank-icons/118.jpg",
       city:"PeddammaGudi,HYD",
       ifsc:"BOBD99333",
-      address:"Hyderabad,Prakashnagar Pin:500094"
+      address:"PeddammaGudi,Hyderabad Pin:500094"
     },
     {
       id:6,
@@ -56,22 +56,12 @@ export class BankComponent {
       icon:"../../../assets/images/bank-icons/91.jpg",
       city:"Madhapur,HYD",
       ifsc:"AXIS000234",
-      address:"Hyderabad,Prakashnagar Pin:500094"
+      address:"Madhapur,Hyderabad Pin:500094"
     }
   ]
-  bankEdit(){
-    this.bankDetails = ''
-    this.step = true;
-    this.currentBranch='';
-    this.currentIFSC = '';
-  }
-
-
-
-  newdata:any
-  myvalue: any;
-
   
+
+
 constructor(){
  
 }
@@ -128,6 +118,13 @@ constructor(){
       this.step = false;
       this.bankDetails = option
     }
+  }
+
+  bankEdit(){
+    this.bankDetails = ''
+    this.step = true;
+    this.currentBranch='';
+    this.currentIFSC = '';
   }
 
   
