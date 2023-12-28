@@ -112,7 +112,7 @@
         <app-address></app-address>
     </div>
     <div *ngIf="step === 2">
-        <app-bank></app-bank>
+        <app-bank (sendresponce)="bankresponce($event)"></app-bank>
     </div>
     <div *ngIf="step === 3">
         <app-profile></app-profile>

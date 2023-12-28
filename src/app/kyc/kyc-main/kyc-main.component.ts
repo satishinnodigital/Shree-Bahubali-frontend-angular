@@ -70,4 +70,13 @@ export class KycMainComponent {
     }
   }
 
+  bankresponce($event:any){
+    if($event === 'confrim'){
+      this.step=3;
+      this.kycSteps[1].completed = true;
+    }
+    
+
+  }
+
 }
