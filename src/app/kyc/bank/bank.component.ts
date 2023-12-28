@@ -12,49 +12,79 @@ export class BankComponent {
     {
       id:1,
       bankname:"State bank of india Bank",
-      icon:"../../../assets/images/bank-icons/1150.jpg"
+      icon:"../../../assets/images/bank-icons/1150.jpg",
+      city:"Prakash nagar,HYD",
+      ifsc:"SBIN4707",
+      address:"Hyderabad,Prakashnagar Pin:500094"
     },
     {
       id:2,
       bankname:"Carana Bank",
-      icon:"../../../assets/images/bank-icons/1220.jpg"
+      icon:"../../../assets/images/bank-icons/1220.jpg",
+      city:"Madhura Nagar,HYD",
+      ifsc:"CANR000234",
+      address:"Hyderabad,Prakashnagar Pin:500094"
+
     },
     {
       id:3,
       bankname:"Icici Bank",
-      icon:"../../../assets/images/bank-icons/418.jpg"
+      icon:"../../../assets/images/bank-icons/418.jpg",
+      city:"usufguda,HYD",
+      ifsc:"ICIC000234",
+      address:"Hyderabad,Prakashnagar Pin:500094"
     },
     {
       id:4,
       bankname:"Indian Bank",
-      icon:"../../../assets/images/bank-icons/430.jpg"
+      icon:"../../../assets/images/bank-icons/430.jpg",
+      city:"jublihills,HYD",
+      ifsc:"INDB000834",
+      address:"Hyderabad,Prakashnagar Pin:500094"
     },
     {
       id:5,
       bankname:"Bank of Boroda",
-      icon:"../../../assets/images/bank-icons/118.jpg"
+      icon:"../../../assets/images/bank-icons/118.jpg",
+      city:"PeddammaGudi,HYD",
+      ifsc:"BOBD99333",
+      address:"Hyderabad,Prakashnagar Pin:500094"
     },
     {
       id:6,
       bankname:"Axis Bank",
-      icon:"../../../assets/images/bank-icons/91.jpg"
+      icon:"../../../assets/images/bank-icons/91.jpg",
+      city:"Madhapur,HYD",
+      ifsc:"AXIS000234",
+      address:"Hyderabad,Prakashnagar Pin:500094"
     }
   ]
+  bankEdit(){
+    this.bankDetails = ''
+    this.step = true;
+    this.currentBranch='';
+    this.currentIFSC = '';
+  }
+
+
+
   newdata:any
   myvalue: any;
 
   
 constructor(){
-  this.newdata=this.banknames
-  console.log(this.newdata)
+ 
 }
 
   currentValue:any;
+  currentBranch:any;
+  currentIFSC:any;
+  showIFSC = true;
+  showBranches = true;
   show = true;
-  selectValue(value:any){
-   
-  }
-
+  step:boolean = true;
+  bankDetails:any;
+  
   ngOnChanges(changes: SimpleChanges) {
     this.currentValue = changes;
     if (this.currentValue) {
@@ -65,17 +95,42 @@ constructor(){
     }
   }
 
+  selectedBank:any;
   selectedValue = false
-  optionselected(option: string) {
+  optionselected(option:any) {
     console.log(option);
-    this.currentValue = option;
+    this.currentValue = option.bankname;
+    this.selectedBank = option.icon;
     this.selectedValue = true
     this.show = false;
+    
   }
 
-  selecedvalue(that:any){
-this.myvalue=that
+  selectedBranch:any;
+  branchSelected(option:any){
+    console.log(option.city)
+    this.currentBranch = option.city;
+    this.showBranches = false;
+    this.showIFSC = false;
+    this.currentIFSC = option.ifsc;
+    if(option){
+      this.step = false;
+      this.bankDetails = option
+    }
   }
+
+  ifscSelected(option:any){
+    this.currentIFSC = option.ifsc;
+    this.showBranches = false;
+    this.showIFSC = false;
+    this.currentBranch = option.city;
+    if(option){
+      this.step = false;
+      this.bankDetails = option
+    }
+  }
+
+  
 
   // handleFocusIn() {
   //   this.show = true;
