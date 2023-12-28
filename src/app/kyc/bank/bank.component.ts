@@ -62,12 +62,6 @@ export class BankComponent {
     }
   ]
   
-  bankEdit(){
-    this.bankDetails = ''
-    this.step = true;
-    this.currentBranch='';
-    this.currentIFSC = '';
-  }
 
 
 
@@ -148,7 +142,6 @@ constructor(private formBuilder: FormBuilder){
     this.currentIFSC = '';
   }
 
-<<<<<<< HEAD
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
@@ -161,13 +154,6 @@ constructor(private formBuilder: FormBuilder){
     }
 
     console.log(JSON.stringify(this.form.value, null, 2));
-=======
-  bankEdit(){
-    this.bankDetails = ''
-    this.step = true;
-    this.currentBranch='';
-    this.currentIFSC = '';
->>>>>>> 070451571692bf14ef3354ed34e658a9740dd339
   }
 
   
