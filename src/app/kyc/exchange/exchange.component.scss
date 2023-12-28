@@ -1,0 +1,75 @@
+input[type="text"] {
+    background-color: #fff !important;
+    border: 1px solid #e7e7e7 !important;
+    border-radius: 15px !important;
+    padding: 20px !important;
+    width: 100% !important;
+}
+
+select {
+    border: 1px solid #e7e7e7 !important;
+    border-radius: 15px !important;
+    padding: 10px !important;
+    height: 43px !important;
+    width: 100% !important;
+}
+
+input[type="button"] {
+    color: #fff;
+    background-color: #324881;
+    border-color: #324881;
+    padding: 10px 0px;
+    border-radius: 20px;
+}
+
+input.error, select.error, textarea.error {
+    border: 1px solid #f00 !important;
+}
+
+.otpBox {
+    float: right;
+    font-size: 22px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 3px solid #d8d8d8;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.exchangeBox {
+    border: 1px solid #e4e4e4;
+    /*box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 20%);*/
+    padding: 10px;
+    margin: 10px 0px;
+    border-radius: 15px;
+}
+
+    .exchangeBox img {
+        width: 120px;
+    }
+
+.ecxBlock .form-check-inline{
+    padding-left: 20px;
+}
+.ecxBlock .col-form-label {
+margin-left:5px;
+}
+
+
+@media screen and (max-width: 575px) {
+
+    .ecxBlock {
+        border-top: 1px dashed #bdbdbd;
+        margin-top: 10px;
+        padding-top: 10px;
+        text-align: left;
+    }
+
+    .exchangeBox {
+        text-align: center;
+    }
+}
+.kyc-div .form-control {
+background-color:white;
+}

@@ -1206,3 +1206,60 @@
         </div>
     </div>
 </section>
+
+
+
+<div class="main">
+    <div class="card">
+        <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+            <div class="d-flex">
+                <div>
+                    <label for="">Name : </label>
+                </div>
+                <div>
+                    <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                </div>
+            </div>
+    
+            
+            <div formArrayName="skills">
+                <div *ngFor="let skill of skills.controls; let i=index">
+                  <div [formGroupName]="i" class="d-flex mb-4">
+                  <div>
+                    <div>
+                        <label for=""> {{i+1}}  Skill name :</label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="skill" [ngClass]="{ 'is-invalid': submitted && f['skill'].errors }">
+                        </div>
+                      </div>
+                        <div>
+                        <label for=""> experiance</label>
+                       <div>
+                        <input type="text" class="form-control" formControlName="exp" [ngClass]="{ 'is-invalid': submitted && f['exp'].errors }">
+                       </div>
+                        </div>
+                  </div>
+                    <div>
+                        <button type="button" class="my-3 mx-5 btn btn-light" (click)="removeSkill(i)">Remove</button>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="my-3 btn btn-light" (click)="addSkills()">+ addSkills</button>
+              </div>
+
+
+              <div formArrayName="educationDetails">
+                <!-- @for (education of educationDetails.controls; track $index) {
+                    <div formGroupName="">
+
+                    </div>
+                } -->
+
+              </div>
+              <!-- <button type="button" (click)="addEducation()">add Education</button> -->
+              
+            <button class="my-4 btn btn-light" type="submit">submit</button>
+        </form>
+    </div>
+    {{this.empForm.value | json}}
+</div>
