@@ -1,5 +1,6 @@
-import { Component, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Output, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+declare var $: any;
 
 
 @Component({
@@ -8,6 +9,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
   styleUrls: ['./bank.component.scss']
 })
 export class BankComponent {
+
+  @Output() sendresponce =new EventEmitter<string>
   serach:any
 
   banknames=[
@@ -151,17 +154,22 @@ constructor(private formBuilder: FormBuilder){
     this.submitted = true;
 
     if (this.form.valid) {
+      $('#myModalBankAccountCheck').modal('show');
     
     }
 
-    console.log(JSON.stringify(this.form.value, null, 2));
   }
 
+  no(){
+    $('#myModalBankAccountCheck').modal('hide');
+  }
   
+  confrim(){
+    $('#myModalBankAccountCheck').modal('hide');
+    this.sendresponce.emit('confrim')
+  }
 
-  // handleFocusIn() {
-  //   this.show = true;
-  //   console.log('status show' + this.show);
-  // }
+
  
+
 }
