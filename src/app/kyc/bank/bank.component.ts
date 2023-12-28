@@ -1,4 +1,6 @@
 import { Component, SimpleChanges } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-bank',
@@ -70,9 +72,17 @@ export class BankComponent {
 
   newdata:any
   myvalue: any;
+  form: FormGroup;
+  submitted = false;
+
 
   
-constructor(){
+constructor(private formBuilder: FormBuilder){
+  this.form = this.formBuilder.group({
+    account_number: new FormControl('',[Validators.required,Validators.pattern("^[0-9]{8,15}$")]),
+  
+  });
+
  
 }
 
@@ -128,6 +138,20 @@ constructor(){
       this.step = false;
       this.bankDetails = option
     }
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
+  }
+
+  onSubmit(): void {
+    this.submitted = true;
+
+    if (this.form.valid) {
+    
+    }
+
+    console.log(JSON.stringify(this.form.value, null, 2));
   }
 
   

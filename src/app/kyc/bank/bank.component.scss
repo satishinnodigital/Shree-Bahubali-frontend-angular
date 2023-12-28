@@ -176,3 +176,16 @@ border-color: #f5f6f7;
         width: 90%;
     }
 }
+
+.parent{
+    position: relative;
+}
+.child{
+    position: absolute;
+    top:50px !important;
+    background-color: white;
+    z-index: 999;
+    width: 100%;
+    left: 0px;
+   
+}
