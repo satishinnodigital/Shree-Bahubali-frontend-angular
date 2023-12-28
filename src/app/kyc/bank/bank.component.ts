@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-bank',
@@ -12,29 +12,36 @@ export class BankComponent {
     {
       id:1,
       bankname:"State bank of india Bank",
+      icon:"../../../assets/images/bank-icons/1150.jpg"
     },
     {
       id:2,
-      bankname:"Carana Bank"
+      bankname:"Carana Bank",
+      icon:"../../../assets/images/bank-icons/1220.jpg"
     },
     {
       id:3,
-      bankname:"Icici Bank"
+      bankname:"Icici Bank",
+      icon:"../../../assets/images/bank-icons/418.jpg"
     },
     {
       id:4,
-      bankname:"Indian Bank"
+      bankname:"Indian Bank",
+      icon:"../../../assets/images/bank-icons/430.jpg"
     },
     {
       id:5,
-      bankname:"Bank of Boroda"
+      bankname:"Bank of Boroda",
+      icon:"../../../assets/images/bank-icons/118.jpg"
     },
     {
       id:6,
-      bankname:"Axis Bank"
+      bankname:"Axis Bank",
+      icon:"../../../assets/images/bank-icons/91.jpg"
     }
   ]
   newdata:any
+  myvalue: any;
 
   
 constructor(){
@@ -48,19 +55,27 @@ constructor(){
    
   }
 
-  // ngDoCheck() {
-  //   if (this.currentValue) {
-  //     this.show = true;
-  //   }
-  //   else{
-  //     this.show = false;
-  //   }
-  // }
-  // optionselected(option: string) {
-  //   console.log(option);
-  //   this.currentValue = option;
-  //   this.show = false;
-  // }
+  ngOnChanges(changes: SimpleChanges) {
+    this.currentValue = changes;
+    if (this.currentValue) {
+      this.show = true;
+    }
+    else{
+      this.show = false;
+    }
+  }
+
+  selectedValue = false
+  optionselected(option: string) {
+    console.log(option);
+    this.currentValue = option;
+    this.selectedValue = true
+    this.show = false;
+  }
+
+  selecedvalue(that:any){
+this.myvalue=that
+  }
 
   // handleFocusIn() {
   //   this.show = true;

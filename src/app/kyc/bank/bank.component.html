@@ -110,15 +110,18 @@
                  <div class="mt-2 mb-2 ml-3 mr-3"><img src="../../../assets/images/bank-icons/dummy.jpg" id="SelectedBankImg" width="20" height="20" /></div>
                  <div class="w-100">
                    <form>
-                    <input type="text" class="form-control p-0 m-0" placeholder="Search Bank" autocomplete="off" name="search"  id="BankSearchTxtbox" [(ngModel)]="currentValue" 
-                     />
+                    <input type="text" class="form-control p-0 m-0" placeholder="Search Bank" autocomplete="off" name="search"  id="BankSearchTxtbox" [(ngModel)]="currentValue" (change)="selecedvalue(this)"
+                      (keyup)="show=true" (keyup.back)="show=false"
+                         />
                    </form>
                    
-                   <div *ngIf="show">
-                            <div *ngFor="let data of newdata | searchFilter:currentValue">
-                                {{data.bankname}}
-                            </div>
-                   </div>
+                 <div *ngIf="currentValue.length > 0">
+                    <div *ngIf="show">
+                        <div *ngFor="let data of newdata | searchFilter:currentValue" (click)="optionselected(data.bankname)" >
+                            <span><img class="mr-2 p-2" src="{{data.icon}}" alt=""></span>{{data.bankname}}
+                        </div>
+               </div>
+                 </div>
 
                 
 
@@ -134,7 +137,7 @@
          </div>
 
 
-       <div class="col-sm-7 mx-auto mt-3" id="IfscDiv" >
+       <div class="col-sm-7 mx-auto mt-3" id="IfscDiv" *ngIf="selectedValue">
 
            <input type="text" class="form-control" autocomplete="off" placeholder="Search Branch (Min 4 Letters)" id="IFSCBranchSearch"   />
 
