@@ -1,0 +1,30 @@
+<image-cropper style="min-height: 400px;"
+                [imageChangedEvent]="imageChangedEvent"
+                [imageURL]="imageURL"
+                [maintainAspectRatio]="true"
+                [containWithinAspectRatio]="containWithinAspectRatio"
+                [aspectRatio]="aspectRatio"
+                [cropperMinWidth]="128"
+                [onlyScaleDown]="true"
+                [roundCropper]="false"
+                [canvasRotation]="canvasRotation"
+                [(transform)]="transform"
+                [alignImage]="'center'"
+                [style.display]="showCropper ? null : 'none'"
+                [allowMoveImage]="allowMoveImage"
+                [hidden]="hidden"
+                imageAltText="Alternative image text"
+                backgroundColor="red"
+                output="blob"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady($event)"
+                (loadImageFailed)="loadImageFailed()"
+              ></image-cropper>
+            <button class="btn btn-info m-2 text-light" (click)="rotateLeft()">Rotate left</button>
+            <button class="btn btn-info m-2 text-light" (click)="rotateRight()">Rotate right</button>
+            <button class="btn btn-info m-2 text-light" (click)="resetImage()">Reset</button>
+            <button class="btn btn-info m-2 text-light" (click)="save()">Save</button>
+            <button class="btn btn-info m-2 text-light" (click)="zoomIn()">Zoom In</button>
+            <button class="btn btn-info m-2 text-light" (click)="zoomOut()">Zoom Out</button>

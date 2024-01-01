@@ -24,6 +24,10 @@ import { IPVComponent } from './kyc/i-p-v/i-p-v.component';
 import { DigiLockerService } from './service/digi-locker.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './service/pipes/search.pipe';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImageCropperComponent } from './shared/common/image-cropper/image-cropper.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { FileUploaderComponent } from './shared/common/file-uploader/file-uploader.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,9 @@ import { SearchPipe } from './service/pipes/search.pipe';
     ExchangeComponent,
     IPVComponent,
     SearchPipe,
+    ImageCropperComponent,
+    FooterComponent,
+    FileUploaderComponent,
     
   ],
   imports: [
@@ -53,7 +60,8 @@ import { SearchPipe } from './service/pipes/search.pipe';
     RouterModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ImageCropperModule
     
 
   ],
