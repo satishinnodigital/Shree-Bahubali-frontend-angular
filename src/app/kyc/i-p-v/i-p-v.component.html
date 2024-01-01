@@ -1,1 +1,14 @@
-<p>i-p-v works!</p>
+<!-- <webcam (initError)="handleInitError($event)"></webcam> -->
+<div class="row d-flex justify-content-center">
+    <div class="col-6" >
+        <webcam [height]="400" [width]="1000" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+            *ngIf="cameraOpen">
+        </webcam>
+        <button class="btn btn-info" (click)="openCamera()" *ngIf="!cameraOpen">start Capture</button>
+        <button class="btn btn-primary continue-btn mt-4 m-auto text-center w-25" (click)="triggerSnapshot();"
+            *ngIf="cameraOpen">Capture</button>
+    </div>
+
+  
+</div>
+

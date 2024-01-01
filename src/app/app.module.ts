@@ -28,6 +28,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImageCropperComponent } from './shared/common/image-cropper/image-cropper.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { FileUploaderComponent } from './shared/common/file-uploader/file-uploader.component';
+import { WebcamModule } from 'ngx-webcam';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { FileUploaderComponent } from './shared/common/file-uploader/file-upload
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
     HttpClientModule,
-    ImageCropperModule
+    ImageCropperModule,
+    WebcamModule
     
 
   ],
