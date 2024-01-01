@@ -61,12 +61,11 @@
             </div>
         </div>
 
-        <form [formGroup]="profileForm" (ngSubmit)="profileSubmitStep1()">
+        <form [formGroup]="profileForm">
             <div class="row" style="
           margin-top: 26px;
           border-top: 1px solid #c5c5c5;
-          padding-top: 25px;
-        ">
+          padding-top: 25px;">
                 <div class="col-md-3">
                     <label class="form-label pd">Marital Status</label>
 
@@ -84,6 +83,16 @@
                         </div>
                     </div>
 
+                </div>
+                <div formArrayName="skills">
+                    <div *ngFor="let skill of skills; let i=index" [formGroupName]="i">
+                    <input type="text" class="form-control" placeholder="name" formControlName="nameeeee" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.nameeeee')?.errors}">
+                    <div *ngIf="submitted && profileForm.get('skills.' + i +'.nameeeee')?.errors" class="invalid-feedback">
+                        <div *ngIf="submitted && profileForm.get(['skills', i,'nameeeee'])?.hasError('required')">
+                            skills is required
+                        </div>
+                    </div>
+                    </div>
                 </div>
 
 
@@ -140,8 +149,7 @@
             <div class="row" style="
           margin-top: 26px;
           border-top: 1px solid #c5c5c5;
-          padding-top: 25px;
-        ">
+          padding-top: 25px;">
                 <div class="col-12">
                     <label class="pd">Father/Spouse name</label><br />
                 </div>
@@ -367,12 +375,9 @@
                                                     <div class="col-sm-12 col-lg-6" id="Nominee1Div">
                                                         <p class="text-dark font-weight-bold">Nominee 1</p>
 
-                                                        <!-- <div formArrayName="skills">
-                                                            <div *ngFor="let skill of skills; let i=index" [formGroupName]="1">
+                                                       
 
-                                                            </div>
-                                                        </div> -->
-
+                                                        <button (click)="addSkills()">add</button>
 
                                                         <div class="nominee-box">
                                                             <div class="col-md-12">
@@ -1217,7 +1222,7 @@
                         <button type="button" class="btn btn-info" id="PreviousBtn">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i>Previous step
                         </button>
-                        <button type="submit" class="btn btn-primary default-btn">
+                        <button type="submit" class="btn btn-primary default-btn" (click)="onSubmit()">
                             Save and proceed to next
                         </button>
                     </div>

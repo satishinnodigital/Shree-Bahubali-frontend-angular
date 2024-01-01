@@ -20,8 +20,8 @@ declare var $: any;
 })
 export class ProfileComponent {
   addNominee = true;
-  profileForm!: FormGroup;
-  empForm!: FormGroup;
+  profileForm: FormGroup;
+  submitted=false;
 
   //@Output() fileEvent = new EventEmitter<any>();
 
@@ -45,35 +45,40 @@ export class ProfileComponent {
       motherFirstName: new FormControl(''),
       motherMiddleName: new FormControl(''),
       motherLastName: new FormControl(''),
-      nomineeDetails: this.formBuilder.array([]),
       politicallyExpose: new FormControl(''),
       qualification: new FormControl(''),
       investWith: new FormControl(''),
       accSettelement: new FormControl(''),
+      skills:this.formBuilder.array([]),
     });
 
-    this.empForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      skills: this.formBuilder.array([]),
-      educationDetails: this.formBuilder.array([]),
-    });
-    this.skills.push(this.newSkill());
+
   }
 
   profileSubmitStep1() {
     this.submitted = true;
   }
 
-  get nomineeDetails(): FormArray {
-    return this.profileForm.get('nomineeDetails') as FormArray;
+ 
+get f() {return this.profileForm.controls}
+ get skills() {return(this.profileForm.get('skills') as FormArray).controls;}
+
+  // get f():{ [key: string]: AbstractControl } {
+  //   return this.profileForm.controls;
+  // }
+  
+
+  addSkills(){
+    const newSkill=this.formBuilder.group({
+      nameeeee:['',[Validators.required]]
+      
+    });
+    (this.profileForm.get('skills') as FormArray).push(newSkill);
+    
   }
 
-  addNewNominee(): FormGroup {
-    return this.formBuilder.group({});
-  }
-
-  get f(): { [key: string]: AbstractControl } {
-    return this.profileForm.controls;
+  removeskills(index:number){
+    (this.profileForm.get('skills')as FormArray).removeAt(index)
   }
 
   open() {
@@ -106,48 +111,13 @@ export class ProfileComponent {
   }
 
 
-
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  get skills(): FormArray {
-    return this.empForm.get('skills') as FormArray;
-  }
-
-  newSkill(): FormGroup {
-    return this.formBuilder.group({
-      skill: new FormControl('', [Validators.required]),
-      exp: new FormControl('', [Validators.required]),
-    });
-  }
-
-  addSkills() {
-    this.skills.push(this.newSkill());
-  }
-
-  removeSkill(i: number) {
-    this.skills.removeAt(i);
-  }
-  submitted = false;
   onSubmit() {
     this.submitted = true;
-    if (this.empForm.valid) {
-      console.log(this.empForm.value);
-      alert('Valid');
+    if (this.profileForm.invalid) {
+      alert(JSON.stringify(this.profileForm.value))
+     
     }
-    console.log(this.empForm.value);
+   
   }
 }
