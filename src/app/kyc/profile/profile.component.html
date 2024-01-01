@@ -1,1213 +1,1223 @@
 <section>
     <div class="box kyc-div mt-3 personal-details">
         <div class="row">
-
             <div class="col-sm-12">
                 <!-- Default unchecked -->
-
             </div>
         </div>
 
-
-
-
         <div class="row">
-
-            <canvas id="mycanvas" style="display: none;"></canvas>
+            <canvas id="mycanvas" style="display: none"></canvas>
             <div class="col-md-6 mt-2" id="PanUploadDiv">
-
                 <label for="show-pan-file-upload" id="UploadPanLabel" class="btn btn-primary fileLABLE"
-                    style="margin-bottom:0px !important;">
+                    style="margin-bottom: 0px !important">
                     <i class="fa fa-camera-retro"></i> Upload PAN card
                 </label>
-                <p> <small>Please upload the files only in jpeg/jpg format</small></p>
-                <input id="show-pan-file-upload" accept="image/*" style="display: none;" type="file" />
+                <p><small>Please upload the files only in jpeg/jpg format</small></p>
+                <input id="show-pan-file-upload" accept="image/*" style="display: none" (change)="panUpload($event)"
+                    type="file" />
+                <div></div>
                 <div id="Vq" style="color: #fff">.</div>
 
-
-
                 <div>
-
-                    <img src="" id="PancaptureImg" style="width: 100%;" />
-
+                    <img src="" id="PancaptureImg" style="width: 100%" />
                 </div>
-
             </div>
 
-            <div class="col-md-6 mt-2" id="PanFromDigilockerDiv" style="display:none;">
-                <a href="#" class="btn btn-success" id="DigiLockerPan"
-                    style="    border-radius: 22px;    padding-left: 20px;    padding-right: 20px;    font-size: 15px;"><i
-                        class="fa fa-download" aria-hidden="true"></i> Download PAN</a>
-                <p style="font-size:12px; color:green;"> PAN Downloaded from Digilocker</p>
+            <div class="col-md-6 mt-2" id="PanFromDigilockerDiv" style="display: none">
+                <a href="#" class="btn btn-success" id="DigiLockerPan" style="
+            border-radius: 22px;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 15px;
+          "><i class="fa fa-download" aria-hidden="true"></i> Download PAN</a>
+                <p style="font-size: 12px; color: green">
+                    PAN Downloaded from Digilocker
+                </p>
             </div>
 
             <div class="col-md-6 mt-2">
-
                 <label for="show-sign-file-upload" id="SignCaptureButton" class="btn btn-primary fileLABLE"
-                    style="margin-bottom:0px !important;">
+                    style="margin-bottom: 0px !important">
                     <i class="fa fa-upload" aria-hidden="true"></i> Upload signature
                 </label>
-                <p> <small>Please upload the files only in jpeg/jpg format</small></p>
+                <p><small>Please upload the files only in jpeg/jpg format</small></p>
 
-                <input type="file" id="show-sign-file-upload" accept="image/*" style="display: none;" />
+                <input type="file" id="show-sign-file-upload" (change)="signatureUpload($event)" accept="image/*"
+                    style="display: none" />
+
+                <!-- <div
+          *ngIf="submitted && f['panUpload'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['panUpload'].errors['required']">Pan is required</div>
+        </div> -->
                 <br />
 
-
                 <div class="signature-img">
-                    <div id="imgstatus" style="color: #fff;">.</div>
-                    <img src="" id="SigncaptureImg" style=" " />
-
+                    <div id="imgstatus" style="color: #fff">.</div>
+                    <img src="" id="SigncaptureImg" />
                 </div>
-
-            </div>
-
-        </div>
-
-
-
-
-
-        <div class="row" style="margin-top: 26px; border-top: 1px solid #c5c5c5; padding-top: 25px;">
-            <div class="col-md-3">
-                <label class="form-label pd">Marital Status</label>
-                <select class="form-control" name="txtmartailstat" id="txtmartailstat">
-                    <option value="">Select Marital status</option>
-                    <option value="01">Married</option>
-                    <option value="02">Unmarried</option>
-
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label pd">Trading experience</label>
-
-
-                <select id="tradingexprns" class="form-control" name="tradingexprns">
-                    <option value="">Select Years of Experience</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="More Than 5">More Than 5</option>
-
-                </select>
-
-
-            </div>
-            <div class="col-md-3">
-                <label class="form-label pd">Occupation Type</label>
-                <select class="form-control" name="occupationslct" id="occupationslct">
-                    <option value="">Select Occupation</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label pd">Your Annual income</label>
-                <select class="form-control" name="Annualincome" id="Annualincome">
-                    <option value="" selected="selected">Select Annual income</option>
-                </select>
             </div>
         </div>
 
+        <form [formGroup]="profileForm" (ngSubmit)="profileSubmitStep1()">
+            <div class="row" style="
+          margin-top: 26px;
+          border-top: 1px solid #c5c5c5;
+          padding-top: 25px;
+        ">
+                <div class="col-md-3">
+                    <label class="form-label pd">Marital Status</label>
 
-        <div class="row" style="margin-top: 26px; border-top: 1px solid #c5c5c5; padding-top: 25px;">
-
-
-            <div class="col-12">
-                <label class="pd">Father/Spouse name</label><br />
-
-            </div>
-
-            <div class="col-lg-3 col-md-12 col-12">
-                <div class="form-check-inline mt-2">
-                    <div class="custom-control custom-radio" style="padding-left: 8px; padding-right: 0px;">
-                        <input type="radio" class="custom-control-input custom-radio-btn" value="Father" id="fatherbtn"
-                            name="fatherSpouseRad" checked="checked" />
-                        <label class="custom-control-label" for="defaultUnchecked">Father</label>
-                    </div>
-
-                    <!-- Default checked -->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input custom-radio-btn" value="Spouse" id="spousebtn"
-                            name="fatherSpouseRad" />
-                        <label class="custom-control-label" for="defaultChecked">Spouse</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-2 col-md-3 col-12">
-                <div class="form-label-group">
-                    <select class="form-control" id="FatherSpousePrefixSel" name="FatherSpousePrefixSel" required=""
-                        disabled="disabled">
-                        <option value="MR" selected="selected">Mr</option>
+                    <select class="form-control" name="maritalStatus" formControlName="maritalStatus" [ngClass]="{
+                        'is-invalid': submitted && f['maritalStatus'].errors
+                        }">
+                        <option value="">Select Marital status</option>
+                        <option value="01">Married</option>
+                        <option value="02">Unmarried</option>
                     </select>
-                </div>
-            </div>
 
-            <div class="col-lg-7 col-md-9 col-12">
-                <div class="form-label-group">
-                    <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
-                        name="fatherspouseName" id="fatherspouseName" placeholder="" />
-                </div>
-            </div>
-
-
-            <div class="col-md-3" style="display: none;">
-                <div class="form-label-group">
-                    <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
-                        name="fatherspouseFirstName" id="fatherspouseFirstName" placeholder="First Name" />
-                </div>
-            </div>
-            <div class="col-md-3" style="display: none;">
-                <div class="form-label-group">
-                    <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
-                        name="fatherspouseMiddleName" id="fatherspouseMiddleName" placeholder="Middle Name" />
-                </div>
-            </div>
-            <div class="col-md-3" style="display: none;">
-                <div class="form-label-group">
-                    <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
-                        name="fatherspouseLastName" id="fatherspouseLastName" placeholder="Last Name" />
-                </div>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 26px; border-top: 1px solid #c5c5c5; padding-top: 25px;">
-
-            <div class="col-12">
-                <label class="pd">Mother’s name</label>
-            </div>
-            <div class="col-md-3">
-                <div class="form-label-group">
-                    <select class="form-control" id="MotherPrefixSel" name="MotherPrefixSel" disabled="">
-
-
-                        <option value="Mrs" selected="selected">Mrs</option>
-
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-label-group">
-                    <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
-                        name="mothersfirstName" id="mothersfirstName" placeholder="First Name" />
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-label-group">
-                    <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
-                        name="mothersmiddleName" id="mothersmiddleName" placeholder="Middle Name" />
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-label-group">
-                    <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
-                        name="motherslastName" id="motherslastName" placeholder="Last Name" />
-                </div>
-            </div>
-        </div>
-
-
-        <div id="accordion">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                            aria-expanded="true" aria-controls="collapseOne">
-                            Additional Information
-                        </button>
-                    </h5>
-                </div>
-
-                <div id="collapseOne" class="" aria-labelledby="headingOne" data-parent="#accordion"
-                    style="padding: 15px;">
-
-
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12" style="display: none;">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h2 class="subHead">Are you an?</h2>
-                                </div>
-
-                                <div class="col-md-12">
-
-
-                                    <div class="form-check-inline">
-                                        <div class="custom-control custom-radio"
-                                            style="padding-left: 8px; padding-right: 0px;">
-                                            <input type="radio" class="custom-control-input custom-radio-btn"
-                                                value="FatcaYes" id="FatcaRadioYes" name="FatcaSelectRadio"
-                                                checked="checked" />
-                                            <label class="custom-control-label" for="FatcaRadioYes">Indian</label>
-                                        </div>
-
-                                        <!-- Default checked -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input custom-radio-btn"
-                                                disabled="disabled" value="FatcaNo" id="FatcaRadioNo"
-                                                name="FatcaSelectRadio" />
-                                            <label class="custom-control-label" for="FatcaRadioNo">NRI</label>
-                                        </div>
-                                    </div>
-                                    <br />
-
-
-
-
-
-                                </div>
-                            </div>
-
+                    <div *ngIf="submitted && f['maritalStatus'].errors" class="invalid-feedback">
+                        <div *ngIf="f['maritalStatus'].errors['required']">
+                            Pan is required
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h2 class="subHead">Do you wish to nominate ? </h2>
-
-                                </div>
-
-                                <div class="col-md-12">
-
-                                    <div class="form-check-inline" id="NomineeCheck">
-                                        <div class="custom-control custom-radio"
-                                            style="padding-left: 8px; padding-right: 0px;">
-                                            <input type="radio" class="custom-control-input custom-radio-btn"
-                                                value="CDSLNomineeYes" id="txxtCDSLNomineeYes"
-                                                name="CDSLOpenAcNominee" />
-                                            <label class="custom-control-label" for="txxtCDSLNomineeYes">Yes</label>
-                                        </div>
-
-                                        <!-- Default checked -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input custom-radio-btn"
-                                                checked="checked" value="CDSLNomineeNo" id="txtxCDSLNomineeNo"
-                                                name="CDSLOpenAcNominee" />
-                                            <label class="custom-control-label" for="txtxCDSLNomineeNo">NO</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="">
-                                        <span id="ifNominateYesSentence" style="visibility: hidden;">(If you want to
-                                            nominate, please check the welcome mail for further information)</span>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h2 class="subHead">Are you a politically exposed person?</h2>
-                                </div>
-
-                                <div class="col-md-12">
-
-                                    <div class="form-check-inline">
-                                        <div class="custom-control custom-radio"
-                                            style="padding-left: 8px; padding-right: 0px;">
-                                            <input type="radio" class="custom-control-input custom-radio-btn"
-                                                value="Yes" id="PolticalYes" name="PolticalExposed" />
-                                            <label class="custom-control-label" for="PolticalYes">Yes</label>
-                                        </div>
-
-                                        <!-- Default checked -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input custom-radio-btn"
-                                                checked="checked" value="CDSLNomineeNo" id="PolticalNo"
-                                                name="PolticalExposed" />
-                                            <label class="custom-control-label" for="PolticalNo">NO</label>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-----Nominee starts---->
-
-                        <section class="mt-4 mb-4 pb-3 nominee" *ngIf="addNominee">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="card">
-                                        <p class="card-header " style="color:#ffffff !important"><span>
-                                                <img src="images/nomination-icon.png" /></span> Nomination details <span
-                                                class="text-right float-right text-mb-views">Total Nomination : <span
-                                                    id="TotalNomineeShare">0</span>(%)</span></p>
-                                        <div class="card-body">
-                                            <div class="form-inline float-right">
-                                                <div class="form-group numberOfNominee mt-2">
-                                                    <label for="NumberOfNominees">Number of Nominees</label>
-                                                    <select id="NumberOfNominees" class="form-control m-0 w-auto">
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-
-                                            <div class="row">
-                                                <div class="col-sm-12 col-lg-6" id="Nominee1Div">
-                                                    <p class="text-dark font-weight-bold">Nominee 1</p>
-                                                    <div class="nominee-box">
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Proof Type</label>
-                                                            <select class="form-control" id="NomineeProofSel1"
-                                                                name="NomineeProofSel1">
-                                                                <option value="">Select Proof</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Proof No.</label>
-                                                            <input type="text" class="form-control NomineePan"
-                                                                data-nomineeno="1" name="NomineePan1" id="NomineePan1"
-                                                                placeholder="Enter Nominee Proof No"
-                                                                style="text-transform:uppercase;">
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label for="NomineeProofUploadFile1"
-                                                                id="NomineeProofUpload1"
-                                                                class="btn btn-primary fileLABLE">
-                                                                <i class="fa fa-camera-retro"></i> Upload Proof
-                                                            </label>
-                                                            <input id="NomineeProofUploadFile1"
-                                                                class="nomineeProofUploadFile" data-nomineeno="1"
-                                                                style="display: none;" type="file" />
-                                                            <input type="hidden" id="hidNomineeProofUploadPath1" />
-
-
-                                                            <div id="isNomineeProofDownload1" style="display:none;">
-
-                                                                <div id="hidFileUploadedMsgDownload1"
-                                                                    style="display:none;"
-                                                                    class="alert alert-info p-1 font-weight-bold d-inline-block">
-                                                                    <a href="" class="btn btn-sm btn-danger"
-                                                                        id="NomineeProofDownload1" target="_blank"><i
-                                                                            class="fa fa-download"
-                                                                            aria-hidden="true"></i>Download uploaded
-                                                                        NomineeProff</a>
-                                                                </div>
-
-                                                                <button type="button"
-                                                                    class="btn btn-danger btn-sm reUploadNomineeBtn"
-                                                                    data-nomineeno="1" id="reUploadBtnDownload1">
-                                                                    <i class="fa fa-close"></i>
-                                                                </button>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Date of Birth</label>
-                                                            <div class="form-row">
-                                                                <div class="col-4">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDatezero cDateCls"
-                                                                        data-nomineeno="1" min="1" max="31" data-id="D"
-                                                                        placeholder="dd" id="NomineeDOBDay1"
-                                                                        name="NomineeDOBDay1" maxlength="2">
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDatezero cDateCls"
-                                                                        data-nomineeno="1" min="1" max="12" data-id="M"
-                                                                        placeholder="mm" id="NomineeDOBMonth1"
-                                                                        name="NomineeDOBMonth1" maxlength="2" value="">
-                                                                </div>
-                                                                <div class="col-4 mt-2 mt-sm-0">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDateCls" data-id="Y"
-                                                                        data-nomineeno="1" placeholder="yyyy"
-                                                                        id="NomineeDOBYear1" name="NomineeDOBYear1"
-                                                                        maxlength="4" value="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee name</label>
-                                                            <input type="text" class="form-control NomineeName"
-                                                                data-nomineeno="1" required="required" id="NomineeName1"
-                                                                name="NomineeName1" placeholder="Enter Nominee name">
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Relationship</label>
-                                                            <select id="NomineeRelationShip1" data-nomineeno="1"
-                                                                required="required"
-                                                                class="form-control NomineeRelationShip">
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Address </label>
-                                                            <textarea class="textarea form-control mb-0"
-                                                                required="required" disabled="disabled"
-                                                                style="font-size: 14px;" id="NomineeAddressLine1"
-                                                                placeholder="Enter Address" rows="2"></textarea>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label"
-                                                                    id="AddressChangeNominee1" data-nomineeno="1"
-                                                                    style="cursor: pointer;">Click here, incase you want
-                                                                    to modify the address</label>
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Mobile</label>
-                                                            <input type="text" class="form-control number"
-                                                                data-nomineeno="1" minlength="10" required="required"
-                                                                maxlength="10" id="NomineeMobile1" name="NomineeMobile1"
-                                                                placeholder="Enter Nominee Mobile">
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Email ID</label>
-                                                            <input type="email" class="form-control" data-nomineeno="1"
-                                                                id="NomineeEmail1" required="required"
-                                                                name="NomineeEmail1" placeholder="Enter Nominee Email">
-                                                        </div>
-
-
-                                                        <div class="col-sm-12 mt-3">
-                                                            <label>Nomination share (<span
-                                                                    id="ShareNominee1">0%</span>)</label>
-                                                            <div id="ShareBarNominee1" class="bar"></div>
-                                                        </div>
-
-
-                                                        <input type="hidden" id="Address1Nominee1" />
-                                                        <input type="hidden" id="Address2Nominee1" />
-                                                        <input type="hidden" id="Address3Nominee1" />
-                                                        <input type="hidden" id="CityNominee1" />
-                                                        <input type="hidden" id="StateNominee1" />
-                                                        <input type="hidden" id="PincodeNominee1" />
-                                                        <input type="hidden" id="CountryNominee1" />
-
-                                                        <input type="hidden" id="MinorNominee1" value="No" />
-
-                                                        <input type="hidden" id="GaurdianNameNominee1" />
-                                                        <input type="hidden" id="GaurdianPanNominee1" />
-
-                                                        <input type="hidden" id="GaurdianAddress1Nominee1" />
-                                                        <input type="hidden" id="GaurdianAddress2Nominee1" />
-                                                        <input type="hidden" id="GaurdianAddress3Nominee1" />
-                                                        <input type="hidden" id="GaurdianDOBNominee1" />
-
-                                                        <input type="hidden" id="GaurdianCityNominee1" />
-                                                        <input type="hidden" id="GaurdianStateNominee1" />
-                                                        <input type="hidden" id="GaurdianCountryNominee1" />
-                                                        <input type="hidden" id="GaurdianPinCodeNominee1" />
-                                                        <input type="hidden" id="GaurdianRelationShipNominee1" />
-                                                        <input type="hidden" id="GaurdianEmailShipNominee1" />
-                                                        <input type="hidden" id="GaurdianMobileShipNominee1" />
-                                                        <input type="hidden" id="hidNomineeId1" value="0" />
-                                                        <input type="hidden" id="GaurdianJsonNominee1" value="" />
-
-
-                                                        <input type="hidden" id="hidGuardianNomineeProofFilePath1" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-12 col-lg-6" id="Nominee2Div" style="display:none;">
-                                                    <p class="text-dark font-weight-bold">Nominee 2</p>
-                                                    <div class="nominee-box">
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Proof Type</label>
-                                                            <select class="form-control" id="NomineeProofSel2"
-                                                                name="NomineeProofSel2">
-                                                                <option value="">Select Proof</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Proof No.</label>
-                                                            <input type="text" class="form-control NomineePan"
-                                                                data-nomineeno="2" name="NomineePan2" id="NomineePan2"
-                                                                placeholder="Enter Nominee Proof No"
-                                                                style="text-transform:uppercase;">
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label for="NomineeProofUploadFile2"
-                                                                id="NomineeProofUpload2"
-                                                                class="btn btn-primary fileLABLE">
-                                                                <i class="fa fa-camera-retro"></i> Upload Proof
-                                                            </label>
-                                                            <input id="NomineeProofUploadFile2"
-                                                                class="nomineeProofUploadFile" data-nomineeno="2"
-                                                                style="display: none;" type="file" />
-                                                            <input type="hidden" id="hidNomineeProofUploadPath2" />
-                                                            <div id="isNomineeProofImgDiv2" style="display:none;">
-                                                                <img src="" id="NomineeProofImg2" class="img-fluid" />
-                                                                <div id="hidFileUploadedMsg2" style="display:none;"
-                                                                    class="alert alert-info p-1 font-weight-bold d-inline-block">
-                                                                    File uploaded</div>
-
-                                                                <button type="button"
-                                                                    class="btn btn-danger btn-sm reUploadNomineeBtn"
-                                                                    data-nomineeno="2" id="reUploadBtn2">
-                                                                    <i class="fa fa-close"></i>
-                                                                </button>
-                                                            </div>
-                                                            <div id="isNomineeProofDownload2" style="display:none;">
-
-                                                                <div id="hidFileUploadedMsgDownload2"
-                                                                    style="display:none;"
-                                                                    class="alert alert-info p-1 font-weight-bold d-inline-block">
-                                                                    <a href="" class="btn btn-sm btn-danger"
-                                                                        id="NomineeProofDownload2" target="_blank"><i
-                                                                            class="fa fa-download"
-                                                                            aria-hidden="true"></i>Download uploaded
-                                                                        NomineeProff</a>
-                                                                </div>
-
-                                                                <button type="button"
-                                                                    class="btn btn-danger btn-sm reUploadNomineeBtn"
-                                                                    data-nomineeno="2" id="reUploadBtnDownload2">
-                                                                    <i class="fa fa-close"></i>
-                                                                </button>
-                                                            </div>
-
-
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Date of Birth</label>
-                                                            <div class="form-row">
-                                                                <div class="col-4">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDatezero cDateCls"
-                                                                        data-nomineeno="2" min="1" max="31" data-id="D"
-                                                                        placeholder="dd" id="NomineeDOBDay2"
-                                                                        name="NomineeDOBDay2" maxlength="2">
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDatezero cDateCls"
-                                                                        data-nomineeno="2" min="1" max="12" data-id="M"
-                                                                        placeholder="mm" id="NomineeDOBMonth2"
-                                                                        name="NomineeDOBMonth2" maxlength="2" value="">
-                                                                </div>
-                                                                <div class="col-4 mt-2 mt-sm-0">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDateCls" data-id="Y"
-                                                                        data-nomineeno="2" placeholder="yyyy"
-                                                                        id="NomineeDOBYear2" name="NomineeDOBYear2"
-                                                                        maxlength="4" value="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee name</label>
-                                                            <input type="text" class="form-control NomineeName"
-                                                                data-nomineeno="2" required="required" id="NomineeName2"
-                                                                name="NomineeName2" placeholder="Enter Nominee name">
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Relationship</label>
-                                                            <select id="NomineeRelationShip2" data-nomineeno="2"
-                                                                required="required"
-                                                                class="form-control NomineeRelationShip">
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Address </label>
-                                                            <textarea class="textarea form-control mb-0"
-                                                                required="required" disabled style="font-size: 14px;"
-                                                                id="NomineeAddressLine2" placeholder="Enter Address"
-                                                                rows="2"></textarea>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label"
-                                                                    id="AddressChangeNominee2" data-nomineeno="2"
-                                                                    style="cursor: pointer;">Click here, incase you want
-                                                                    to modify the address</label>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Mobile</label>
-                                                            <input type="text" class="form-control number"
-                                                                minlength="10" maxlength="10" required="required"
-                                                                data-nomineeno="2" id="NomineeMobile2"
-                                                                name="NomineeMobile2"
-                                                                placeholder="Enter Nominee Mobile">
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Email ID</label>
-                                                            <input type="email" class="form-control" data-nomineeno="2"
-                                                                id="NomineeEmail2" required="required"
-                                                                name="NomineeEmail2" placeholder="Enter Nominee Email">
-                                                        </div>
-
-
-                                                        <div class="col-sm-12 mt-3">
-                                                            <label>Nomination share (<span
-                                                                    id="ShareNominee2">0%</span>)</label>
-                                                            <div id="ShareBarNominee2" class="bar"></div>
-                                                        </div>
-
-
-                                                        <input type="hidden" id="Address1Nominee2" />
-                                                        <input type="hidden" id="Address2Nominee2" />
-                                                        <input type="hidden" id="Address3Nominee2" />
-                                                        <input type="hidden" id="CityNominee2" />
-                                                        <input type="hidden" id="StateNominee2" />
-                                                        <input type="hidden" id="PincodeNominee2" />
-                                                        <input type="hidden" id="CountryNominee2" />
-                                                        <input type="hidden" id="MinorNominee2" value="No" />
-
-                                                        <input type="hidden" id="GaurdianNameNominee2" />
-                                                        <input type="hidden" id="GaurdianPanNominee2" />
-                                                        <input type="hidden" id="GaurdianAddress1Nominee2" />
-                                                        <input type="hidden" id="GaurdianAddress2Nominee2" />
-                                                        <input type="hidden" id="GaurdianAddress3Nominee2" />
-                                                        <input type="hidden" id="GaurdianDOBNominee2" />
-                                                        <input type="hidden" id="GaurdianCityNominee2" />
-                                                        <input type="hidden" id="GaurdianStateNominee2" />
-                                                        <input type="hidden" id="GaurdianCountryNominee2" />
-                                                        <input type="hidden" id="GaurdianPinCodeNominee2" />
-                                                        <input type="hidden" id="GaurdianRelationShipNominee2" />
-                                                        <input type="hidden" id="GaurdianEmailShipNominee2" />
-                                                        <input type="hidden" id="GaurdianMobileShipNominee2" />
-                                                        <input type="hidden" id="hidNomineeId2" value="0" />
-                                                        <input type="hidden" id="GaurdianJsonNominee2" value="" />
-
-                                                        <input type="hidden" id="hidGuardianNomineeProofFilePath2" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-12 col-lg-6 mt-4" id="Nominee3Div"
-                                                    style="display:none;">
-                                                    <p class="text-dark font-weight-bold">Nominee 3</p>
-                                                    <div class="nominee-box">
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Proof Type</label>
-                                                            <select class="form-control" id="NomineeProofSel3"
-                                                                name="NomineeProofSel3">
-                                                                <option value="">Select Proof</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Proof No.</label>
-                                                            <input type="text" class="form-control NomineePan"
-                                                                data-nomineeno="3" name="NomineePan3" id="NomineePan3"
-                                                                placeholder="Enter Nominee Proof No"
-                                                                style="text-transform:uppercase;">
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label for="NomineeProofUploadFile3"
-                                                                id="NomineeProofUpload3"
-                                                                class="btn btn-primary fileLABLE">
-                                                                <i class="fa fa-camera-retro"></i> Upload Proof
-                                                            </label>
-                                                            <input id="NomineeProofUploadFile3"
-                                                                class="nomineeProofUploadFile" data-nomineeno="3"
-                                                                style="display: none;" type="file" />
-                                                            <input type="hidden" id="hidNomineeProofUploadPath3" />
-                                                            <div id="isNomineeProofImgDiv3" style="display:none;">
-                                                                <img src="" id="NomineeProofImg3" class="img-fluid" />
-                                                                <div id="hidFileUploadedMsg3" style="display:none;"
-                                                                    class="alert alert-info p-1 font-weight-bold d-inline-block">
-                                                                    File uploaded</div>
-
-                                                                <button type="button"
-                                                                    class="btn btn-danger btn-sm reUploadNomineeBtn"
-                                                                    data-nomineeno="3" id="reUploadBtn3">
-                                                                    <i class="fa fa-close"></i>
-                                                                </button>
-                                                            </div>
-
-                                                            <div id="isNomineeProofDownload3" style="display:none;">
-
-                                                                <div id="hidFileUploadedMsgDownload3"
-                                                                    style="display:none;"
-                                                                    class="alert alert-info p-1 font-weight-bold d-inline-block">
-                                                                    <a href="" class="btn btn-sm btn-danger"
-                                                                        id="NomineeProofDownload3" target="_blank"><i
-                                                                            class="fa fa-download"
-                                                                            aria-hidden="true"></i>Download uploaded
-                                                                        NomineeProff</a>
-                                                                </div>
-
-                                                                <button type="button"
-                                                                    class="btn btn-danger btn-sm reUploadNomineeBtn"
-                                                                    data-nomineeno="3" id="reUploadBtnDownload3">
-                                                                    <i class="fa fa-close"></i>
-                                                                </button>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Date of Birth</label>
-                                                            <div class="form-row">
-                                                                <div class="col-4">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDatezero cDateCls"
-                                                                        data-nomineeno="3" min="1" max="31" data-id="D"
-                                                                        placeholder="dd" id="NomineeDOBDay3"
-                                                                        name="NomineeDOBDay3" maxlength="2">
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDatezero cDateCls"
-                                                                        data-nomineeno="3" min="1" max="12" data-id="M"
-                                                                        placeholder="mm" id="NomineeDOBMonth3"
-                                                                        name="NomineeDOBMonth3" maxlength="2" value="">
-                                                                </div>
-                                                                <div class="col-4 mt-2 mt-sm-0">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDateCls" data-id="Y"
-                                                                        data-nomineeno="3" placeholder="yyyy"
-                                                                        id="NomineeDOBYear3" name="NomineeDOBYear3"
-                                                                        maxlength="4" value="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee name</label>
-                                                            <input type="text" class="form-control NomineeName"
-                                                                data-nomineeno="3" required="required" id="NomineeName3"
-                                                                name="NomineeName3" placeholder="Enter Nominee name">
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Relationship</label>
-                                                            <select id="NomineeRelationShip3" required="required"
-                                                                data-nomineeno="3"
-                                                                class="form-control NomineeRelationShip">
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Address </label>
-                                                            <textarea class="textarea form-control mb-0"
-                                                                required="required" disabled style="font-size: 14px;"
-                                                                id="NomineeAddressLine3" placeholder="Enter Address"
-                                                                rows="2"></textarea>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label"
-                                                                    id="AddressChangeNominee3" data-nomineeno="3"
-                                                                    style="cursor: pointer;">Click here, incase you want
-                                                                    to modify the address</label>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Mobile</label>
-                                                            <input type="text" class="form-control number"
-                                                                minlength="10" maxlength="10" data-nomineeno="3"
-                                                                id="NomineeMobile3" required="required"
-                                                                name="NomineeMobile3"
-                                                                placeholder="Enter Nominee Mobile">
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee Email ID</label>
-                                                            <input type="email" class="form-control" data-nomineeno="3"
-                                                                id="NomineeEmail3" required="required"
-                                                                name="NomineeEmail3" placeholder="Enter Nominee Email">
-                                                        </div>
-
-
-                                                        <div class="col-sm-12 mt-3">
-                                                            <label>Nomination share (<span
-                                                                    id="ShareNominee3">0%</span>)</label>
-                                                            <div id="ShareBarNominee3" class="bar"></div>
-                                                        </div>
-
-
-                                                        <input type="hidden" id="Address1Nominee3" />
-                                                        <input type="hidden" id="Address2Nominee3" />
-                                                        <input type="hidden" id="Address3Nominee3" />
-                                                        <input type="hidden" id="CityNominee3" />
-                                                        <input type="hidden" id="StateNominee3" />
-                                                        <input type="hidden" id="PincodeNominee3" />
-                                                        <input type="hidden" id="CountryNominee3" />
-                                                        <input type="hidden" id="MinorNominee3" value="No" />
-
-
-                                                        <input type="hidden" id="GaurdianNameNominee3" />
-                                                        <input type="hidden" id="GaurdianPanNominee3" />
-                                                        <input type="hidden" id="GaurdianAddress1Nominee3" />
-                                                        <input type="hidden" id="GaurdianAddress2Nominee3" />
-                                                        <input type="hidden" id="GaurdianAddress3Nominee3" />
-                                                        <input type="hidden" id="GaurdianDOBNominee3" />
-                                                        <input type="hidden" id="GaurdianCityNominee3" />
-                                                        <input type="hidden" id="GaurdianStateNominee3" />
-                                                        <input type="hidden" id="GaurdianCountryNominee3" />
-                                                        <input type="hidden" id="GaurdianPinCodeNominee3" />
-                                                        <input type="hidden" id="GaurdianRelationShipNominee3" />
-                                                        <input type="hidden" id="GaurdianEmailShipNominee3" />
-                                                        <input type="hidden" id="GaurdianMobileShipNominee3" />
-                                                        <input type="hidden" id="hidNomineeId3" value="0" />
-                                                        <input type="hidden" id="GaurdianJsonNominee3" value="" />
-
-                                                        <input type="hidden" id="hidGuardianNomineeProofFilePath3" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-12 col-lg-6 mt-4" id="Nominee4Div"
-                                                    style="display:none;">
-                                                    <p class="text-dark font-weight-bold">Nominee 4</p>
-                                                    <div class="nominee-box">
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee name</label>
-                                                            <input type="text" class="form-control" required
-                                                                id="NomineeName4" name="NomineeName4"
-                                                                placeholder="Enter Nominee name">
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Nominee PAN</label>
-                                                            <input type="text" class="form-control " name="NomineePan4"
-                                                                id="NomineePan4" placeholder="Enter Nominee PAN">
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Relationship</label>
-                                                            <select id="NomineeRelationShip4" required
-                                                                class="form-control">
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Date of Birth</label>
-                                                            <div class="form-row">
-                                                                <div class="col-4 col-lg-3">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDatezero cDateCls"
-                                                                        data-nomineeno="4" min="1" max="31" data-id="D"
-                                                                        placeholder="dd" id="NomineeDOBDay4"
-                                                                        name="NomineeDOBDay4" maxlength="2">
-                                                                </div>
-                                                                <div class="col-4 col-lg-3">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDatezero cDateCls"
-                                                                        data-nomineeno="4" min="1" max="12" data-id="M"
-                                                                        placeholder="mm" id="NomineeDOBMonth4"
-                                                                        name="NomineeDOBMonth4" maxlength="2" value="">
-                                                                </div>
-                                                                <div class="col-4 mt-2 mt-sm-0">
-                                                                    <input type="text" value="" required
-                                                                        class="form-control number cDateCls" data-id="Y"
-                                                                        data-nomineeno="4" placeholder="yyyy"
-                                                                        id="NomineeDOBYear4" name="NomineeDOBYear4"
-                                                                        maxlength="4" value="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label class="text-black">Address </label>
-                                                            <textarea class="textarea form-control mb-0" required
-                                                                disabled style="font-size: 14px;"
-                                                                id="NomineeAddressLine4" placeholder="Enter Address"
-                                                                rows="2"></textarea>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label"
-                                                                    id="AddressChangeNominee4" data-nomineeno="4"
-                                                                    style="cursor: pointer;">Click here, incase you want
-                                                                    to modify the address</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 mt-3">
-                                                            <label>Nomination share (<span
-                                                                    id="ShareNominee4">0%</span>)</label>
-                                                            <div id="ShareBarNominee4" class="bar"></div>
-                                                        </div>
-
-
-                                                        <input type="hidden" id="Address1Nominee4" />
-                                                        <input type="hidden" id="Address2Nominee4" />
-                                                        <input type="hidden" id="Address3Nominee4" />
-                                                        <input type="hidden" id="CityNominee4" />
-                                                        <input type="hidden" id="StateNominee4" />
-                                                        <input type="hidden" id="PincodeNominee4" />
-                                                        <input type="hidden" id="CountryNominee4" />
-                                                        <input type="hidden" id="MinorNominee4" value="No" />
-
-
-                                                        <input type="hidden" id="GaurdianNameNominee4" />
-                                                        <input type="hidden" id="GaurdianAddress1Nominee4" />
-                                                        <input type="hidden" id="GaurdianAddress2Nominee4" />
-                                                        <input type="hidden" id="GaurdianAddress3Nominee4" />
-                                                        <input type="hidden" id="GaurdianDOBNominee4" />
-                                                        <input type="hidden" id="GaurdianCityNominee4" />
-                                                        <input type="hidden" id="GaurdianStateNominee4" />
-                                                        <input type="hidden" id="GaurdianCountryNominee4" />
-                                                        <input type="hidden" id="GaurdianPinCodeNominee4" />
-                                                        <input type="hidden" id="GaurdianRelationShipNominee4" />
-                                                        <input type="hidden" id="GaurdianEmailShipNominee4" />
-                                                        <input type="hidden" id="GaurdianMobileShipNominee4" />
-
-
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </section>
-                        <!-----Nominee Ends---->
-
                     </div>
 
-                    <div class="row"
-                        style="padding: 10px; margin-top: 10px; border-top: 1px solid #c5c5c5; display:none">
-                        <div id="MobileDeclarationDiv" class="panel-collapse" style="width: 100%">
-                            <div class="panel-body ekyc_pbodybg">
+                </div>
+
+
+                <div class="col-md-3">
+                    <label class="form-label pd">Trading experience</label>
+
+                    <select id="tradingexprns" class="form-control" name="tradingexprns" formControlName="exp"
+                        [ngClass]="{ 'is-invalid': submitted && f['exp'].errors }">
+                        <option value="">Select Years of Experience</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="More Than 5">More Than 5</option>
+                    </select>
+
+                    <div *ngIf="submitted && f['exp'].errors" class="invalid-feedback">
+                        <div *ngIf="f['exp'].errors['required']">
+                            Experience is required
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+                    <label class="form-label pd">Occupation Type</label>
+                    <select class="form-control" name="occupationslct" id="occupationslct" formControlName="occupation"
+                        [ngClass]="{ 'is-invalid': submitted && f['occupation'].errors }">
+                        <option value="">Select Occupation</option>
+                    </select>
+                    <div *ngIf="submitted && f['occupation'].errors" class="invalid-feedback">
+                        <div *ngIf="f['occupation'].errors['required']">
+                            Pan is required
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <label class="form-label pd">Your Annual income</label>
+                    <select class="form-control" name="Annualincome" id="Annualincome" formControlName="annualIncome"
+                        [ngClass]="{ 'is-invalid': submitted && f['annualIncome'].errors }">
+                        <option value="" selected="selected">Select Annual income</option>
+                    </select>
+                    <div *ngIf="submitted && f['annualIncome'].errors" class="invalid-feedback">
+                        <div *ngIf="f['annualIncome'].errors['required']">
+                            annualIncome is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="
+          margin-top: 26px;
+          border-top: 1px solid #c5c5c5;
+          padding-top: 25px;
+        ">
+                <div class="col-12">
+                    <label class="pd">Father/Spouse name</label><br />
+                </div>
+
+                <div class="col-lg-3 col-md-12 col-12">
+                    <div class="form-check-inline mt-2">
+                        <div class="custom-control custom-radio" style="padding-left: 8px; padding-right: 0px">
+                            <input type="radio" class="custom-control-input custom-radio-btn" value="Father"
+                                id="fatherbtn" name="fatherSpouseRad" checked="checked" />
+                            <label class="custom-control-label" for="defaultUnchecked">Father</label>
+                        </div>
+                        
+
+                        <!-- Default checked -->
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input custom-radio-btn" value="Spouse"
+                                id="spousebtn" name="fatherSpouseRad" />
+                            <label class="custom-control-label" for="defaultChecked">Spouse</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-12">
+                    <div class="form-label-group">
+                        <select class="form-control" formControlName="father_feminine" id="FatherSpousePrefixSel" name="FatherSpousePrefixSel"
+                        [ngClass]="{ 'is-invalid': submitted && f['father_feminine'].errors }">
+                            <option value="MR" selected="selected">Mr</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 col-md-9 col-12">
+                    <div class="form-label-group">
+                        <input type="text" formControlName="spouseName" style="text-transform: uppercase" class="form-control alphaonly"
+                            name="fatherspouseName" id="fatherspouseName" placeholder="" [ngClass]="{ 'is-invalid': submitted && f['spouseName'].errors }" />
+                    </div>
+                </div>
+
+                <div class="col-md-3" style="display: none">
+                    <div class="form-label-group">
+                        <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
+                            name="fatherspouseFirstName" id="fatherspouseFirstName" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f['fatherF'].errors }" />
+                    </div>
+                </div>
+                <div class="col-md-3" style="display: none">
+                    <div class="form-label-group">
+                        <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
+                            name="fatherspouseMiddleName" id="fatherspouseMiddleName" placeholder="Middle Name" [ngClass]="{ 'is-invalid': submitted && f['father_feminine'].errors }" />
+                    </div>
+                </div>
+                <div class="col-md-3" style="display: none">
+                    <div class="form-label-group">
+                        <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
+                            name="fatherspouseLastName" id="fatherspouseLastName" placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && f['father_feminine'].errors }" />
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row" style="margin-top: 26px;border-top: 1px solid #c5c5c5;padding-top: 25px;">
+                <div class="col-12">
+                    <label class="pd">Mother’s name</label>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-label-group">
+                        <select class="form-control" formControlName="feminine_Mother" id="MotherPrefixSel" name="MotherPrefixSel" >
+                            <option value="Mrs" selected="selected">Mrs</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-label-group">
+                        <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
+                            name="mothersfirstName" id="mothersfirstName" placeholder="First Name" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-label-group">
+                        <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
+                            name="mothersmiddleName" id="mothersmiddleName" placeholder="Middle Name" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-label-group">
+                        <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
+                            name="motherslastName" id="motherslastName" placeholder="Last Name" />
+                    </div>
+                </div>
+            </div>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                Additional Information
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="" aria-labelledby="headingOne" data-parent="#accordion"
+                        style="padding: 15px">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-12" style="display: none">
                                 <div class="row">
-                                    <div class="col-lg-3">
-                                        <label class="pd">
-                                            Mobile number belongs to :
-                                        </label>
+                                    <div class="col-md-12">
+                                        <h2 class="subHead">Are you an?</h2>
                                     </div>
-                                    <div class="col-lg-9">
-                                        <div class="radio mB15">
+
+                                    <div class="col-md-12">
+                                        <div class="form-check-inline">
+                                            <div class="custom-control custom-radio"
+                                                style="padding-left: 8px; padding-right: 0px">
+                                                <input type="radio" class="custom-control-input custom-radio-btn"
+                                                    value="FatcaYes" id="FatcaRadioYes" name="FatcaSelectRadio"
+                                                    checked="checked" />
+                                                <label class="custom-control-label" for="FatcaRadioYes">Indian</label>
+                                            </div>
+
+                                            <!-- Default checked -->
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" class="custom-control-input custom-radio-btn"
+                                                    disabled="disabled" value="FatcaNo" id="FatcaRadioNo"
+                                                    name="FatcaSelectRadio" />
+                                                <label class="custom-control-label" for="FatcaRadioNo">NRI</label>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2 class="subHead">Do you wish to nominate ?</h2>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-check-inline" id="NomineeCheck">
+                                            <div class="custom-control custom-radio"
+                                                style="padding-left: 8px; padding-right: 0px">
+                                                <input type="radio" class="custom-control-input custom-radio-btn"
+                                                    value="CDSLNomineeYes" id="txxtCDSLNomineeYes"
+                                                    name="CDSLOpenAcNominee" />
+                                                <label class="custom-control-label" for="txxtCDSLNomineeYes">Yes</label>
+                                            </div>
+
+                                            <!-- Default checked -->
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" class="custom-control-input custom-radio-btn"
+                                                    checked="checked" value="CDSLNomineeNo" id="txtxCDSLNomineeNo"
+                                                    name="CDSLOpenAcNominee" />
+                                                <label class="custom-control-label" for="txtxCDSLNomineeNo">NO</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="">
+                                            <span id="ifNominateYesSentence" style="visibility: hidden">(If you want to
+                                                nominate, please check the welcome mail
+                                                for further information)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2 class="subHead">
+                                            Are you a politically exposed person?
+                                        </h2>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-check-inline">
+                                            <div class="custom-control custom-radio"
+                                                style="padding-left: 8px; padding-right: 0px">
+                                                <input type="radio" class="custom-control-input custom-radio-btn"
+                                                    value="Yes" id="PolticalYes" name="PolticalExposed" />
+                                                <label class="custom-control-label" for="PolticalYes">Yes</label>
+                                            </div>
+
+                                            <!-- Default checked -->
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" class="custom-control-input custom-radio-btn"
+                                                    checked="checked" value="CDSLNomineeNo" id="PolticalNo"
+                                                    name="PolticalExposed" />
+                                                <label class="custom-control-label" for="PolticalNo">NO</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-----Nominee starts---->
+
+                            <section class="mt-4 mb-4 pb-3 nominee" *ngIf="addNominee">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <p class="card-header" style="color: #ffffff !important">
+                                                <span> <img src="images/nomination-icon.png" /></span>
+                                                Nomination details
+                                                <span class="text-right float-right text-mb-views">Total Nomination :
+                                                    <span id="TotalNomineeShare">0</span>(%)</span>
+                                            </p>
+                                            <div class="card-body">
+                                                <div class="form-inline float-right">
+                                                    <div class="form-group numberOfNominee mt-2">
+                                                        <label for="NumberOfNominees">Number of Nominees</label>
+                                                        <select id="NumberOfNominees" class="form-control m-0 w-auto">
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6" id="Nominee1Div">
+                                                        <p class="text-dark font-weight-bold">Nominee 1</p>
+                                                        <div class="nominee-box">
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Proof Type</label>
+                                                                <select class="form-control" id="NomineeProofSel1"
+                                                                    name="NomineeProofSel1">
+                                                                    <option value="">Select Proof</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Proof No.</label>
+                                                                <input type="text" class="form-control NomineePan"
+                                                                    data-nomineeno="1" name="NomineePan1"
+                                                                    id="NomineePan1"
+                                                                    placeholder="Enter Nominee Proof No"
+                                                                    style="text-transform: uppercase" />
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="NomineeProofUploadFile1"
+                                                                    id="NomineeProofUpload1"
+                                                                    class="btn btn-primary fileLABLE">
+                                                                    <i class="fa fa-camera-retro"></i> Upload
+                                                                    Proof
+                                                                </label>
+                                                                <input id="NomineeProofUploadFile1"
+                                                                    class="nomineeProofUploadFile" data-nomineeno="1"
+                                                                    style="display: none" type="file" />
+                                                                <input type="hidden" id="hidNomineeProofUploadPath1" />
+
+                                                                <div id="isNomineeProofDownload1" style="display: none">
+                                                                    <div id="hidFileUploadedMsgDownload1"
+                                                                        style="display: none"
+                                                                        class="alert alert-info p-1 font-weight-bold d-inline-block">
+                                                                        <a href="" class="btn btn-sm btn-danger"
+                                                                            id="NomineeProofDownload1"
+                                                                            target="_blank"><i class="fa fa-download"
+                                                                                aria-hidden="true"></i>Download uploaded
+                                                                            NomineeProff</a>
+                                                                    </div>
+
+                                                                    <button type="button"
+                                                                        class="btn btn-danger btn-sm reUploadNomineeBtn"
+                                                                        data-nomineeno="1" id="reUploadBtnDownload1">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Date of Birth</label>
+                                                                <div class="form-row">
+                                                                    <div class="col-4">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDatezero cDateCls"
+                                                                            data-nomineeno="1" min="1" max="31"
+                                                                            data-id="D" placeholder="dd"
+                                                                            id="NomineeDOBDay1" name="NomineeDOBDay1"
+                                                                            maxlength="2" />
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDatezero cDateCls"
+                                                                            data-nomineeno="1" min="1" max="12"
+                                                                            data-id="M" placeholder="mm"
+                                                                            id="NomineeDOBMonth1"
+                                                                            name="NomineeDOBMonth1" maxlength="2"
+                                                                            value="" />
+                                                                    </div>
+                                                                    <div class="col-4 mt-2 mt-sm-0">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDateCls"
+                                                                            data-id="Y" data-nomineeno="1"
+                                                                            placeholder="yyyy" id="NomineeDOBYear1"
+                                                                            name="NomineeDOBYear1" maxlength="4"
+                                                                            value="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee name</label>
+                                                                <input type="text" class="form-control NomineeName"
+                                                                    data-nomineeno="1" required="required"
+                                                                    id="NomineeName1" name="NomineeName1"
+                                                                    placeholder="Enter Nominee name" />
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Relationship</label>
+                                                                <select id="NomineeRelationShip1" data-nomineeno="1"
+                                                                    required="required"
+                                                                    class="form-control NomineeRelationShip"></select>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Address </label>
+                                                                <textarea class="textarea form-control mb-0"
+                                                                    required="required" disabled="disabled"
+                                                                    style="font-size: 14px" id="NomineeAddressLine1"
+                                                                    placeholder="Enter Address" rows="2"></textarea>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label"
+                                                                        id="AddressChangeNominee1" data-nomineeno="1"
+                                                                        style="cursor: pointer">Click here, incase you
+                                                                        want to modify the
+                                                                        address</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Mobile</label>
+                                                                <input type="text" class="form-control number"
+                                                                    data-nomineeno="1" minlength="10"
+                                                                    required="required" maxlength="10"
+                                                                    id="NomineeMobile1" name="NomineeMobile1"
+                                                                    placeholder="Enter Nominee Mobile" />
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Email ID</label>
+                                                                <input type="email" class="form-control"
+                                                                    data-nomineeno="1" id="NomineeEmail1"
+                                                                    required="required" name="NomineeEmail1"
+                                                                    placeholder="Enter Nominee Email" />
+                                                            </div>
+
+                                                            <div class="col-sm-12 mt-3">
+                                                                <label>Nomination share (<span
+                                                                        id="ShareNominee1">0%</span>)</label>
+                                                                <div id="ShareBarNominee1" class="bar"></div>
+                                                            </div>
+
+                                                            <input type="hidden" id="Address1Nominee1" />
+                                                            <input type="hidden" id="Address2Nominee1" />
+                                                            <input type="hidden" id="Address3Nominee1" />
+                                                            <input type="hidden" id="CityNominee1" />
+                                                            <input type="hidden" id="StateNominee1" />
+                                                            <input type="hidden" id="PincodeNominee1" />
+                                                            <input type="hidden" id="CountryNominee1" />
+
+                                                            <input type="hidden" id="MinorNominee1" value="No" />
+
+                                                            <input type="hidden" id="GaurdianNameNominee1" />
+                                                            <input type="hidden" id="GaurdianPanNominee1" />
+
+                                                            <input type="hidden" id="GaurdianAddress1Nominee1" />
+                                                            <input type="hidden" id="GaurdianAddress2Nominee1" />
+                                                            <input type="hidden" id="GaurdianAddress3Nominee1" />
+                                                            <input type="hidden" id="GaurdianDOBNominee1" />
+
+                                                            <input type="hidden" id="GaurdianCityNominee1" />
+                                                            <input type="hidden" id="GaurdianStateNominee1" />
+                                                            <input type="hidden" id="GaurdianCountryNominee1" />
+                                                            <input type="hidden" id="GaurdianPinCodeNominee1" />
+                                                            <input type="hidden" id="GaurdianRelationShipNominee1" />
+                                                            <input type="hidden" id="GaurdianEmailShipNominee1" />
+                                                            <input type="hidden" id="GaurdianMobileShipNominee1" />
+                                                            <input type="hidden" id="hidNomineeId1" value="0" />
+                                                            <input type="hidden" id="GaurdianJsonNominee1" value="" />
+
+                                                            <input type="hidden"
+                                                                id="hidGuardianNomineeProofFilePath1" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-lg-6" id="Nominee2Div"
+                                                        style="display: none">
+                                                        <p class="text-dark font-weight-bold">Nominee 2</p>
+                                                        <div class="nominee-box">
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Proof Type</label>
+                                                                <select class="form-control" id="NomineeProofSel2"
+                                                                    name="NomineeProofSel2">
+                                                                    <option value="">Select Proof</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Proof No.</label>
+                                                                <input type="text" class="form-control NomineePan"
+                                                                    data-nomineeno="2" name="NomineePan2"
+                                                                    id="NomineePan2"
+                                                                    placeholder="Enter Nominee Proof No"
+                                                                    style="text-transform: uppercase" />
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="NomineeProofUploadFile2"
+                                                                    id="NomineeProofUpload2"
+                                                                    class="btn btn-primary fileLABLE">
+                                                                    <i class="fa fa-camera-retro"></i> Upload
+                                                                    Proof
+                                                                </label>
+                                                                <input id="NomineeProofUploadFile2"
+                                                                    class="nomineeProofUploadFile" data-nomineeno="2"
+                                                                    style="display: none" type="file" />
+                                                                <input type="hidden" id="hidNomineeProofUploadPath2" />
+                                                                <div id="isNomineeProofImgDiv2" style="display: none">
+                                                                    <img src="" id="NomineeProofImg2"
+                                                                        class="img-fluid" />
+                                                                    <div id="hidFileUploadedMsg2" style="display: none"
+                                                                        class="alert alert-info p-1 font-weight-bold d-inline-block">
+                                                                        File uploaded
+                                                                    </div>
+
+                                                                    <button type="button"
+                                                                        class="btn btn-danger btn-sm reUploadNomineeBtn"
+                                                                        data-nomineeno="2" id="reUploadBtn2">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div id="isNomineeProofDownload2" style="display: none">
+                                                                    <div id="hidFileUploadedMsgDownload2"
+                                                                        style="display: none"
+                                                                        class="alert alert-info p-1 font-weight-bold d-inline-block">
+                                                                        <a href="" class="btn btn-sm btn-danger"
+                                                                            id="NomineeProofDownload2"
+                                                                            target="_blank"><i class="fa fa-download"
+                                                                                aria-hidden="true"></i>Download uploaded
+                                                                            NomineeProff</a>
+                                                                    </div>
+
+                                                                    <button type="button"
+                                                                        class="btn btn-danger btn-sm reUploadNomineeBtn"
+                                                                        data-nomineeno="2" id="reUploadBtnDownload2">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Date of Birth</label>
+                                                                <div class="form-row">
+                                                                    <div class="col-4">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDatezero cDateCls"
+                                                                            data-nomineeno="2" min="1" max="31"
+                                                                            data-id="D" placeholder="dd"
+                                                                            id="NomineeDOBDay2" name="NomineeDOBDay2"
+                                                                            maxlength="2" />
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDatezero cDateCls"
+                                                                            data-nomineeno="2" min="1" max="12"
+                                                                            data-id="M" placeholder="mm"
+                                                                            id="NomineeDOBMonth2"
+                                                                            name="NomineeDOBMonth2" maxlength="2"
+                                                                            value="" />
+                                                                    </div>
+                                                                    <div class="col-4 mt-2 mt-sm-0">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDateCls"
+                                                                            data-id="Y" data-nomineeno="2"
+                                                                            placeholder="yyyy" id="NomineeDOBYear2"
+                                                                            name="NomineeDOBYear2" maxlength="4"
+                                                                            value="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee name</label>
+                                                                <input type="text" class="form-control NomineeName"
+                                                                    data-nomineeno="2" required="required"
+                                                                    id="NomineeName2" name="NomineeName2"
+                                                                    placeholder="Enter Nominee name" />
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Relationship</label>
+                                                                <select id="NomineeRelationShip2" data-nomineeno="2"
+                                                                    required="required"
+                                                                    class="form-control NomineeRelationShip"></select>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Address </label>
+                                                                <textarea class="textarea form-control mb-0"
+                                                                    required="required" disabled style="font-size: 14px"
+                                                                    id="NomineeAddressLine2" placeholder="Enter Address"
+                                                                    rows="2"></textarea>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label"
+                                                                        id="AddressChangeNominee2" data-nomineeno="2"
+                                                                        style="cursor: pointer">Click here, incase you
+                                                                        want to modify the
+                                                                        address</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Mobile</label>
+                                                                <input type="text" class="form-control number"
+                                                                    minlength="10" maxlength="10" required="required"
+                                                                    data-nomineeno="2" id="NomineeMobile2"
+                                                                    name="NomineeMobile2"
+                                                                    placeholder="Enter Nominee Mobile" />
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Email ID</label>
+                                                                <input type="email" class="form-control"
+                                                                    data-nomineeno="2" id="NomineeEmail2"
+                                                                    required="required" name="NomineeEmail2"
+                                                                    placeholder="Enter Nominee Email" />
+                                                            </div>
+
+                                                            <div class="col-sm-12 mt-3">
+                                                                <label>Nomination share (<span
+                                                                        id="ShareNominee2">0%</span>)</label>
+                                                                <div id="ShareBarNominee2" class="bar"></div>
+                                                            </div>
+
+                                                            <input type="hidden" id="Address1Nominee2" />
+                                                            <input type="hidden" id="Address2Nominee2" />
+                                                            <input type="hidden" id="Address3Nominee2" />
+                                                            <input type="hidden" id="CityNominee2" />
+                                                            <input type="hidden" id="StateNominee2" />
+                                                            <input type="hidden" id="PincodeNominee2" />
+                                                            <input type="hidden" id="CountryNominee2" />
+                                                            <input type="hidden" id="MinorNominee2" value="No" />
+
+                                                            <input type="hidden" id="GaurdianNameNominee2" />
+                                                            <input type="hidden" id="GaurdianPanNominee2" />
+                                                            <input type="hidden" id="GaurdianAddress1Nominee2" />
+                                                            <input type="hidden" id="GaurdianAddress2Nominee2" />
+                                                            <input type="hidden" id="GaurdianAddress3Nominee2" />
+                                                            <input type="hidden" id="GaurdianDOBNominee2" />
+                                                            <input type="hidden" id="GaurdianCityNominee2" />
+                                                            <input type="hidden" id="GaurdianStateNominee2" />
+                                                            <input type="hidden" id="GaurdianCountryNominee2" />
+                                                            <input type="hidden" id="GaurdianPinCodeNominee2" />
+                                                            <input type="hidden" id="GaurdianRelationShipNominee2" />
+                                                            <input type="hidden" id="GaurdianEmailShipNominee2" />
+                                                            <input type="hidden" id="GaurdianMobileShipNominee2" />
+                                                            <input type="hidden" id="hidNomineeId2" value="0" />
+                                                            <input type="hidden" id="GaurdianJsonNominee2" value="" />
+
+                                                            <input type="hidden"
+                                                                id="hidGuardianNomineeProofFilePath2" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-lg-6 mt-4" id="Nominee3Div"
+                                                        style="display: none">
+                                                        <p class="text-dark font-weight-bold">Nominee 3</p>
+                                                        <div class="nominee-box">
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Proof Type</label>
+                                                                <select class="form-control" id="NomineeProofSel3"
+                                                                    name="NomineeProofSel3">
+                                                                    <option value="">Select Proof</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Proof No.</label>
+                                                                <input type="text" class="form-control NomineePan"
+                                                                    data-nomineeno="3" name="NomineePan3"
+                                                                    id="NomineePan3"
+                                                                    placeholder="Enter Nominee Proof No"
+                                                                    style="text-transform: uppercase" />
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="NomineeProofUploadFile3"
+                                                                    id="NomineeProofUpload3"
+                                                                    class="btn btn-primary fileLABLE">
+                                                                    <i class="fa fa-camera-retro"></i> Upload
+                                                                    Proof
+                                                                </label>
+                                                                <input id="NomineeProofUploadFile3"
+                                                                    class="nomineeProofUploadFile" data-nomineeno="3"
+                                                                    style="display: none" type="file" />
+                                                                <input type="hidden" id="hidNomineeProofUploadPath3" />
+                                                                <div id="isNomineeProofImgDiv3" style="display: none">
+                                                                    <img src="" id="NomineeProofImg3"
+                                                                        class="img-fluid" />
+                                                                    <div id="hidFileUploadedMsg3" style="display: none"
+                                                                        class="alert alert-info p-1 font-weight-bold d-inline-block">
+                                                                        File uploaded
+                                                                    </div>
+
+                                                                    <button type="button"
+                                                                        class="btn btn-danger btn-sm reUploadNomineeBtn"
+                                                                        data-nomineeno="3" id="reUploadBtn3">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div id="isNomineeProofDownload3" style="display: none">
+                                                                    <div id="hidFileUploadedMsgDownload3"
+                                                                        style="display: none"
+                                                                        class="alert alert-info p-1 font-weight-bold d-inline-block">
+                                                                        <a href="" class="btn btn-sm btn-danger"
+                                                                            id="NomineeProofDownload3"
+                                                                            target="_blank"><i class="fa fa-download"
+                                                                                aria-hidden="true"></i>Download uploaded
+                                                                            NomineeProff</a>
+                                                                    </div>
+
+                                                                    <button type="button"
+                                                                        class="btn btn-danger btn-sm reUploadNomineeBtn"
+                                                                        data-nomineeno="3" id="reUploadBtnDownload3">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Date of Birth</label>
+                                                                <div class="form-row">
+                                                                    <div class="col-4">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDatezero cDateCls"
+                                                                            data-nomineeno="3" min="1" max="31"
+                                                                            data-id="D" placeholder="dd"
+                                                                            id="NomineeDOBDay3" name="NomineeDOBDay3"
+                                                                            maxlength="2" />
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDatezero cDateCls"
+                                                                            data-nomineeno="3" min="1" max="12"
+                                                                            data-id="M" placeholder="mm"
+                                                                            id="NomineeDOBMonth3"
+                                                                            name="NomineeDOBMonth3" maxlength="2"
+                                                                            value="" />
+                                                                    </div>
+                                                                    <div class="col-4 mt-2 mt-sm-0">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDateCls"
+                                                                            data-id="Y" data-nomineeno="3"
+                                                                            placeholder="yyyy" id="NomineeDOBYear3"
+                                                                            name="NomineeDOBYear3" maxlength="4"
+                                                                            value="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee name</label>
+                                                                <input type="text" class="form-control NomineeName"
+                                                                    data-nomineeno="3" required="required"
+                                                                    id="NomineeName3" name="NomineeName3"
+                                                                    placeholder="Enter Nominee name" />
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Relationship</label>
+                                                                <select id="NomineeRelationShip3" required="required"
+                                                                    data-nomineeno="3"
+                                                                    class="form-control NomineeRelationShip"></select>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Address </label>
+                                                                <textarea class="textarea form-control mb-0"
+                                                                    required="required" disabled style="font-size: 14px"
+                                                                    id="NomineeAddressLine3" placeholder="Enter Address"
+                                                                    rows="2"></textarea>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label"
+                                                                        id="AddressChangeNominee3" data-nomineeno="3"
+                                                                        style="cursor: pointer">Click here, incase you
+                                                                        want to modify the
+                                                                        address</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Mobile</label>
+                                                                <input type="text" class="form-control number"
+                                                                    minlength="10" maxlength="10" data-nomineeno="3"
+                                                                    id="NomineeMobile3" required="required"
+                                                                    name="NomineeMobile3"
+                                                                    placeholder="Enter Nominee Mobile" />
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee Email ID</label>
+                                                                <input type="email" class="form-control"
+                                                                    data-nomineeno="3" id="NomineeEmail3"
+                                                                    required="required" name="NomineeEmail3"
+                                                                    placeholder="Enter Nominee Email" />
+                                                            </div>
+
+                                                            <div class="col-sm-12 mt-3">
+                                                                <label>Nomination share (<span
+                                                                        id="ShareNominee3">0%</span>)</label>
+                                                                <div id="ShareBarNominee3" class="bar"></div>
+                                                            </div>
+
+                                                            <input type="hidden" id="Address1Nominee3" />
+                                                            <input type="hidden" id="Address2Nominee3" />
+                                                            <input type="hidden" id="Address3Nominee3" />
+                                                            <input type="hidden" id="CityNominee3" />
+                                                            <input type="hidden" id="StateNominee3" />
+                                                            <input type="hidden" id="PincodeNominee3" />
+                                                            <input type="hidden" id="CountryNominee3" />
+                                                            <input type="hidden" id="MinorNominee3" value="No" />
+
+                                                            <input type="hidden" id="GaurdianNameNominee3" />
+                                                            <input type="hidden" id="GaurdianPanNominee3" />
+                                                            <input type="hidden" id="GaurdianAddress1Nominee3" />
+                                                            <input type="hidden" id="GaurdianAddress2Nominee3" />
+                                                            <input type="hidden" id="GaurdianAddress3Nominee3" />
+                                                            <input type="hidden" id="GaurdianDOBNominee3" />
+                                                            <input type="hidden" id="GaurdianCityNominee3" />
+                                                            <input type="hidden" id="GaurdianStateNominee3" />
+                                                            <input type="hidden" id="GaurdianCountryNominee3" />
+                                                            <input type="hidden" id="GaurdianPinCodeNominee3" />
+                                                            <input type="hidden" id="GaurdianRelationShipNominee3" />
+                                                            <input type="hidden" id="GaurdianEmailShipNominee3" />
+                                                            <input type="hidden" id="GaurdianMobileShipNominee3" />
+                                                            <input type="hidden" id="hidNomineeId3" value="0" />
+                                                            <input type="hidden" id="GaurdianJsonNominee3" value="" />
+
+                                                            <input type="hidden"
+                                                                id="hidGuardianNomineeProofFilePath3" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-lg-6 mt-4" id="Nominee4Div"
+                                                        style="display: none">
+                                                        <p class="text-dark font-weight-bold">Nominee 4</p>
+                                                        <div class="nominee-box">
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee name</label>
+                                                                <input type="text" class="form-control" required
+                                                                    id="NomineeName4" name="NomineeName4"
+                                                                    placeholder="Enter Nominee name" />
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Nominee PAN</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="NomineePan4" id="NomineePan4"
+                                                                    placeholder="Enter Nominee PAN" />
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Relationship</label>
+                                                                <select id="NomineeRelationShip4" required
+                                                                    class="form-control"></select>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Date of Birth</label>
+                                                                <div class="form-row">
+                                                                    <div class="col-4 col-lg-3">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDatezero cDateCls"
+                                                                            data-nomineeno="4" min="1" max="31"
+                                                                            data-id="D" placeholder="dd"
+                                                                            id="NomineeDOBDay4" name="NomineeDOBDay4"
+                                                                            maxlength="2" />
+                                                                    </div>
+                                                                    <div class="col-4 col-lg-3">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDatezero cDateCls"
+                                                                            data-nomineeno="4" min="1" max="12"
+                                                                            data-id="M" placeholder="mm"
+                                                                            id="NomineeDOBMonth4"
+                                                                            name="NomineeDOBMonth4" maxlength="2"
+                                                                            value="" />
+                                                                    </div>
+                                                                    <div class="col-4 mt-2 mt-sm-0">
+                                                                        <input type="text" value="" required
+                                                                            class="form-control number cDateCls"
+                                                                            data-id="Y" data-nomineeno="4"
+                                                                            placeholder="yyyy" id="NomineeDOBYear4"
+                                                                            name="NomineeDOBYear4" maxlength="4"
+                                                                            value="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label class="text-black">Address </label>
+                                                                <textarea class="textarea form-control mb-0" required
+                                                                    disabled style="font-size: 14px"
+                                                                    id="NomineeAddressLine4" placeholder="Enter Address"
+                                                                    rows="2"></textarea>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label"
+                                                                        id="AddressChangeNominee4" data-nomineeno="4"
+                                                                        style="cursor: pointer">Click here, incase you
+                                                                        want to modify the
+                                                                        address</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12 mt-3">
+                                                                <label>Nomination share (<span
+                                                                        id="ShareNominee4">0%</span>)</label>
+                                                                <div id="ShareBarNominee4" class="bar"></div>
+                                                            </div>
+
+                                                            <input type="hidden" id="Address1Nominee4" />
+                                                            <input type="hidden" id="Address2Nominee4" />
+                                                            <input type="hidden" id="Address3Nominee4" />
+                                                            <input type="hidden" id="CityNominee4" />
+                                                            <input type="hidden" id="StateNominee4" />
+                                                            <input type="hidden" id="PincodeNominee4" />
+                                                            <input type="hidden" id="CountryNominee4" />
+                                                            <input type="hidden" id="MinorNominee4" value="No" />
+
+                                                            <input type="hidden" id="GaurdianNameNominee4" />
+                                                            <input type="hidden" id="GaurdianAddress1Nominee4" />
+                                                            <input type="hidden" id="GaurdianAddress2Nominee4" />
+                                                            <input type="hidden" id="GaurdianAddress3Nominee4" />
+                                                            <input type="hidden" id="GaurdianDOBNominee4" />
+                                                            <input type="hidden" id="GaurdianCityNominee4" />
+                                                            <input type="hidden" id="GaurdianStateNominee4" />
+                                                            <input type="hidden" id="GaurdianCountryNominee4" />
+                                                            <input type="hidden" id="GaurdianPinCodeNominee4" />
+                                                            <input type="hidden" id="GaurdianRelationShipNominee4" />
+                                                            <input type="hidden" id="GaurdianEmailShipNominee4" />
+                                                            <input type="hidden" id="GaurdianMobileShipNominee4" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-----Nominee Ends---->
+                        </div>
+
+                        <div class="row" style="
+                padding: 10px;
+                margin-top: 10px;
+                border-top: 1px solid #c5c5c5;
+                display: none;
+              ">
+                            <div id="MobileDeclarationDiv" class="panel-collapse" style="width: 100%">
+                                <div class="panel-body ekyc_pbodybg">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label class="pd"> Mobile number belongs to : </label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="radio mB15">
+                                                <label class="radio-inline mR10">
+                                                    <input type="radio" name="MobileBelongsType" id="MoileSelf"
+                                                        value="Self" class="radTop" checked="checked" />
+                                                    <span class="b">Self &nbsp &nbsp</span>
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="MobileBelongsType" id="MoileSpouse"
+                                                        value="Spouse" class="radTop" />
+                                                    <span class="b">Spouse &nbsp &nbsp</span>
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="MobileBelongsType"
+                                                        id="MoileDfamilyChildren" value="DfamilyChildren"
+                                                        class="radTop" />
+                                                    <span class="b">Dependent family/children</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="
+                padding: 10px;
+                margin-top: 10px;
+                border-top: 1px solid #c5c5c5;
+                display: none;
+              ">
+                            <div id="EmailDeclarationDiv" class="panel-collapse" style="width: 100%">
+                                <div class="panel-body ekyc_pbodybg">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label class="pd"> Email belongs to : </label>
+                                        </div>
+
+                                        <div class="col-lg-9 radio">
                                             <label class="radio-inline mR10">
-                                                <input type="radio" name="MobileBelongsType" id="MoileSelf" value="Self"
-                                                    class="radTop" checked="checked" />
+                                                <input type="radio" name="EmailIdBelongsType" id="EmailIdSelf"
+                                                    value="Self" class="radTop" checked="checked" />
                                                 <span class="b">Self &nbsp &nbsp</span>
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="MobileBelongsType" id="MoileSpouse"
+                                                <input type="radio" name="EmailIdBelongsType" id="EmailIdSpouse"
                                                     value="Spouse" class="radTop" />
                                                 <span class="b">Spouse &nbsp &nbsp</span>
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="MobileBelongsType" id="MoileDfamilyChildren"
+                                                <input type="radio" name="EmailIdBelongsType" id="EmailIdfamilyChildren"
                                                     value="DfamilyChildren" class="radTop" />
                                                 <span class="b">Dependent family/children</span>
                                             </label>
                                         </div>
-
                                     </div>
-
                                 </div>
-
-
-
                             </div>
-
                         </div>
-                    </div>
-                    <div class="row"
-                        style="padding: 10px; margin-top: 10px; border-top: 1px solid #c5c5c5; display:none">
-                        <div id="EmailDeclarationDiv" class="panel-collapse" style="width: 100%">
-                            <div class="panel-body ekyc_pbodybg">
-                                <div class="row">
 
-                                    <div class="col-lg-3">
-
-                                        <label class="pd">
-                                            Email belongs to :
-                                        </label>
-                                    </div>
-
-                                    <div class="col-lg-9 radio">
-
-                                        <label class="radio-inline mR10">
-                                            <input type="radio" name="EmailIdBelongsType" id="EmailIdSelf" value="Self"
-                                                class="radTop" checked="checked" />
-                                            <span class="b">Self &nbsp &nbsp</span>
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="EmailIdBelongsType" id="EmailIdSpouse"
-                                                value="Spouse" class="radTop" />
-                                            <span class="b">Spouse &nbsp &nbsp</span>
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="EmailIdBelongsType" id="EmailIdfamilyChildren"
-                                                value="DfamilyChildren" class="radTop" />
-                                            <span class="b">Dependent family/children</span>
-                                        </label>
-
-                                    </div>
-
-
+                        <div class="row" style="
+                padding: 10px;
+                margin-top: 10px;
+                border-top: 1px solid #c5c5c5;
+              ">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="AccountStatement" class="pd"
+                                        style="padding-top: 10px">Qualification</label>
                                 </div>
                             </div>
 
+                            <div class="col-md-3">
+                                <div class="form-label-group">
+                                    <select class="form-control" id="EducationQualification"
+                                        name="EducationQualification">
+                                        <option value="">Please Select</option>
+                                        <option value="NonMetric">Non-Metric</option>
+                                        <option value="SSCorHSC">SSC/HSC</option>
+                                        <option value="UnderGraduate">Under Graduate</option>
+                                        <option value="Graduate">Graduate</option>
+                                        <option value="Lawyer">Lawyer</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="
+                padding: 10px;
+                margin-top: 10px;
+                border-top: 1px solid #c5c5c5;
+              ">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="IncomeSource" class="pd" style="padding-top: 10px">Do you intend to
+                                        invest in stock market with</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-label-group">
+                                    <select class="form-control" id="InvestinStockMarketWith"
+                                        name="InvestinStockMarketWith">
+                                        <option value="">Please Select</option>
+                                        <option value="ownfunds" selected="selected">
+                                            Own Funds
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="
+                padding: 10px;
+                margin-top: 10px;
+                border-top: 1px solid #c5c5c5;
+                display: none;
+              ">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="IncomeSource" class="pd" style="padding-top: 10px">Source of
+                                        Income</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-label-group">
+                                    <select class="form-control" id="SourceofIncome" name="SourceofIncome">
+                                        <option value="">Please Select</option>
+                                        <option value="Salary">Salary</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="
+                padding: 10px;
+                margin-top: 10px;
+                border-top: 1px solid #c5c5c5;
+                display: none;
+              ">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="ResidentialDetails" class="pd" style="padding-top: 10px">Residential
+                                        Details</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-label-group">
+                                    <select class="form-control" id="ResidentialDetails" name="ResidentialDetails">
+                                        <option value="">Please Select</option>
+                                        <option value="Owned">Owned</option>
+                                        <option value="Rented">Rented</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="
+                padding: 10px;
+                margin-top: 10px;
+                border-top: 1px solid #c5c5c5;
+              ">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="AccountStatement" class="pd" style="padding-top: 10px">Running Account
+                                        Settlement</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-label-group">
+                                    <select class="form-control" id="AccountStatement" name="AccountStatement"
+                                        disabled="disabled">
+                                        <option>Once in a Quarter</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="districtDiv" style="
+                padding: 10px;
+                margin-top: 10px;
+                border-top: 1px solid #c5c5c5;
+                display: none;
+              ">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="AssignDistrict" class="pd" style="padding-top: 10px">Select district
+                                        :</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-label-group">
+                                    <select class="form-control" id="districtAssignSel"
+                                        name="districtAssignSel"></select>
+                                    <input type="text" class="form-control" name="districtAssigntext"
+                                        id="districtAssigntext" style="display: none" />
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-
-                    <div class="row" style="padding: 10px; margin-top: 10px; border-top: 1px solid #c5c5c5;">
-                        <div class="col-md-3">
-                            <div class=" form-group">
-                                <label for="AccountStatement" class="pd"
-                                    style="padding-top: 10px;">Qualification</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-label-group">
-                                <select class="form-control" id="EducationQualification" name="EducationQualification">
-                                    <option value="">Please Select</option>
-                                    <option value="NonMetric">Non-Metric</option>
-                                    <option value="SSCorHSC">SSC/HSC</option>
-                                    <option value="UnderGraduate">Under Graduate</option>
-                                    <option value="Graduate">Graduate</option>
-                                    <option value="Lawyer">Lawyer</option>
-                                    <option value="Others">Others</option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="padding: 10px; margin-top: 10px; border-top: 1px solid #c5c5c5;">
-                        <div class="col-md-3">
-                            <div class=" form-group">
-                                <label for="IncomeSource" class="pd" style="padding-top: 10px;">Do you intend to invest
-                                    in stock market with</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-label-group">
-                                <select class="form-control" id="InvestinStockMarketWith"
-                                    name="InvestinStockMarketWith">
-                                    <option value="">Please Select</option>
-                                    <option value="ownfunds" selected="selected">Own Funds</option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row"
-                        style="padding: 10px; margin-top: 10px; border-top: 1px solid #c5c5c5; display:none">
-                        <div class="col-md-3">
-                            <div class=" form-group">
-                                <label for="IncomeSource" class="pd" style="padding-top: 10px;">Source of Income</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-label-group">
-                                <select class="form-control" id="SourceofIncome" name="SourceofIncome">
-                                    <option value="">Please Select</option>
-                                    <option value="Salary">Salary</option>
-                                    <option value="Business">Business</option>
-                                    <option value="Others">Others</option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-
-
-
-
-                    <div class="row"
-                        style="padding: 10px; margin-top: 10px; border-top: 1px solid #c5c5c5; display:none">
-                        <div class="col-md-3">
-                            <div class=" form-group">
-                                <label for="ResidentialDetails" class="pd" style="padding-top: 10px;">Residential
-                                    Details</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-label-group">
-                                <select class="form-control" id="ResidentialDetails" name="ResidentialDetails">
-                                    <option value="">Please Select</option>
-                                    <option value="Owned">Owned</option>
-                                    <option value="Rented">Rented</option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="padding: 10px; margin-top: 10px; border-top: 1px solid #c5c5c5;">
-                        <div class="col-md-3">
-                            <div class=" form-group">
-                                <label for="AccountStatement" class="pd" style="padding-top: 10px;">Running Account
-                                    Settlement</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-label-group">
-                                <select class="form-control" id="AccountStatement" name="AccountStatement"
-                                    disabled="disabled">
-                                    <option>Once in a Quarter</option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row" id="districtDiv"
-                        style="padding: 10px; margin-top: 10px; border-top: 1px solid #c5c5c5; display: none;">
-
-                        <div class="col-md-3">
-                            <div class=" form-group">
-                                <label for="AssignDistrict" class="pd" style="padding-top: 10px;">Select district
-                                    :</label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-label-group">
-                                <select class="form-control" id="districtAssignSel" name="districtAssignSel">
-                                </select>
-                                <input type="text" class="form-control " name="districtAssigntext"
-                                    id="districtAssigntext" style="display: none" />
-                            </div>
-                        </div>
-
-                    </div>
-
-
                 </div>
 
-            </div>
-
-
-            <div class="row mt-4">
-                <div class="col-sm-12 text-center next-previous">
-                    <button type="button" class="btn btn-info" id="PreviousBtn"><i class="fa fa-arrow-left "
-                            aria-hidden="true"></i>Previous step</button>
-                    <button type="button" class="btn btn-primary default-btn" id="Submit">Save and proceed to
-                        next</button>
-
+                <div class="row mt-4">
+                    <div class="col-sm-12 text-center next-previous">
+                        <button type="button" class="btn btn-info" id="PreviousBtn">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>Previous step
+                        </button>
+                        <button type="submit" class="btn btn-primary default-btn">
+                            Save and proceed to next
+                        </button>
+                    </div>
                 </div>
             </div>
-
-        </div>
+        </form>
     </div>
 </section>
-
-
 
 <div class="main">
     <div class="card">
@@ -1217,49 +1227,73 @@
                     <label for="">Name : </label>
                 </div>
                 <div>
-                    <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                    <input type="text" class="form-control" formControlName="name"
+                        [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
                 </div>
             </div>
-    
-            
+
             <div formArrayName="skills">
-                <div *ngFor="let skill of skills.controls; let i=index">
-                  <div [formGroupName]="i" class="d-flex mb-4">
-                  <div>
-                    <div>
-                        <label for=""> {{i+1}}  Skill name :</label>
+                <div *ngFor="let skill of skills.controls; let i = index">
+                    <div [formGroupName]="i" class="d-flex mb-4">
                         <div>
-                            <input type="text" class="form-control" formControlName="skill" [ngClass]="{ 'is-invalid': submitted && f['skill'].errors }">
+                            <div>
+                                <label for=""> {{ i + 1 }} Skill name :</label>
+                                <div>
+                                    <input type="text" class="form-control" formControlName="skill"
+                                        [ngClass]="{ 'is-invalid': submitted && f['skill'].errors }" />
+                                </div>
+                            </div>
+                            <div>
+                                <label for=""> experiance</label>
+                                <div>
+                                    <input type="text" class="form-control" formControlName="exp"
+                                        [ngClass]="{ 'is-invalid': submitted && f['exp'].errors }" />
+                                </div>
+                            </div>
                         </div>
-                      </div>
                         <div>
-                        <label for=""> experiance</label>
-                       <div>
-                        <input type="text" class="form-control" formControlName="exp" [ngClass]="{ 'is-invalid': submitted && f['exp'].errors }">
-                       </div>
+                            <button type="button" class="my-3 mx-5 btn btn-light" (click)="removeSkill(i)">
+                                Remove
+                            </button>
                         </div>
-                  </div>
-                    <div>
-                        <button type="button" class="my-3 mx-5 btn btn-light" (click)="removeSkill(i)">Remove</button>
                     </div>
-                  </div>
                 </div>
-                <button type="button" class="my-3 btn btn-light" (click)="addSkills()">+ addSkills</button>
-              </div>
+                <button type="button" class="my-3 btn btn-light" (click)="addSkills()">
+                    + addSkills
+                </button>
+            </div>
 
-
-              <div formArrayName="educationDetails">
+            <div formArrayName="educationDetails">
                 <!-- @for (education of educationDetails.controls; track $index) {
                     <div formGroupName="">
 
                     </div>
                 } -->
+            </div>
+            <!-- <button type="button" (click)="addEducation()">add Education</button> -->
 
-              </div>
-              <!-- <button type="button" (click)="addEducation()">add Education</button> -->
-              
             <button class="my-4 btn btn-light" type="submit">submit</button>
         </form>
     </div>
-    {{this.empForm.value | json}}
+    {{ this.empForm.value | json }}
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="imageViewer">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">View Image</h4>
+                <button type="button" (click)="close()" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <app-image-cropper (fileEvent)="imageCropperData($event)"></app-image-cropper>
+            </div>
+            <!-- Modal footer -->
+        </div>
+    </div>
 </div>
