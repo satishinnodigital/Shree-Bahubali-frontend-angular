@@ -19,7 +19,7 @@ declare var $: any;
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-  addNominee = false;
+  addNominee = true;
   profileForm!: FormGroup;
   empForm!: FormGroup;
 
