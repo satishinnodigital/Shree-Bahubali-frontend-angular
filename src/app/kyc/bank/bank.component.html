@@ -181,7 +181,7 @@
                       <img src="../../../assets/images/down-arrow.gif" />
                     </div>
                   </div>
-                  <div *ngIf="currentValue.length > 0" class="child">
+                  <div *ngIf="currentValue?.length > 0" class="child">
                     <div *ngIf="show">
                       <div
                         *ngFor="
@@ -217,7 +217,7 @@
                       (keyup)="showBranches = true"
                     />
                   </form>
-                  <div *ngIf="currentBranch.length > 0">
+                  <div *ngIf="currentBranch?.length > 0">
                     <div *ngIf="showBranches">
                       <div
                         *ngFor="
@@ -252,7 +252,7 @@
                       (keyup)="showIFSC = true"
                     />
                   </form>
-                  <div *ngIf="currentIFSC.length > 0">
+                  <div *ngIf="currentIFSC?.length > 0">
                     <div *ngIf="showIFSC">
                       <div
                         *ngFor="
