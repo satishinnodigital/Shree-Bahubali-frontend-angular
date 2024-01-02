@@ -19,9 +19,11 @@ declare var $: any;
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-  addNominee = true;
+ 
   profileForm: FormGroup;
   submitted=false;
+  myshwow: boolean=false;
+  ram:boolean=true;
 
   //@Output() fileEvent = new EventEmitter<any>();
 
@@ -32,45 +34,34 @@ export class ProfileComponent {
     private profileService:ProfileService
   ) {
     this.profileForm = this.formBuilder.group({
-      // panUpload: new FormControl(''),
-      // signatureUpload: new FormControl(''),
-      maritalStatus: new FormControl('',[Validators.required]),
-      exp: new FormControl('',[Validators.required]),
-      occupation: new FormControl('',[Validators.required]),
-      annualIncome: new FormControl('',[Validators.required]),
-      father_feminine:new FormControl(''),
-      fatherName: new FormControl(''),
-      spouseName: new FormControl(''),
-      feminine_Mother:new FormControl(''),
-      motherFirstName: new FormControl(''),
-      motherMiddleName: new FormControl(''),
-      motherLastName: new FormControl(''),
-      politicallyExpose: new FormControl(''),
-      qualification: new FormControl(''),
-      investWith: new FormControl(''),
-      accSettelement: new FormControl(''),
+      maritalStatus:new FormControl('',Validators.required),
       skills:this.formBuilder.array([]),
     });
+    
 
 
   }
 
-  profileSubmitStep1() {
-    this.submitted = true;
-  }
 
  
 get f() {return this.profileForm.controls}
  get skills() {return(this.profileForm.get('skills') as FormArray).controls;}
 
-  // get f():{ [key: string]: AbstractControl } {
-  //   return this.profileForm.controls;
-  // }
+
   
 
   addSkills(){
     const newSkill=this.formBuilder.group({
-      nameeeee:['',[Validators.required]]
+      NomineeProof:['',[Validators.required]],
+      NomineeProofnumber:['',[Validators.required]],
+      NomineeDOBDay:['',[Validators.required]],
+      NomineeDOBMonth:['',[Validators.required]],
+      NomineeDOBYear:['',[Validators.required]],
+      NomineeName:['',[Validators.required]],
+      NomineeRelationShip:['',[Validators.required]],
+      NomineeAddress:['',[Validators.required]],
+      NomineeMobile:['',[Validators.required]],
+      NomineeEmail:['',[Validators.required]]
       
     });
     (this.profileForm.get('skills') as FormArray).push(newSkill);
@@ -95,7 +86,7 @@ get f() {return this.profileForm.controls}
     console.log(event)
     console.log(event.objectUrl)
     //this.fileEvent.emit(event);
-    //this.fileUploadData = event;
+    //this.fileUploadData = event; 
     
     this.profileService.panfileEventData.next(event);
     $('#imageViewer').modal('show');
@@ -114,10 +105,44 @@ get f() {return this.profileForm.controls}
   
   onSubmit() {
     this.submitted = true;
-    if (this.profileForm.invalid) {
+    if (this.profileForm.valid) {
       alert(JSON.stringify(this.profileForm.value))
+  
      
     }
    
+  }
+
+  OnSelectChange(event:any){
+    const selecedValue=event.target.value;
+    const currentSkillLenghth=this.skills.length
+
+    if(currentSkillLenghth < selecedValue){
+      for(let i=currentSkillLenghth; i<selecedValue; i++){
+        this.addSkills();
+      }
+    }else if(currentSkillLenghth > selecedValue){
+      for(let i=currentSkillLenghth; i >=selecedValue; i--){
+        this.removeskills(i)
+
+      }
+
+    }
+
+  }
+
+  selectradiovalue(event:any){
+    if(event.target.value === 'yes'){
+      this.myshwow=true
+      this.addSkills();
+    }
+    else{
+      const skillsArray=this.profileForm.get('skills')as FormArray;
+      while (skillsArray.length !==0){
+        this.myshwow=false;
+        skillsArray.removeAt(0)
+      }
+    }
+
   }
 }

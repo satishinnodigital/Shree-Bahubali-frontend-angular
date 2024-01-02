@@ -1,106 +1,85 @@
 <section>
-    <div class="box kyc-div mt-3 personal-details">
-        <div class="row">
-            <div class="col-sm-12">
-                <!-- Default unchecked -->
-            </div>
-        </div>
+    <form [formGroup]="profileForm">
 
-        <div class="row">
-            <canvas id="mycanvas" style="display: none"></canvas>
-            <div class="col-md-6 mt-2" id="PanUploadDiv">
-                <label for="show-pan-file-upload" id="UploadPanLabel" class="btn btn-primary fileLABLE"
-                    style="margin-bottom: 0px !important">
-                    <i class="fa fa-camera-retro"></i> Upload PAN card
-                </label>
-                <p><small>Please upload the files only in jpeg/jpg format</small></p>
-                <input id="show-pan-file-upload" accept="image/*" style="display: none" (change)="panUpload($event)"
-                    type="file" />
-                <div></div>
-                <div id="Vq" style="color: #fff">.</div>
-
-                <div>
-                    <img src="" id="PancaptureImg" style="width: 100%" />
+        <div class="box kyc-div mt-3 personal-details">
+            <div class="row">
+                <div class="col-sm-12">
                 </div>
             </div>
 
-            <div class="col-md-6 mt-2" id="PanFromDigilockerDiv" style="display: none">
-                <a href="#" class="btn btn-success" id="DigiLockerPan" style="
+            <div class="row">
+                <canvas id="mycanvas" style="display: none"></canvas>
+                <div class="col-md-6 mt-2" id="PanUploadDiv">
+                    <label for="show-pan-file-upload" id="UploadPanLabel" class="btn btn-primary fileLABLE"
+                        style="margin-bottom: 0px !important">
+                        <i class="fa fa-camera-retro"></i> Upload PAN card
+                    </label>
+                    <p><small>Please upload the files only in jpeg/jpg format</small></p>
+                    <input id="show-pan-file-upload" accept="image/*" style="display: none" (change)="panUpload($event)"
+                        type="file" />
+                    <div></div>
+                    <div id="Vq" style="color: #fff">.</div>
+
+                    <div>
+                        <img src="" id="PancaptureImg" style="width: 100%" />
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-2" id="PanFromDigilockerDiv" style="display: none">
+                    <a href="#" class="btn btn-success" id="DigiLockerPan" style="
             border-radius: 22px;
             padding-left: 20px;
             padding-right: 20px;
             font-size: 15px;
           "><i class="fa fa-download" aria-hidden="true"></i> Download PAN</a>
-                <p style="font-size: 12px; color: green">
-                    PAN Downloaded from Digilocker
-                </p>
-            </div>
+                    <p style="font-size: 12px; color: green">
+                        PAN Downloaded from Digilocker
+                    </p>
+                </div>
 
-            <div class="col-md-6 mt-2">
-                <label for="show-sign-file-upload" id="SignCaptureButton" class="btn btn-primary fileLABLE"
-                    style="margin-bottom: 0px !important">
-                    <i class="fa fa-upload" aria-hidden="true"></i> Upload signature
-                </label>
-                <p><small>Please upload the files only in jpeg/jpg format</small></p>
+                <div class="col-md-6 mt-2">
+                    <label for="show-sign-file-upload" id="SignCaptureButton" class="btn btn-primary fileLABLE"
+                        style="margin-bottom: 0px !important">
+                        <i class="fa fa-upload" aria-hidden="true"></i> Upload signature
+                    </label>
+                    <p><small>Please upload the files only in jpeg/jpg format</small></p>
 
-                <input type="file" id="show-sign-file-upload" (change)="signatureUpload($event)" accept="image/*"
-                    style="display: none" />
+                    <input type="file" id="show-sign-file-upload" (change)="signatureUpload($event)" accept="image/*"
+                        style="display: none" />
+                    <br />
 
-                <!-- <div
-          *ngIf="submitted && f['panUpload'].errors"
-          class="invalid-feedback"
-        >
-          <div *ngIf="f['panUpload'].errors['required']">Pan is required</div>
-        </div> -->
-                <br />
-
-                <div class="signature-img">
-                    <div id="imgstatus" style="color: #fff">.</div>
-                    <img src="" id="SigncaptureImg" />
+                    <div class="signature-img">
+                        <div id="imgstatus" style="color: #fff">.</div>
+                        <img src="" id="SigncaptureImg" />
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <form [formGroup]="profileForm">
             <div class="row" style="
-          margin-top: 26px;
-          border-top: 1px solid #c5c5c5;
-          padding-top: 25px;">
+        margin-top: 26px;
+        border-top: 1px solid #c5c5c5;
+        padding-top: 25px;">
                 <div class="col-md-3">
+
                     <label class="form-label pd">Marital Status</label>
 
-                    <select class="form-control" name="maritalStatus" formControlName="maritalStatus" [ngClass]="{
-                        'is-invalid': submitted && f['maritalStatus'].errors
-                        }">
+                    <select class="form-control" formControlName="maritalStatus"
+                        [ngClass]="{ 'is-invalid': submitted && f['maritalStatus'].errors }">
                         <option value="">Select Marital status</option>
                         <option value="01">Married</option>
                         <option value="02">Unmarried</option>
                     </select>
-
                     <div *ngIf="submitted && f['maritalStatus'].errors" class="invalid-feedback">
-                        <div *ngIf="f['maritalStatus'].errors['required']">
-                            Pan is required
-                        </div>
+                        <div *ngIf="f['maritalStatus'].errors['required']">maritalStatus is required</div>
                     </div>
 
-                </div>
-                <div formArrayName="skills">
-                    <div *ngFor="let skill of skills; let i=index" [formGroupName]="i">
-                    <input type="text" class="form-control" placeholder="name" formControlName="nameeeee" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.nameeeee')?.errors}">
-                    <div *ngIf="submitted && profileForm.get('skills.' + i +'.nameeeee')?.errors" class="invalid-feedback">
-                        <div *ngIf="submitted && profileForm.get(['skills', i,'nameeeee'])?.hasError('required')">
-                            skills is required
-                        </div>
-                    </div>
-                    </div>
                 </div>
 
 
                 <div class="col-md-3">
                     <label class="form-label pd">Trading experience</label>
 
-                    <select id="tradingexprns" class="form-control" name="tradingexprns" formControlName="exp"
-                        [ngClass]="{ 'is-invalid': submitted && f['exp'].errors }">
+                    <select class="form-control" formControlName="exp">
                         <option value="">Select Years of Experience</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -109,64 +88,49 @@
                         <option value="More Than 5">More Than 5</option>
                     </select>
 
-                    <div *ngIf="submitted && f['exp'].errors" class="invalid-feedback">
-                        <div *ngIf="f['exp'].errors['required']">
-                            Experience is required
-                        </div>
-                    </div>
-
                 </div>
 
 
                 <div class="col-md-3">
                     <label class="form-label pd">Occupation Type</label>
-                    <select class="form-control" name="occupationslct" id="occupationslct" formControlName="occupation"
-                        [ngClass]="{ 'is-invalid': submitted && f['occupation'].errors }">
+                    <select class="form-control" name="occupationslct" id="occupationslct">
                         <option value="">Select Occupation</option>
                     </select>
-                    <div *ngIf="submitted && f['occupation'].errors" class="invalid-feedback">
-                        <div *ngIf="f['occupation'].errors['required']">
-                            Pan is required
-                        </div>
-                    </div>
+
                 </div>
+
 
 
                 <div class="col-md-3">
+
                     <label class="form-label pd">Your Annual income</label>
-                    <select class="form-control" name="Annualincome" id="Annualincome" formControlName="annualIncome"
-                        [ngClass]="{ 'is-invalid': submitted && f['annualIncome'].errors }">
+                    <select class="form-control">
                         <option value="" selected="selected">Select Annual income</option>
                     </select>
-                    <div *ngIf="submitted && f['annualIncome'].errors" class="invalid-feedback">
-                        <div *ngIf="f['annualIncome'].errors['required']">
-                            annualIncome is required
-                        </div>
-                    </div>
                 </div>
             </div>
 
+
             <div class="row" style="
-          margin-top: 26px;
-          border-top: 1px solid #c5c5c5;
-          padding-top: 25px;">
+        margin-top: 26px;
+        border-top: 1px solid #c5c5c5;
+        padding-top: 25px;">
                 <div class="col-12">
                     <label class="pd">Father/Spouse name</label><br />
                 </div>
 
                 <div class="col-lg-3 col-md-12 col-12">
                     <div class="form-check-inline mt-2">
-                        <div class="custom-control custom-radio" style="padding-left: 8px; padding-right: 0px">
-                            <input type="radio" class="custom-control-input custom-radio-btn" value="Father"
-                                id="fatherbtn" name="fatherSpouseRad" checked="checked" />
+                        <div class=" custom-radio" style="padding-left: 8px; padding-right: 0px">
+                            <input type="radio" class="custom-control-input custom-radio-btn" value="Father" />
                             <label class="custom-control-label" for="defaultUnchecked">Father</label>
                         </div>
-                        
 
-                        <!-- Default checked -->
+
+
                         <div class="custom-control custom-radio">
                             <input type="radio" class="custom-control-input custom-radio-btn" value="Spouse"
-                                id="spousebtn" name="fatherSpouseRad" />
+                                name="fatherSpouseRad" />
                             <label class="custom-control-label" for="defaultChecked">Spouse</label>
                         </div>
                     </div>
@@ -174,36 +138,36 @@
 
                 <div class="col-lg-2 col-md-3 col-12">
                     <div class="form-label-group">
-                        <select class="form-control" formControlName="father_feminine" id="FatherSpousePrefixSel" name="FatherSpousePrefixSel"
-                        [ngClass]="{ 'is-invalid': submitted && f['father_feminine'].errors }">
-                            <option value="MR" selected="selected">Mr</option>
+                        <select class="form-control">
+                            <option value="">Mrs</option>
+                            <option value="MR">Mr</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="col-lg-7 col-md-9 col-12">
                     <div class="form-label-group">
-                        <input type="text" formControlName="spouseName" style="text-transform: uppercase" class="form-control alphaonly"
-                            name="fatherspouseName" id="fatherspouseName" placeholder="" [ngClass]="{ 'is-invalid': submitted && f['spouseName'].errors }" />
+                        <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
+                            name="fatherspouseName" id="fatherspouseName" placeholder="" />
                     </div>
                 </div>
 
                 <div class="col-md-3" style="display: none">
                     <div class="form-label-group">
                         <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
-                            name="fatherspouseFirstName" id="fatherspouseFirstName" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f['fatherF'].errors }" />
+                            name="fatherspouseFirstName" id="fatherspouseFirstName" placeholder="First Name" />
                     </div>
                 </div>
                 <div class="col-md-3" style="display: none">
                     <div class="form-label-group">
                         <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
-                            name="fatherspouseMiddleName" id="fatherspouseMiddleName" placeholder="Middle Name" [ngClass]="{ 'is-invalid': submitted && f['father_feminine'].errors }" />
+                            name="fatherspouseMiddleName" id="fatherspouseMiddleName" placeholder="Middle Name" />
                     </div>
                 </div>
                 <div class="col-md-3" style="display: none">
                     <div class="form-label-group">
                         <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
-                            name="fatherspouseLastName" id="fatherspouseLastName" placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && f['father_feminine'].errors }" />
+                            name="fatherspouseLastName" id="fatherspouseLastName" placeholder="Last Name" />
                     </div>
                 </div>
             </div>
@@ -216,7 +180,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-label-group">
-                        <select class="form-control" formControlName="feminine_Mother" id="MotherPrefixSel" name="MotherPrefixSel" >
+                        <select class="form-control" id="MotherPrefixSel" name="MotherPrefixSel">
                             <option value="Mrs" selected="selected">Mrs</option>
                         </select>
 
@@ -231,7 +195,7 @@
                 <div class="col-md-3">
                     <div class="form-label-group">
                         <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
-                            name="mothersmiddleName" id="mothersmiddleName" placeholder="Middle Name" />
+                            name="mothersmiddleName" placeholder="Middle Namee" />
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -271,7 +235,6 @@
                                                 <label class="custom-control-label" for="FatcaRadioYes">Indian</label>
                                             </div>
 
-                                            <!-- Default checked -->
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input custom-radio-btn"
                                                     disabled="disabled" value="FatcaNo" id="FatcaRadioNo"
@@ -294,17 +257,17 @@
                                             <div class="custom-control custom-radio"
                                                 style="padding-left: 8px; padding-right: 0px">
                                                 <input type="radio" class="custom-control-input custom-radio-btn"
-                                                    value="CDSLNomineeYes" id="txxtCDSLNomineeYes"
-                                                    name="CDSLOpenAcNominee" />
+                                                    value="yes" id="txxtCDSLNomineeYes"
+                                                    name="CDSLOpenAcNominee"  (change)="selectradiovalue($event)"/>
                                                 <label class="custom-control-label" for="txxtCDSLNomineeYes">Yes</label>
                                             </div>
 
-                                            <!-- Default checked -->
+
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input custom-radio-btn"
-                                                    checked="checked" value="CDSLNomineeNo" id="txtxCDSLNomineeNo"
-                                                    name="CDSLOpenAcNominee" />
-                                                <label class="custom-control-label" for="txtxCDSLNomineeNo">NO</label>
+                                                    checked="checked" value="no" id="txtxCDSLNomineeNo"
+                                                    name="CDSLOpenAcNominee" (change)="selectradiovalue($event)" />
+                                                <label class="custom-control-label" for="txtxCDSLNomineeNo" >NO</label>
                                             </div>
                                         </div>
 
@@ -334,7 +297,7 @@
                                                 <label class="custom-control-label" for="PolticalYes">Yes</label>
                                             </div>
 
-                                            <!-- Default checked -->
+
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input custom-radio-btn"
                                                     checked="checked" value="CDSLNomineeNo" id="PolticalNo"
@@ -343,12 +306,12 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
+
                             </div>
 
-                            <!-----Nominee starts---->
-
-                            <section class="mt-4 mb-4 pb-3 nominee" *ngIf="addNominee">
+                            <section class="mt-4 mb-4 pb-3 nominee" *ngIf="myshwow">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">
@@ -362,7 +325,7 @@
                                                 <div class="form-inline float-right">
                                                     <div class="form-group numberOfNominee mt-2">
                                                         <label for="NumberOfNominees">Number of Nominees</label>
-                                                        <select id="NumberOfNominees" class="form-control m-0 w-auto">
+                                                        <select id="NumberOfNominees" class="form-control m-0 w-auto" (change)="OnSelectChange($event)">
                                                             <option value="1">One</option>
                                                             <option value="2">Two</option>
                                                             <option value="3">Three</option>
@@ -372,173 +335,228 @@
                                                 <div class="clearfix"></div>
 
                                                 <div class="row">
-                                                    <div class="col-sm-12 col-lg-6" id="Nominee1Div">
-                                                        <p class="text-dark font-weight-bold">Nominee 1</p>
-
-                                                       
-
-                                                        <button (click)="addSkills()">add</button>
-
-                                                        <div class="nominee-box">
-                                                            <div class="col-md-12">
-                                                                <label class="text-black">Nominee Proof Type</label>
-                                                                <select class="form-control" id="NomineeProofSel1"
-                                                                    name="NomineeProofSel1">
-                                                                    <option value="">Select Proof</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <label class="text-black">Nominee Proof No.</label>
-                                                                <input type="text" class="form-control NomineePan"
-                                                                    data-nomineeno="1" name="NomineePan1"
-                                                                    id="NomineePan1"
-                                                                    placeholder="Enter Nominee Proof No"
-                                                                    style="text-transform: uppercase" />
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <label for="NomineeProofUploadFile1"
-                                                                    id="NomineeProofUpload1"
-                                                                    class="btn btn-primary fileLABLE">
-                                                                    <i class="fa fa-camera-retro"></i> Upload
-                                                                    Proof
-                                                                </label>
-                                                                <input id="NomineeProofUploadFile1"
-                                                                    class="nomineeProofUploadFile" data-nomineeno="1"
-                                                                    style="display: none" type="file" />
-                                                                <input type="hidden" id="hidNomineeProofUploadPath1" />
-
-                                                                <div id="isNomineeProofDownload1" style="display: none">
-                                                                    <div id="hidFileUploadedMsgDownload1"
-                                                                        style="display: none"
-                                                                        class="alert alert-info p-1 font-weight-bold d-inline-block">
-                                                                        <a href="" class="btn btn-sm btn-danger"
-                                                                            id="NomineeProofDownload1"
-                                                                            target="_blank"><i class="fa fa-download"
-                                                                                aria-hidden="true"></i>Download uploaded
-                                                                            NomineeProff</a>
+                                                    <div class="col-sm-12 col-lg-6">
+                            
+                                                        <div formArrayName="skills">
+                                                            <div *ngFor="let skill of skills; let i=index">
+                                                                <div [formGroupName]="i">
+                                                                    <p class="text-dark font-weight-bold">Nominee 1</p>
+                                                                    <div class="nominee-box">
+                                                                        <div class="col-md-12">
+                                                                            <label class="text-black">Nominee Proof Type</label>
+                                                                            <select class="form-control" id="NomineeProofSel1" formControlName="NomineeProof"
+                                                                                name="NomineeProofSel1" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeProof')?.errors}">
+                                                                                <option value="">Select Proof</option>
+                                                                                <option value="onee">Select Proof</option>
+                                                                            </select>
+                                                                            <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeProof')?.errors" class="invalid-feedback">
+                                                                                <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeProof'])?.hasError('required')">
+                                                                                    NomineeProof is required
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <label class="text-black">Nominee Proof No.</label>
+                                                                            <input type="text" class="form-control NomineePan"
+                                                                                data-nomineeno="1" name="NomineePan1"
+                                                                                id="NomineePan1"
+                                                                                placeholder="Enter Nominee Proof No"
+                                                                                style="text-transform: uppercase" formControlName="NomineeProofnumber"
+                                                                                name="NomineeProofSel1" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeProofnumber')?.errors}"/>
+                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeProofnumber')?.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeProofnumber'])?.hasError('required')">
+                                                                                        NomineeProof Number is required
+                                                                                    </div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <label for="NomineeProofUploadFile1"
+                                                                                id="NomineeProofUpload1"
+                                                                                class="btn btn-primary fileLABLE">
+                                                                                <i class="fa fa-camera-retro"></i> Upload
+                                                                                Proof
+                                                                            </label>
+                                                                            <input id="NomineeProofUploadFile1"
+                                                                                class="nomineeProofUploadFile" data-nomineeno="1"
+                                                                                style="display: none" type="file" />
+                                                                            <input type="hidden" id="hidNomineeProofUploadPath1" />
+            
+                                                                            <div id="isNomineeProofDownload1" style="display: none">
+                                                                                <div id="hidFileUploadedMsgDownload1"
+                                                                                    style="display: none"
+                                                                                    class="alert alert-info p-1 font-weight-bold d-inline-block">
+                                                                                    <a href="" class="btn btn-sm btn-danger"
+                                                                                        id="NomineeProofDownload1"
+                                                                                        target="_blank"><i class="fa fa-download"
+                                                                                            aria-hidden="true"></i>Download uploaded
+                                                                                        NomineeProff</a>
+                                                                                </div>
+            
+                                                                                <button type="button"
+                                                                                    class="btn btn-danger btn-sm reUploadNomineeBtn">
+                                                                                    <i class="fa fa-close"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <label class="text-black">Nominee Date of Birth</label>
+                                                                            <div class="form-row">
+                                                                                <div class="col-4">
+                                                                                    <input type="text" value="" required
+                                                                                        class="form-control number cDatezero cDateCls"
+                                                                                        data-nomineeno="1" min="1" max="31"
+                                                                                        data-id="D" placeholder="dd"
+                                                                                        id="NomineeDOBDay1" name="NomineeDOBDay1" formControlName="NomineeDOBDay"
+                                                                                        maxlength="2" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeDOBDay')?.errors}"/>
+                                                                                        <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeDOBDay')?.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeDOBDay'])?.hasError('required')">
+                                                                                               
+                                                                                            </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                                <div class="col-4">
+                                                                                    <input type="text" value="" required
+                                                                                        class="form-control number cDatezero cDateCls"
+                                                                                        data-nomineeno="1" min="1" max="12"
+                                                                                        data-id="M" placeholder="mm"
+                                                                                        id="NomineeDOBMonth1"
+                                                                                        name="NomineeDOBMonth1" maxlength="2" formControlName="NomineeDOBMonth"
+                                                                                        value="" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeDOBMonth')?.errors}"/>
+                                                                                        <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeDOBMonth')?.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeDOBMonth'])?.hasError('required')">
+                                                                                               
+                                                                                            </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                                <div class="col-4 mt-2 mt-sm-0">
+                                                                                    <input type="text" value="" required
+                                                                                        class="form-control number cDateCls"
+                                                                                        data-id="Y" data-nomineeno="1"
+                                                                                        placeholder="yyyy" id="NomineeDOBYear1"
+                                                                                        name="NomineeDOBYear1" maxlength="4" formControlName="NomineeDOBYear"
+                                                                                        value="" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeDOBYear')?.errors}"/>
+                                                                                        <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeDOBYear')?.errors" class="invalid-feedback">
+                                                                                            <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeDOBYear'])?.hasError('required')">
+                                                                                              
+                                                                                            </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+            
+                                                                        <div class="col-md-12">
+                                                                            <label class="text-black">Nominee name</label>
+                                                                            <input type="text" class="form-control NomineeName"
+                                                                                data-nomineeno="1" required="required"
+                                                                                id="NomineeName1" name="NomineeName1"  formControlName="NomineeName"
+                                                                                placeholder="Enter Nominee name" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeName')?.errors}"/>
+                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeName')?.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeName'])?.hasError('required')">
+                                                                                        NomineeName is required
+                                                                                    </div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <label class="text-black">Relationship</label>
+                                                                            <select id="NomineeRelationShip1" data-nomineeno="1"
+                                                                                required="required" formControlName="NomineeRelationShip" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeRelationShip')?.errors}"
+                                                                                class="form-control NomineeRelationShip"></select>
+                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeRelationShip')?.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeRelationShip'])?.hasError('required')">
+                                                                                        NomineeName is required
+                                                                                    </div>
+                                                                                </div>
+                                                                        </div>
+            
+                                                                        <div class="col-md-12">
+                                                                            <label class="text-black">Address </label>
+                                                                            <textarea class="textarea form-control mb-0"
+                                                                                required="required" 
+                                                                                style="font-size: 14px" id="NomineeAddressLine1"
+                                                                                placeholder="Enter Address" rows="2" formControlName="NomineeAddress" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeAddress')?.errors}"></textarea>
+                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeAddress')?.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeAddress'])?.hasError('required')">
+                                                                                        NomineeAddress is required
+                                                                                    </div>
+                                                                                </div>
+                                                                            <div class="form-check">
+                                                                                <label class="form-check-label"
+                                                                                    id="AddressChangeNominee1" data-nomineeno="1"
+                                                                                    style="cursor: pointer">Click here, incase you
+                                                                                    want to modify the
+                                                                                    address</label>
+                                                                            </div>
+                                                                        </div>
+            
+                                                                        <div class="col-md-12">
+                                                                            <label class="text-black">Nominee Mobile</label>
+                                                                            <input type="text" class="form-control number"
+                                                                                data-nomineeno="1" minlength="10"
+                                                                                required="required" maxlength="10" formControlName="NomineeMobile" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeMobile')?.errors}"
+                                                                                id="NomineeMobile1" name="NomineeMobile1"
+                                                                                placeholder="Enter Nominee Mobile" />
+                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeMobile')?.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeMobile'])?.hasError('required')">
+                                                                                        NomineeMobile is required
+                                                                                    </div>
+                                                                                </div>
+                                                                        </div>
+            
+                                                                        <div class="col-md-12">
+                                                                            <label class="text-black">Nominee Email ID</label>
+                                                                            <input type="email" class="form-control"
+                                                                                data-nomineeno="1" id="NomineeEmail1"
+                                                                                required="required" name="NomineeEmail1"
+                                                                                placeholder="Enter Nominee Email" formControlName="NomineeEmail" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeEmail')?.errors}"/>
+                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeEmail')?.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeEmail'])?.hasError('required')">
+                                                                                        NomineeEmail is required
+                                                                                    </div>
+                                                                                </div>
+                                                                        </div>
+            
+                                                                        <div class="col-sm-12 mt-3">
+                                                                            <label>Nomination share (<span
+                                                                                    id="ShareNominee1">0%</span>)</label>
+                                                                            <div id="ShareBarNominee1" class="bar"></div>
+                                                                        </div>
+            
+                                                                        <input type="hidden" id="Address1Nominee1" />
+                                                                        <input type="hidden" id="Address2Nominee1" />
+                                                                        <input type="hidden" id="Address3Nominee1" />
+                                                                        <input type="hidden" id="CityNominee1" />
+                                                                        <input type="hidden" id="StateNominee1" />
+                                                                        <input type="hidden" id="PincodeNominee1" />
+                                                                        <input type="hidden" id="CountryNominee1" />
+            
+                                                                        <input type="hidden" id="MinorNominee1" value="No" />
+            
+                                                                        <input type="hidden" id="GaurdianNameNominee1" />
+                                                                        <input type="hidden" id="GaurdianPanNominee1" />
+            
+                                                                        <input type="hidden" id="GaurdianAddress1Nominee1" />
+                                                                        <input type="hidden" id="GaurdianAddress2Nominee1" />
+                                                                        <input type="hidden" id="GaurdianAddress3Nominee1" />
+                                                                        <input type="hidden" id="GaurdianDOBNominee1" />
+            
+                                                                        <input type="hidden" id="GaurdianCityNominee1" />
+                                                                        <input type="hidden" id="GaurdianStateNominee1" />
+                                                                        <input type="hidden" id="GaurdianCountryNominee1" />
+                                                                        <input type="hidden" id="GaurdianPinCodeNominee1" />
+                                                                        <input type="hidden" id="GaurdianRelationShipNominee1" />
+                                                                        <input type="hidden" id="GaurdianEmailShipNominee1" />
+                                                                        <input type="hidden" id="GaurdianMobileShipNominee1" />
+                                                                        <input type="hidden" id="hidNomineeId1" value="0" />
+                                                                        <input type="hidden" id="GaurdianJsonNominee1" value="" />
+            
+                                                                        <input type="hidden"
+                                                                            id="hidGuardianNomineeProofFilePath1" />
                                                                     </div>
 
-                                                                    <button type="button"
-                                                                        class="btn btn-danger btn-sm reUploadNomineeBtn"
-                                                                        data-nomineeno="1" id="reUploadBtnDownload1">
-                                                                        <i class="fa fa-close"></i>
-                                                                    </button>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-12">
-                                                                <label class="text-black">Nominee Date of Birth</label>
-                                                                <div class="form-row">
-                                                                    <div class="col-4">
-                                                                        <input type="text" value="" required
-                                                                            class="form-control number cDatezero cDateCls"
-                                                                            data-nomineeno="1" min="1" max="31"
-                                                                            data-id="D" placeholder="dd"
-                                                                            id="NomineeDOBDay1" name="NomineeDOBDay1"
-                                                                            maxlength="2" />
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <input type="text" value="" required
-                                                                            class="form-control number cDatezero cDateCls"
-                                                                            data-nomineeno="1" min="1" max="12"
-                                                                            data-id="M" placeholder="mm"
-                                                                            id="NomineeDOBMonth1"
-                                                                            name="NomineeDOBMonth1" maxlength="2"
-                                                                            value="" />
-                                                                    </div>
-                                                                    <div class="col-4 mt-2 mt-sm-0">
-                                                                        <input type="text" value="" required
-                                                                            class="form-control number cDateCls"
-                                                                            data-id="Y" data-nomineeno="1"
-                                                                            placeholder="yyyy" id="NomineeDOBYear1"
-                                                                            name="NomineeDOBYear1" maxlength="4"
-                                                                            value="" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-12">
-                                                                <label class="text-black">Nominee name</label>
-                                                                <input type="text" class="form-control NomineeName"
-                                                                    data-nomineeno="1" required="required"
-                                                                    id="NomineeName1" name="NomineeName1"
-                                                                    placeholder="Enter Nominee name" />
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <label class="text-black">Relationship</label>
-                                                                <select id="NomineeRelationShip1" data-nomineeno="1"
-                                                                    required="required"
-                                                                    class="form-control NomineeRelationShip"></select>
-                                                            </div>
-
-                                                            <div class="col-md-12">
-                                                                <label class="text-black">Address </label>
-                                                                <textarea class="textarea form-control mb-0"
-                                                                    required="required" disabled="disabled"
-                                                                    style="font-size: 14px" id="NomineeAddressLine1"
-                                                                    placeholder="Enter Address" rows="2"></textarea>
-                                                                <div class="form-check">
-                                                                    <label class="form-check-label"
-                                                                        id="AddressChangeNominee1" data-nomineeno="1"
-                                                                        style="cursor: pointer">Click here, incase you
-                                                                        want to modify the
-                                                                        address</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-12">
-                                                                <label class="text-black">Nominee Mobile</label>
-                                                                <input type="text" class="form-control number"
-                                                                    data-nomineeno="1" minlength="10"
-                                                                    required="required" maxlength="10"
-                                                                    id="NomineeMobile1" name="NomineeMobile1"
-                                                                    placeholder="Enter Nominee Mobile" />
-                                                            </div>
-
-                                                            <div class="col-md-12">
-                                                                <label class="text-black">Nominee Email ID</label>
-                                                                <input type="email" class="form-control"
-                                                                    data-nomineeno="1" id="NomineeEmail1"
-                                                                    required="required" name="NomineeEmail1"
-                                                                    placeholder="Enter Nominee Email" />
-                                                            </div>
-
-                                                            <div class="col-sm-12 mt-3">
-                                                                <label>Nomination share (<span
-                                                                        id="ShareNominee1">0%</span>)</label>
-                                                                <div id="ShareBarNominee1" class="bar"></div>
-                                                            </div>
-
-                                                            <input type="hidden" id="Address1Nominee1" />
-                                                            <input type="hidden" id="Address2Nominee1" />
-                                                            <input type="hidden" id="Address3Nominee1" />
-                                                            <input type="hidden" id="CityNominee1" />
-                                                            <input type="hidden" id="StateNominee1" />
-                                                            <input type="hidden" id="PincodeNominee1" />
-                                                            <input type="hidden" id="CountryNominee1" />
-
-                                                            <input type="hidden" id="MinorNominee1" value="No" />
-
-                                                            <input type="hidden" id="GaurdianNameNominee1" />
-                                                            <input type="hidden" id="GaurdianPanNominee1" />
-
-                                                            <input type="hidden" id="GaurdianAddress1Nominee1" />
-                                                            <input type="hidden" id="GaurdianAddress2Nominee1" />
-                                                            <input type="hidden" id="GaurdianAddress3Nominee1" />
-                                                            <input type="hidden" id="GaurdianDOBNominee1" />
-
-                                                            <input type="hidden" id="GaurdianCityNominee1" />
-                                                            <input type="hidden" id="GaurdianStateNominee1" />
-                                                            <input type="hidden" id="GaurdianCountryNominee1" />
-                                                            <input type="hidden" id="GaurdianPinCodeNominee1" />
-                                                            <input type="hidden" id="GaurdianRelationShipNominee1" />
-                                                            <input type="hidden" id="GaurdianEmailShipNominee1" />
-                                                            <input type="hidden" id="GaurdianMobileShipNominee1" />
-                                                            <input type="hidden" id="hidNomineeId1" value="0" />
-                                                            <input type="hidden" id="GaurdianJsonNominee1" value="" />
-
-                                                            <input type="hidden"
-                                                                id="hidGuardianNomineeProofFilePath1" />
                                                         </div>
+                                                      
                                                     </div>
 
                                                     <div class="col-sm-12 col-lg-6" id="Nominee2Div"
@@ -580,8 +598,7 @@
                                                                     </div>
 
                                                                     <button type="button"
-                                                                        class="btn btn-danger btn-sm reUploadNomineeBtn"
-                                                                        data-nomineeno="2" id="reUploadBtn2">
+                                                                        class="btn btn-danger btn-sm reUploadNomineeBtn">
                                                                         <i class="fa fa-close"></i>
                                                                     </button>
                                                                 </div>
@@ -597,8 +614,7 @@
                                                                     </div>
 
                                                                     <button type="button"
-                                                                        class="btn btn-danger btn-sm reUploadNomineeBtn"
-                                                                        data-nomineeno="2" id="reUploadBtnDownload2">
+                                                                        class="btn btn-danger btn-sm reUploadNomineeBtn">
                                                                         <i class="fa fa-close"></i>
                                                                     </button>
                                                                 </div>
@@ -612,8 +628,7 @@
                                                                             class="form-control number cDatezero cDateCls"
                                                                             data-nomineeno="2" min="1" max="31"
                                                                             data-id="D" placeholder="dd"
-                                                                            id="NomineeDOBDay2" name="NomineeDOBDay2"
-                                                                            maxlength="2" />
+                                                                            name="NomineeDOBDay2" maxlength="2" />
                                                                     </div>
                                                                     <div class="col-4">
                                                                         <input type="text" value="" required
@@ -995,15 +1010,15 @@
                                     </div>
                                 </div>
                             </section>
-                            <!-----Nominee Ends---->
+
                         </div>
 
                         <div class="row" style="
-                padding: 10px;
-                margin-top: 10px;
-                border-top: 1px solid #c5c5c5;
-                display: none;
-              ">
+              padding: 10px;
+              margin-top: 10px;
+              border-top: 1px solid #c5c5c5;
+              display: none;
+            ">
                             <div id="MobileDeclarationDiv" class="panel-collapse" style="width: 100%">
                                 <div class="panel-body ekyc_pbodybg">
                                     <div class="row">
@@ -1035,11 +1050,11 @@
                             </div>
                         </div>
                         <div class="row" style="
-                padding: 10px;
-                margin-top: 10px;
-                border-top: 1px solid #c5c5c5;
-                display: none;
-              ">
+              padding: 10px;
+              margin-top: 10px;
+              border-top: 1px solid #c5c5c5;
+              display: none;
+            ">
                             <div id="EmailDeclarationDiv" class="panel-collapse" style="width: 100%">
                                 <div class="panel-body ekyc_pbodybg">
                                     <div class="row">
@@ -1070,10 +1085,10 @@
                         </div>
 
                         <div class="row" style="
-                padding: 10px;
-                margin-top: 10px;
-                border-top: 1px solid #c5c5c5;
-              ">
+              padding: 10px;
+              margin-top: 10px;
+              border-top: 1px solid #c5c5c5;
+            ">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="AccountStatement" class="pd"
@@ -1098,10 +1113,10 @@
                         </div>
 
                         <div class="row" style="
-                padding: 10px;
-                margin-top: 10px;
-                border-top: 1px solid #c5c5c5;
-              ">
+              padding: 10px;
+              margin-top: 10px;
+              border-top: 1px solid #c5c5c5;
+            ">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="IncomeSource" class="pd" style="padding-top: 10px">Do you intend to
@@ -1123,11 +1138,11 @@
                         </div>
 
                         <div class="row" style="
-                padding: 10px;
-                margin-top: 10px;
-                border-top: 1px solid #c5c5c5;
-                display: none;
-              ">
+              padding: 10px;
+              margin-top: 10px;
+              border-top: 1px solid #c5c5c5;
+              display: none;
+            ">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="IncomeSource" class="pd" style="padding-top: 10px">Source of
@@ -1148,11 +1163,11 @@
                         </div>
 
                         <div class="row" style="
-                padding: 10px;
-                margin-top: 10px;
-                border-top: 1px solid #c5c5c5;
-                display: none;
-              ">
+              padding: 10px;
+              margin-top: 10px;
+              border-top: 1px solid #c5c5c5;
+              display: none;
+            ">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="ResidentialDetails" class="pd" style="padding-top: 10px">Residential
@@ -1172,10 +1187,10 @@
                         </div>
 
                         <div class="row" style="
-                padding: 10px;
-                margin-top: 10px;
-                border-top: 1px solid #c5c5c5;
-              ">
+              padding: 10px;
+              margin-top: 10px;
+              border-top: 1px solid #c5c5c5;
+            ">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="AccountStatement" class="pd" style="padding-top: 10px">Running Account
@@ -1194,11 +1209,11 @@
                         </div>
 
                         <div class="row" id="districtDiv" style="
-                padding: 10px;
-                margin-top: 10px;
-                border-top: 1px solid #c5c5c5;
-                display: none;
-              ">
+              padding: 10px;
+              margin-top: 10px;
+              border-top: 1px solid #c5c5c5;
+              display: none;
+            ">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="AssignDistrict" class="pd" style="padding-top: 10px">Select district
@@ -1222,14 +1237,15 @@
                         <button type="button" class="btn btn-info" id="PreviousBtn">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i>Previous step
                         </button>
-                        <button type="submit" class="btn btn-primary default-btn" (click)="onSubmit()">
+                        <button class="btn btn-primary default-btn" (click)="onSubmit()">
                             Save and proceed to next
                         </button>
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
+
+        </div>
+    </form>
 </section>
 
 
