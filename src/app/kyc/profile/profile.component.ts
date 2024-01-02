@@ -36,6 +36,8 @@ export class ProfileComponent {
     this.profileForm = this.formBuilder.group({
       maritalStatus:new FormControl('',Validators.required),
       skills:this.formBuilder.array([]),
+      spouse:this.formBuilder.array([]),
+      father:this.formBuilder.array([]),
     });
     
 
@@ -46,9 +48,31 @@ export class ProfileComponent {
  
 get f() {return this.profileForm.controls}
  get skills() {return(this.profileForm.get('skills') as FormArray).controls;}
+ get spouse() {return(this.profileForm.get('spouse') as FormArray).controls;}
+ get father() {return(this.profileForm.get('father') as FormArray).controls;}
 
 
   
+
+  addSpouse(){
+    const newSpouse=this.formBuilder.group({
+      spouse:['',[Validators.required]],
+     
+      
+    });
+    (this.profileForm.get('spouse') as FormArray).push(newSpouse);
+    
+  }
+
+  addFather(){
+    const newFather=this.formBuilder.group({
+      father:['',[Validators.required]],
+     
+      
+    });
+    (this.profileForm.get('father') as FormArray).push(newFather);
+    
+  }
 
   addSkills(){
     const newSkill=this.formBuilder.group({
@@ -71,7 +95,12 @@ get f() {return this.profileForm.controls}
   removeskills(index:number){
     (this.profileForm.get('skills')as FormArray).removeAt(index)
   }
-
+  removespouse(index:number){
+    (this.profileForm.get('spouse')as FormArray).removeAt(index)
+  }
+  removesFather(index:number){
+    (this.profileForm.get('father')as FormArray).removeAt(index)
+  }
   open() {
     $('#imageViewer').modal('show');
   }
@@ -82,12 +111,8 @@ get f() {return this.profileForm.controls}
 
   panUpload(event: any) {
     const file = event.target.files[0];
-    //this.imageChangedEvent = event;
     console.log(event)
-    console.log(event.objectUrl)
-    //this.fileEvent.emit(event);
-    //this.fileUploadData = event; 
-    
+    console.log(event.objectUrl)   
     this.profileService.panfileEventData.next(event);
     $('#imageViewer').modal('show');
   }
@@ -143,6 +168,26 @@ get f() {return this.profileForm.controls}
         skillsArray.removeAt(0)
       }
     }
+
+  }
+
+  radioChangeValue(event:any){
+    if(event.target.value === 'Spouse'){
+      this.addSpouse();
+      const skillsArray=this.profileForm.get('father')as FormArray;
+      while (skillsArray.length !==0){
+        skillsArray.removeAt(0)
+      }
+    
+    }
+    else{
+      this.addFather();
+      const skillsArray=this.profileForm.get('spouse')as FormArray;
+      while (skillsArray.length !==0){
+        skillsArray.removeAt(0)
+      }
+    }
+
 
   }
 }
