@@ -122,7 +122,8 @@
                 <div class="col-lg-3 col-md-12 col-12">
                     <div class="form-check-inline mt-2">
                         <div class=" custom-radio" style="padding-left: 8px; padding-right: 0px">
-                            <input type="radio" class="custom-control-input custom-radio-btn" value="Father" />
+                            <input type="radio" class="custom-control-input custom-radio-btn" value="Father"
+                                name="fatherSpouseRad" (change)="radioChangeValue($event)"  checked="checked"/>
                             <label class="custom-control-label" for="defaultUnchecked">Father</label>
                         </div>
 
@@ -130,22 +131,62 @@
 
                         <div class="custom-control custom-radio">
                             <input type="radio" class="custom-control-input custom-radio-btn" value="Spouse"
-                                name="fatherSpouseRad" />
+                                (change)="radioChangeValue($event)" name="fatherSpouseRad" />
                             <label class="custom-control-label" for="defaultChecked">Spouse</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-2 col-md-3 col-12">
+
                     <div class="form-label-group">
-                        <select class="form-control">
-                            <option value="">Mrs</option>
-                            <option value="MR">Mr</option>
-                        </select>
+                        <div formArrayName="spouse">
+                            <div *ngFor="let spouse of spouse; let i=index">
+                                <div [formGroupName]="i">
+                                    <select class="form-control" formControlName="spouse"
+                                        [ngClass]="{'is-invalid':submitted && profileForm.get('spouse.'+ i + '.spouse')?.errors}">
+                                        <option value="">Select</option>
+                                        <option value="MRS">Mrs</option>
+                                        <option value="MR">Mr</option>
+                                    </select>
+                                    <div *ngIf="submitted && profileForm.get('spouse.' + i +'.spouse')?.errors"
+                                        class="invalid-feedback">
+                                        <div
+                                            *ngIf="submitted && profileForm.get(['spouse', i,'spouse'])?.hasError('required')">
+                                           
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div formArrayName="father">
+                            <div *ngFor="let father of father; let i=index">
+                                <div [formGroupName]="i">
+                                    <select class="form-control" formControlName="father"
+                                        [ngClass]="{'is-invalid':submitted && profileForm.get('father.'+ i + '.father')?.errors}">
+                                        <option value="MR" [selected]="true">Mr</option>
+                                    </select>
+                                    <div *ngIf="submitted && profileForm.get('father.' + i +'.father')?.errors"
+                                        class="invalid-feedback">
+                                        <div
+                                            *ngIf="submitted && profileForm.get(['father', i,'father'])?.hasError('required')">
+                                           
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                     
+
                     </div>
                 </div>
 
                 <div class="col-lg-7 col-md-9 col-12">
+
                     <div class="form-label-group">
                         <input type="text" style="text-transform: uppercase" class="form-control alphaonly"
                             name="fatherspouseName" id="fatherspouseName" placeholder="" />
@@ -257,8 +298,8 @@
                                             <div class="custom-control custom-radio"
                                                 style="padding-left: 8px; padding-right: 0px">
                                                 <input type="radio" class="custom-control-input custom-radio-btn"
-                                                    value="yes" id="txxtCDSLNomineeYes"
-                                                    name="CDSLOpenAcNominee"  (change)="selectradiovalue($event)"/>
+                                                    value="yes" id="txxtCDSLNomineeYes" name="CDSLOpenAcNominee"
+                                                    (change)="selectradiovalue($event)" />
                                                 <label class="custom-control-label" for="txxtCDSLNomineeYes">Yes</label>
                                             </div>
 
@@ -267,7 +308,7 @@
                                                 <input type="radio" class="custom-control-input custom-radio-btn"
                                                     checked="checked" value="no" id="txtxCDSLNomineeNo"
                                                     name="CDSLOpenAcNominee" (change)="selectradiovalue($event)" />
-                                                <label class="custom-control-label" for="txtxCDSLNomineeNo" >NO</label>
+                                                <label class="custom-control-label" for="txtxCDSLNomineeNo">NO</label>
                                             </div>
                                         </div>
 
@@ -325,7 +366,8 @@
                                                 <div class="form-inline float-right">
                                                     <div class="form-group numberOfNominee mt-2">
                                                         <label for="NumberOfNominees">Number of Nominees</label>
-                                                        <select id="NumberOfNominees" class="form-control m-0 w-auto" (change)="OnSelectChange($event)">
+                                                        <select id="NumberOfNominees" class="form-control m-0 w-auto"
+                                                            (change)="OnSelectChange($event)">
                                                             <option value="1">One</option>
                                                             <option value="2">Two</option>
                                                             <option value="3">Three</option>
@@ -336,62 +378,82 @@
 
                                                 <div class="row">
                                                     <div class="col-sm-12 col-lg-6">
-                            
+
                                                         <div formArrayName="skills">
                                                             <div *ngFor="let skill of skills; let i=index">
                                                                 <div [formGroupName]="i">
                                                                     <p class="text-dark font-weight-bold">Nominee 1</p>
                                                                     <div class="nominee-box">
                                                                         <div class="col-md-12">
-                                                                            <label class="text-black">Nominee Proof Type</label>
-                                                                            <select class="form-control" id="NomineeProofSel1" formControlName="NomineeProof"
-                                                                                name="NomineeProofSel1" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeProof')?.errors}">
+                                                                            <label class="text-black">Nominee Proof
+                                                                                Type</label>
+                                                                            <select class="form-control"
+                                                                                id="NomineeProofSel1"
+                                                                                formControlName="NomineeProof"
+                                                                                name="NomineeProofSel1"
+                                                                                [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeProof')?.errors}">
                                                                                 <option value="">Select Proof</option>
-                                                                                <option value="onee">Select Proof</option>
+                                                                                <option value="onee">Select Proof
+                                                                                </option>
                                                                             </select>
-                                                                            <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeProof')?.errors" class="invalid-feedback">
-                                                                                <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeProof'])?.hasError('required')">
+                                                                            <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeProof')?.errors"
+                                                                                class="invalid-feedback">
+                                                                                <div
+                                                                                    *ngIf="submitted && profileForm.get(['skills', i,'NomineeProof'])?.hasError('required')">
                                                                                     NomineeProof is required
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-12">
-                                                                            <label class="text-black">Nominee Proof No.</label>
-                                                                            <input type="text" class="form-control NomineePan"
+                                                                            <label class="text-black">Nominee Proof
+                                                                                No.</label>
+                                                                            <input type="text"
+                                                                                class="form-control NomineePan"
                                                                                 data-nomineeno="1" name="NomineePan1"
                                                                                 id="NomineePan1"
                                                                                 placeholder="Enter Nominee Proof No"
-                                                                                style="text-transform: uppercase" formControlName="NomineeProofnumber"
-                                                                                name="NomineeProofSel1" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeProofnumber')?.errors}"/>
-                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeProofnumber')?.errors" class="invalid-feedback">
-                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeProofnumber'])?.hasError('required')">
-                                                                                        NomineeProof Number is required
-                                                                                    </div>
+                                                                                style="text-transform: uppercase"
+                                                                                formControlName="NomineeProofnumber"
+                                                                                name="NomineeProofSel1"
+                                                                                [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeProofnumber')?.errors}" />
+                                                                            <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeProofnumber')?.errors"
+                                                                                class="invalid-feedback">
+                                                                                <div
+                                                                                    *ngIf="submitted && profileForm.get(['skills', i,'NomineeProofnumber'])?.hasError('required')">
+                                                                                    NomineeProof Number is required
                                                                                 </div>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="col-md-12">
                                                                             <label for="NomineeProofUploadFile1"
                                                                                 id="NomineeProofUpload1"
                                                                                 class="btn btn-primary fileLABLE">
-                                                                                <i class="fa fa-camera-retro"></i> Upload
+                                                                                <i class="fa fa-camera-retro"></i>
+                                                                                Upload
                                                                                 Proof
                                                                             </label>
                                                                             <input id="NomineeProofUploadFile1"
-                                                                                class="nomineeProofUploadFile" data-nomineeno="1"
-                                                                                style="display: none" type="file" />
-                                                                            <input type="hidden" id="hidNomineeProofUploadPath1" />
-            
-                                                                            <div id="isNomineeProofDownload1" style="display: none">
+                                                                                class="nomineeProofUploadFile"
+                                                                                data-nomineeno="1" style="display: none"
+                                                                                type="file" />
+                                                                            <input type="hidden"
+                                                                                id="hidNomineeProofUploadPath1" />
+
+                                                                            <div id="isNomineeProofDownload1"
+                                                                                style="display: none">
                                                                                 <div id="hidFileUploadedMsgDownload1"
                                                                                     style="display: none"
                                                                                     class="alert alert-info p-1 font-weight-bold d-inline-block">
-                                                                                    <a href="" class="btn btn-sm btn-danger"
+                                                                                    <a href=""
+                                                                                        class="btn btn-sm btn-danger"
                                                                                         id="NomineeProofDownload1"
-                                                                                        target="_blank"><i class="fa fa-download"
-                                                                                            aria-hidden="true"></i>Download uploaded
+                                                                                        target="_blank"><i
+                                                                                            class="fa fa-download"
+                                                                                            aria-hidden="true"></i>Download
+                                                                                        uploaded
                                                                                         NomineeProff</a>
                                                                                 </div>
-            
+
                                                                                 <button type="button"
                                                                                     class="btn btn-danger btn-sm reUploadNomineeBtn">
                                                                                     <i class="fa fa-close"></i>
@@ -399,128 +461,178 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-12">
-                                                                            <label class="text-black">Nominee Date of Birth</label>
+                                                                            <label class="text-black">Nominee Date of
+                                                                                Birth</label>
                                                                             <div class="form-row">
                                                                                 <div class="col-4">
                                                                                     <input type="text" value="" required
                                                                                         class="form-control number cDatezero cDateCls"
-                                                                                        data-nomineeno="1" min="1" max="31"
-                                                                                        data-id="D" placeholder="dd"
-                                                                                        id="NomineeDOBDay1" name="NomineeDOBDay1" formControlName="NomineeDOBDay"
-                                                                                        maxlength="2" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeDOBDay')?.errors}"/>
-                                                                                        <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeDOBDay')?.errors" class="invalid-feedback">
-                                                                                            <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeDOBDay'])?.hasError('required')">
-                                                                                               
-                                                                                            </div>
+                                                                                        data-nomineeno="1" min="1"
+                                                                                        max="31" data-id="D"
+                                                                                        placeholder="dd"
+                                                                                        id="NomineeDOBDay1"
+                                                                                        name="NomineeDOBDay1"
+                                                                                        formControlName="NomineeDOBDay"
+                                                                                        maxlength="2"
+                                                                                        [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeDOBDay')?.errors}" />
+                                                                                    <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeDOBDay')?.errors"
+                                                                                        class="invalid-feedback">
+                                                                                        <div
+                                                                                            *ngIf="submitted && profileForm.get(['skills', i,'NomineeDOBDay'])?.hasError('required')">
+
                                                                                         </div>
+                                                                                    </div>
                                                                                 </div>
                                                                                 <div class="col-4">
                                                                                     <input type="text" value="" required
                                                                                         class="form-control number cDatezero cDateCls"
-                                                                                        data-nomineeno="1" min="1" max="12"
-                                                                                        data-id="M" placeholder="mm"
+                                                                                        data-nomineeno="1" min="1"
+                                                                                        max="12" data-id="M"
+                                                                                        placeholder="mm"
                                                                                         id="NomineeDOBMonth1"
-                                                                                        name="NomineeDOBMonth1" maxlength="2" formControlName="NomineeDOBMonth"
-                                                                                        value="" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeDOBMonth')?.errors}"/>
-                                                                                        <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeDOBMonth')?.errors" class="invalid-feedback">
-                                                                                            <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeDOBMonth'])?.hasError('required')">
-                                                                                               
-                                                                                            </div>
+                                                                                        name="NomineeDOBMonth1"
+                                                                                        maxlength="2"
+                                                                                        formControlName="NomineeDOBMonth"
+                                                                                        value=""
+                                                                                        [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeDOBMonth')?.errors}" />
+                                                                                    <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeDOBMonth')?.errors"
+                                                                                        class="invalid-feedback">
+                                                                                        <div
+                                                                                            *ngIf="submitted && profileForm.get(['skills', i,'NomineeDOBMonth'])?.hasError('required')">
+
                                                                                         </div>
+                                                                                    </div>
                                                                                 </div>
                                                                                 <div class="col-4 mt-2 mt-sm-0">
                                                                                     <input type="text" value="" required
                                                                                         class="form-control number cDateCls"
                                                                                         data-id="Y" data-nomineeno="1"
-                                                                                        placeholder="yyyy" id="NomineeDOBYear1"
-                                                                                        name="NomineeDOBYear1" maxlength="4" formControlName="NomineeDOBYear"
-                                                                                        value="" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeDOBYear')?.errors}"/>
-                                                                                        <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeDOBYear')?.errors" class="invalid-feedback">
-                                                                                            <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeDOBYear'])?.hasError('required')">
-                                                                                              
-                                                                                            </div>
+                                                                                        placeholder="yyyy"
+                                                                                        id="NomineeDOBYear1"
+                                                                                        name="NomineeDOBYear1"
+                                                                                        maxlength="4"
+                                                                                        formControlName="NomineeDOBYear"
+                                                                                        value=""
+                                                                                        [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeDOBYear')?.errors}" />
+                                                                                    <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeDOBYear')?.errors"
+                                                                                        class="invalid-feedback">
+                                                                                        <div
+                                                                                            *ngIf="submitted && profileForm.get(['skills', i,'NomineeDOBYear'])?.hasError('required')">
+
                                                                                         </div>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-            
+
                                                                         <div class="col-md-12">
-                                                                            <label class="text-black">Nominee name</label>
-                                                                            <input type="text" class="form-control NomineeName"
+                                                                            <label class="text-black">Nominee
+                                                                                name</label>
+                                                                            <input type="text"
+                                                                                class="form-control NomineeName"
                                                                                 data-nomineeno="1" required="required"
-                                                                                id="NomineeName1" name="NomineeName1"  formControlName="NomineeName"
-                                                                                placeholder="Enter Nominee name" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeName')?.errors}"/>
-                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeName')?.errors" class="invalid-feedback">
-                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeName'])?.hasError('required')">
-                                                                                        NomineeName is required
-                                                                                    </div>
+                                                                                id="NomineeName1" name="NomineeName1"
+                                                                                formControlName="NomineeName"
+                                                                                placeholder="Enter Nominee name"
+                                                                                [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeName')?.errors}" />
+                                                                            <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeName')?.errors"
+                                                                                class="invalid-feedback">
+                                                                                <div
+                                                                                    *ngIf="submitted && profileForm.get(['skills', i,'NomineeName'])?.hasError('required')">
+                                                                                    NomineeName is required
                                                                                 </div>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="col-md-12">
-                                                                            <label class="text-black">Relationship</label>
-                                                                            <select id="NomineeRelationShip1" data-nomineeno="1"
-                                                                                required="required" formControlName="NomineeRelationShip" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeRelationShip')?.errors}"
+                                                                            <label
+                                                                                class="text-black">Relationship</label>
+                                                                            <select id="NomineeRelationShip1"
+                                                                                data-nomineeno="1" required="required"
+                                                                                formControlName="NomineeRelationShip"
+                                                                                [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeRelationShip')?.errors}"
                                                                                 class="form-control NomineeRelationShip"></select>
-                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeRelationShip')?.errors" class="invalid-feedback">
-                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeRelationShip'])?.hasError('required')">
-                                                                                        NomineeName is required
-                                                                                    </div>
+                                                                            <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeRelationShip')?.errors"
+                                                                                class="invalid-feedback">
+                                                                                <div
+                                                                                    *ngIf="submitted && profileForm.get(['skills', i,'NomineeRelationShip'])?.hasError('required')">
+                                                                                    NomineeName is required
                                                                                 </div>
+                                                                            </div>
                                                                         </div>
-            
+
                                                                         <div class="col-md-12">
                                                                             <label class="text-black">Address </label>
                                                                             <textarea class="textarea form-control mb-0"
-                                                                                required="required" 
-                                                                                style="font-size: 14px" id="NomineeAddressLine1"
-                                                                                placeholder="Enter Address" rows="2" formControlName="NomineeAddress" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeAddress')?.errors}"></textarea>
-                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeAddress')?.errors" class="invalid-feedback">
-                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeAddress'])?.hasError('required')">
-                                                                                        NomineeAddress is required
-                                                                                    </div>
+                                                                                required="required"
+                                                                                style="font-size: 14px"
+                                                                                id="NomineeAddressLine1"
+                                                                                placeholder="Enter Address" rows="2"
+                                                                                formControlName="NomineeAddress"
+                                                                                [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeAddress')?.errors}"></textarea>
+                                                                            <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeAddress')?.errors"
+                                                                                class="invalid-feedback">
+                                                                                <div
+                                                                                    *ngIf="submitted && profileForm.get(['skills', i,'NomineeAddress'])?.hasError('required')">
+                                                                                    NomineeAddress is required
                                                                                 </div>
+                                                                            </div>
                                                                             <div class="form-check">
                                                                                 <label class="form-check-label"
-                                                                                    id="AddressChangeNominee1" data-nomineeno="1"
-                                                                                    style="cursor: pointer">Click here, incase you
+                                                                                    id="AddressChangeNominee1"
+                                                                                    data-nomineeno="1"
+                                                                                    style="cursor: pointer">Click here,
+                                                                                    incase you
                                                                                     want to modify the
                                                                                     address</label>
                                                                             </div>
                                                                         </div>
-            
+
                                                                         <div class="col-md-12">
-                                                                            <label class="text-black">Nominee Mobile</label>
-                                                                            <input type="text" class="form-control number"
+                                                                            <label class="text-black">Nominee
+                                                                                Mobile</label>
+                                                                            <input type="text"
+                                                                                class="form-control number"
                                                                                 data-nomineeno="1" minlength="10"
-                                                                                required="required" maxlength="10" formControlName="NomineeMobile" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeMobile')?.errors}"
-                                                                                id="NomineeMobile1" name="NomineeMobile1"
+                                                                                required="required" maxlength="10"
+                                                                                formControlName="NomineeMobile"
+                                                                                [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeMobile')?.errors}"
+                                                                                id="NomineeMobile1"
+                                                                                name="NomineeMobile1"
                                                                                 placeholder="Enter Nominee Mobile" />
-                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeMobile')?.errors" class="invalid-feedback">
-                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeMobile'])?.hasError('required')">
-                                                                                        NomineeMobile is required
-                                                                                    </div>
+                                                                            <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeMobile')?.errors"
+                                                                                class="invalid-feedback">
+                                                                                <div
+                                                                                    *ngIf="submitted && profileForm.get(['skills', i,'NomineeMobile'])?.hasError('required')">
+                                                                                    NomineeMobile is required
                                                                                 </div>
+                                                                            </div>
                                                                         </div>
-            
+
                                                                         <div class="col-md-12">
-                                                                            <label class="text-black">Nominee Email ID</label>
+                                                                            <label class="text-black">Nominee Email
+                                                                                ID</label>
                                                                             <input type="email" class="form-control"
                                                                                 data-nomineeno="1" id="NomineeEmail1"
                                                                                 required="required" name="NomineeEmail1"
-                                                                                placeholder="Enter Nominee Email" formControlName="NomineeEmail" [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeEmail')?.errors}"/>
-                                                                                <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeEmail')?.errors" class="invalid-feedback">
-                                                                                    <div *ngIf="submitted && profileForm.get(['skills', i,'NomineeEmail'])?.hasError('required')">
-                                                                                        NomineeEmail is required
-                                                                                    </div>
+                                                                                placeholder="Enter Nominee Email"
+                                                                                formControlName="NomineeEmail"
+                                                                                [ngClass]="{'is-invalid':submitted && profileForm.get('skills.'+ i + '.NomineeEmail')?.errors}" />
+                                                                            <div *ngIf="submitted && profileForm.get('skills.' + i +'.NomineeEmail')?.errors"
+                                                                                class="invalid-feedback">
+                                                                                <div
+                                                                                    *ngIf="submitted && profileForm.get(['skills', i,'NomineeEmail'])?.hasError('required')">
+                                                                                    NomineeEmail is required
                                                                                 </div>
+                                                                            </div>
                                                                         </div>
-            
+
                                                                         <div class="col-sm-12 mt-3">
                                                                             <label>Nomination share (<span
                                                                                     id="ShareNominee1">0%</span>)</label>
-                                                                            <div id="ShareBarNominee1" class="bar"></div>
+                                                                            <div id="ShareBarNominee1" class="bar">
+                                                                            </div>
                                                                         </div>
-            
+
                                                                         <input type="hidden" id="Address1Nominee1" />
                                                                         <input type="hidden" id="Address2Nominee1" />
                                                                         <input type="hidden" id="Address3Nominee1" />
@@ -528,27 +640,41 @@
                                                                         <input type="hidden" id="StateNominee1" />
                                                                         <input type="hidden" id="PincodeNominee1" />
                                                                         <input type="hidden" id="CountryNominee1" />
-            
-                                                                        <input type="hidden" id="MinorNominee1" value="No" />
-            
-                                                                        <input type="hidden" id="GaurdianNameNominee1" />
+
+                                                                        <input type="hidden" id="MinorNominee1"
+                                                                            value="No" />
+
+                                                                        <input type="hidden"
+                                                                            id="GaurdianNameNominee1" />
                                                                         <input type="hidden" id="GaurdianPanNominee1" />
-            
-                                                                        <input type="hidden" id="GaurdianAddress1Nominee1" />
-                                                                        <input type="hidden" id="GaurdianAddress2Nominee1" />
-                                                                        <input type="hidden" id="GaurdianAddress3Nominee1" />
+
+                                                                        <input type="hidden"
+                                                                            id="GaurdianAddress1Nominee1" />
+                                                                        <input type="hidden"
+                                                                            id="GaurdianAddress2Nominee1" />
+                                                                        <input type="hidden"
+                                                                            id="GaurdianAddress3Nominee1" />
                                                                         <input type="hidden" id="GaurdianDOBNominee1" />
-            
-                                                                        <input type="hidden" id="GaurdianCityNominee1" />
-                                                                        <input type="hidden" id="GaurdianStateNominee1" />
-                                                                        <input type="hidden" id="GaurdianCountryNominee1" />
-                                                                        <input type="hidden" id="GaurdianPinCodeNominee1" />
-                                                                        <input type="hidden" id="GaurdianRelationShipNominee1" />
-                                                                        <input type="hidden" id="GaurdianEmailShipNominee1" />
-                                                                        <input type="hidden" id="GaurdianMobileShipNominee1" />
-                                                                        <input type="hidden" id="hidNomineeId1" value="0" />
-                                                                        <input type="hidden" id="GaurdianJsonNominee1" value="" />
-            
+
+                                                                        <input type="hidden"
+                                                                            id="GaurdianCityNominee1" />
+                                                                        <input type="hidden"
+                                                                            id="GaurdianStateNominee1" />
+                                                                        <input type="hidden"
+                                                                            id="GaurdianCountryNominee1" />
+                                                                        <input type="hidden"
+                                                                            id="GaurdianPinCodeNominee1" />
+                                                                        <input type="hidden"
+                                                                            id="GaurdianRelationShipNominee1" />
+                                                                        <input type="hidden"
+                                                                            id="GaurdianEmailShipNominee1" />
+                                                                        <input type="hidden"
+                                                                            id="GaurdianMobileShipNominee1" />
+                                                                        <input type="hidden" id="hidNomineeId1"
+                                                                            value="0" />
+                                                                        <input type="hidden" id="GaurdianJsonNominee1"
+                                                                            value="" />
+
                                                                         <input type="hidden"
                                                                             id="hidGuardianNomineeProofFilePath1" />
                                                                     </div>
@@ -556,7 +682,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                      
+
                                                     </div>
 
                                                     <div class="col-sm-12 col-lg-6" id="Nominee2Div"
