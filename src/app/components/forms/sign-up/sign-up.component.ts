@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 declare var $: any;
 import { ToastrService } from 'ngx-toastr';
+import { ProfileService } from 'src/app/service/profile.service';
 
 
 
@@ -22,11 +23,11 @@ export class SignUpComponent {
   verifymobileForm:boolean=true;
   @Output() eventSignUp =new EventEmitter<string>
 
-  constructor(private formBuilder: FormBuilder,private toastr: ToastrService) {
+  constructor(private formBuilder: FormBuilder,private toastr: ToastrService,private profileService:ProfileService) {
     this.form = this.formBuilder.group({
-      mobile: new FormControl('',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+      mobilenumber: new FormControl('',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
       email: new FormControl('',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-      acceptTerms: new FormControl('',Validators.required),
+      //acceptTerms: new FormControl('',Validators.required),
     });
 
     this.mobileverifyform = this.formBuilder.group({
@@ -56,7 +57,12 @@ export class SignUpComponent {
 
     if (this.form.valid) {
       this.toastr.success('OTP sent successfully');
-      alert(JSON.stringify(this.form.value))
+      alert(JSON.stringify(this.form.value));
+      this.profileService.createClient({email:"satishkumarpenke@gmail.com",mobilenumber:9948333534}).subscribe((res:any)=>{
+        console.log("clinetn api response",res);
+      },err=>{
+        console.log(err,'error message')
+      })
      $('#exampleModal').modal('show');
     
     }

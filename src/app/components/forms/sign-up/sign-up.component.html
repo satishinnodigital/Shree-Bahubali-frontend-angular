@@ -2,12 +2,12 @@
     <form [formGroup]="form">
         <div class="mb-4">
 
-            <input name="MobileNumber" type="number" class="form-control mb-4 number" formControlName="mobile"
-                placeholder="Mobile no " [ngClass]="{'is-invalid':submitted && f['mobile'].errors}">
-            <div *ngIf="submitted && f['mobile'].errors" class="invalid-feedback">
-                <div *ngIf="f['mobile'].errors['required']">Mobile is required
+            <input name="MobileNumber" type="number" class="form-control mb-4 number" formControlName="mobilenumber"
+                placeholder="mobilenumber no " [ngClass]="{'is-invalid':submitted && f['mobilenumber'].errors}">
+            <div *ngIf="submitted && f['mobilenumber'].errors" class="invalid-feedback">
+                <div *ngIf="f['mobilenumber'].errors['required']">mobilenumber is required
                 </div>
-                <div *ngIf="f['mobile'].errors['pattern']">Please, Enter 10 digit Mobile Number</div>
+                <div *ngIf="f['mobilenumber'].errors['pattern']">Please, Enter 10 digit mobile Number</div>
             </div>
         </div>
         <div class="mb-4">
@@ -21,7 +21,7 @@
                 <!-- <div *ngIf="f['email'].errors['email']">Email is invalid</div> -->
             </div>
         </div>
-        <div class="form-group termsCondns" class="mb-4">
+        <!-- <div class="form-group termsCondns" class="mb-4">
             <input name="iAgreeChk" type="checkbox" formControlName="acceptTerms"
                 [ngClass]="{'is-invalid':submitted && f['acceptTerms'].errors }">
             I agree
@@ -30,7 +30,7 @@
                 <div *ngIf="submitted && f['acceptTerms'].errors" class="invalid-feedback">
                     Accept Terms is required
                 </div>
-        </div>
+        </div> -->
 
         <input type="submit" name="submitBtn" value="Get otp" class="btn btn-sm btn-primary submit-buttt"
             (click)="onSubmit()">
